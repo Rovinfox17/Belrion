@@ -4,6 +4,7 @@ export type Database = {
       clients: {
         Row: {
           id: string;
+          user_id: string;
           company_name: string;
           address: string | null;
           latitude: number | null;
@@ -15,6 +16,7 @@ export type Database = {
         };
         Insert: {
           id?: string;
+          user_id?: string;
           company_name: string;
           address?: string | null;
           latitude?: number | null;
