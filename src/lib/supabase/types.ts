@@ -27,6 +27,7 @@ export type Database = {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["clients"]["Insert"]>;
+        Relationships: [];
       };
       contacts: {
         Row: {
@@ -48,6 +49,7 @@ export type Database = {
           is_primary?: boolean;
         };
         Update: Partial<Database["public"]["Tables"]["contacts"]["Insert"]>;
+        Relationships: [];
       };
       products: {
         Row: {
@@ -63,6 +65,7 @@ export type Database = {
           details?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["products"]["Insert"]>;
+        Relationships: [];
       };
       visits: {
         Row: {
@@ -82,6 +85,7 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["visits"]["Insert"]>;
+        Relationships: [];
       };
       visit_comments: {
         Row: {
@@ -99,7 +103,12 @@ export type Database = {
         Update: Partial<
           Database["public"]["Tables"]["visit_comments"]["Insert"]
         >;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 };
