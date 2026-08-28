@@ -47,3 +47,48 @@ export async function createClientWithContact(input: {
   revalidatePath("/");
   return { success: true as const, id: client.id as string };
 }
+
+export async function updateClient(input: {
+  id: string;
+  companyName: string;
+  status: ClientStatus;
+  address: string;
+  notes: string;
+}) {
+  const companyName = input.companyName.trim();
+
+  if (!companyName) {
+    return { error: "El nombre de la empresa es obligatorio." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("clients")
+    .update({
+      company_name: companyName,
+      status: input.status,
+      address: input.address.trim() || null,
+      notes: input.notes.trim() || null,
+    })
+    .eq("id", input.id);
+
+  if (error) {
+    return { error: "No se pudo guardar el cliente." };
+  }
+
+  revalidatePath("/");
+  revalidatePath(`/clientes/${input.id}`);
+  return { success: true as const };
+}
+
+export async function deleteClient(id: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("clients").delete().eq("id", id);
+
+  if (error) {
+    return { error: "No se pudo eliminar el cliente." };
+  }
+
+  revalidatePath("/");
+  return { success: true as const };
+}
