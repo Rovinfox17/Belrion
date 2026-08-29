@@ -49,7 +49,7 @@ function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-lg border border-black/10 bg-black/[.02] p-3">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-lg border border-border bg-accent p-3">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label>Nombre</Label>
@@ -146,7 +146,7 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
   }
 
   return (
-    <div className="flex items-start justify-between gap-3 rounded-lg border border-black/5 bg-card p-3">
+    <div className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1.5 font-medium">
           {contact.name}

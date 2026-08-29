@@ -157,7 +157,7 @@ export default async function Home({
       </div>
 
       {teams.length > 0 && (
-        <div className="flex w-fit flex-wrap gap-1 rounded-lg bg-black/[.04] p-1">
+        <div className="flex w-fit flex-wrap gap-1 rounded-lg bg-accent p-1">
           <Link
             href="/"
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${

@@ -75,7 +75,7 @@ export function CalendarView({
         </Button>
       </div>
 
-      <div className="rounded-lg border border-black/5 bg-card p-2 sm:p-4">
+      <div className="rounded-lg border border-border bg-card p-2 sm:p-4">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"

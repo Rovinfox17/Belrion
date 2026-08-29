@@ -79,7 +79,7 @@ export function ProductsSection({
         {products.map((p) => (
           <li
             key={p.id}
-            className="flex items-start justify-between gap-3 rounded-lg border border-black/5 bg-card p-3"
+            className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3"
           >
             <div>
               <p className="font-medium">{p.name}</p>
@@ -100,7 +100,7 @@ export function ProductsSection({
       {adding && (
         <form
           onSubmit={handleCreate}
-          className="flex flex-col gap-3 rounded-lg border border-black/10 bg-black/[.02] p-3"
+          className="flex flex-col gap-3 rounded-lg border border-border bg-accent p-3"
         >
           <div className="flex flex-col gap-1.5">
             <Label>Nombre del producto</Label>

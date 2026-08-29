@@ -33,23 +33,23 @@ const markdownComponents: Components = {
       {children}
     </a>
   ),
-  hr: () => <hr className="my-6 border-black/10" />,
+  hr: () => <hr className="my-6 border-border" />,
   blockquote: ({ children }) => (
     <blockquote className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
       {children}
     </blockquote>
   ),
   table: ({ children }) => (
-    <div className="mb-4 overflow-x-auto rounded-md border border-black/10">
+    <div className="mb-4 overflow-x-auto rounded-md border border-border">
       <table className="w-full text-left text-sm">{children}</table>
     </div>
   ),
-  thead: ({ children }) => <thead className="bg-black/[.03]">{children}</thead>,
+  thead: ({ children }) => <thead className="bg-accent">{children}</thead>,
   th: ({ children }) => (
-    <th className="border-b border-black/10 px-3 py-2 font-medium">{children}</th>
+    <th className="border-b border-border px-3 py-2 font-medium">{children}</th>
   ),
   td: ({ children }) => (
-    <td className="border-b border-black/5 px-3 py-2 align-top text-foreground/90">
+    <td className="border-b border-border px-3 py-2 align-top text-foreground/90">
       {children}
     </td>
   ),
@@ -58,7 +58,7 @@ const markdownComponents: Components = {
 export function LegalPage({ markdown }: { markdown: string }) {
   return (
     <div className="min-h-screen bg-background">
-      <header className="flex items-center gap-2 border-b border-black/5 bg-card px-4 py-3 sm:px-6">
+      <header className="flex items-center gap-2 border-b border-border bg-card px-4 py-3 sm:px-6">
         <Image src="/logo.png" alt="Belrion" width={28} height={28} className="rounded-full" />
         <span className="font-heading text-base font-semibold text-primary">Belrion</span>
       </header>

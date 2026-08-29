@@ -72,7 +72,7 @@ export function AddExistingClientsDialog({
               {clients.map((c) => (
                 <label
                   key={c.id}
-                  className="flex items-center gap-2 rounded-md px-1 py-1 text-sm hover:bg-black/[.03]"
+                  className="flex items-center gap-2 rounded-md px-1 py-1 text-sm hover:bg-accent"
                 >
                   <input
                     type="checkbox"

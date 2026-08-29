@@ -41,7 +41,7 @@ export function ClientList({
 }) {
   if (clients.length === 0) {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black/10 bg-card/60 p-12 text-center">
+      <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-card/60 p-12 text-center">
         <p className="font-medium">
           {isFiltered
             ? "Ningún cliente coincide con estos filtros."
@@ -58,9 +58,9 @@ export function ClientList({
 
   return (
     <>
-      <div className="hidden overflow-hidden rounded-lg border border-black/5 bg-card md:block">
+      <div className="hidden overflow-hidden rounded-lg border border-border bg-card md:block">
         <table className="w-full text-left text-sm">
-          <thead className="bg-black/[.02] text-xs uppercase text-muted-foreground">
+          <thead className="bg-accent text-xs uppercase text-muted-foreground">
             <tr>
               <th className="px-4 py-3 font-medium">Empresa</th>
               <th className="px-4 py-3 font-medium">Contacto</th>
@@ -70,7 +70,7 @@ export function ClientList({
           </thead>
           <tbody>
             {clients.map((c) => (
-              <tr key={c.id} className="border-t border-black/5 hover:bg-black/[.02]">
+              <tr key={c.id} className="border-t border-border hover:bg-accent">
                 <td className="px-4 py-3">
                   <Link href={`/clientes/${c.id}`} className="font-medium hover:underline">
                     {c.companyName}
@@ -98,7 +98,7 @@ export function ClientList({
           <li key={c.id}>
             <Link
               href={`/clientes/${c.id}`}
-              className="block rounded-lg border border-black/5 bg-card p-4 shadow-sm"
+              className="block rounded-lg border border-border bg-card p-4 shadow-sm"
             >
               <div className="flex items-start justify-between gap-2">
                 <span className="font-medium">{c.companyName}</span>

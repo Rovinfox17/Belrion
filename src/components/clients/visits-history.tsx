@@ -41,7 +41,7 @@ export function VisitsHistory({ visits }: { visits: VisitWithComments[] }) {
       ) : (
         <ul className="flex flex-col gap-3">
           {visits.map((v) => (
-            <li key={v.id} className="rounded-lg border border-black/5 bg-card p-3">
+            <li key={v.id} className="rounded-lg border border-border bg-card p-3">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm font-medium">{formatDate(v.scheduledAt)}</span>
                 <Badge className={STATUS_CLASS[v.status]} variant="secondary">
@@ -49,7 +49,7 @@ export function VisitsHistory({ visits }: { visits: VisitWithComments[] }) {
                 </Badge>
               </div>
               {v.comments.length > 0 && (
-                <ul className="mt-2 flex flex-col gap-1.5 border-t border-black/5 pt-2">
+                <ul className="mt-2 flex flex-col gap-1.5 border-t border-border pt-2">
                   {v.comments.map((c) => (
                     <li key={c.id} className="text-sm text-muted-foreground">
                       <span className="text-xs">{formatDate(c.createdAt)} — </span>

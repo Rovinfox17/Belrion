@@ -140,7 +140,7 @@ export function NewVisitDialog({
                       <button
                         key={c.id}
                         type="button"
-                        className="block w-full px-3 py-2 text-left text-sm hover:bg-black/[.03]"
+                        className="block w-full px-3 py-2 text-left text-sm hover:bg-accent"
                         onClick={() => {
                           setClientId(c.id);
                           setSearch("");

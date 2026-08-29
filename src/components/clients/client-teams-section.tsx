@@ -75,7 +75,7 @@ export function ClientTeamsSection({
           {sharedWith.map((t) => (
             <li
               key={t.teamId}
-              className="flex items-center justify-between gap-3 rounded-lg border border-black/5 bg-card p-3"
+              className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3"
             >
               <span className="text-sm font-medium">{t.teamName}</span>
               {isOwner && (

@@ -138,7 +138,7 @@ export default async function ClientDetailPage({
         Volver a clientes
       </Link>
 
-      <div className="flex flex-col gap-3 rounded-lg border border-black/5 bg-card p-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="font-heading text-2xl font-semibold text-primary">

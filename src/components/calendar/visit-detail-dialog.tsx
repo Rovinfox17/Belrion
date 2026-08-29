@@ -220,7 +220,7 @@ export function VisitDetailDialog({
             ) : (
               <ul className="flex max-h-40 flex-col gap-2 overflow-y-auto">
                 {visit.comments.map((c) => (
-                  <li key={c.id} className="rounded-md bg-black/[.02] p-2 text-sm">
+                  <li key={c.id} className="rounded-md bg-accent p-2 text-sm">
                     <p className="text-xs text-muted-foreground">{formatDate(c.createdAt)}</p>
                     {c.comment}
                   </li>
