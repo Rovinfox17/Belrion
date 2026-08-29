@@ -34,8 +34,7 @@ Deno.serve(async () => {
     )
     .eq("status", "pendiente")
     .is("notified_at", null)
-    .not("reminder_minutes_before", "is", null)
-    .gt("scheduled_at", now.toISOString());
+    .not("reminder_minutes_before", "is", null);
 
   if (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
@@ -80,6 +79,7 @@ Deno.serve(async () => {
           sent++;
         } catch (err) {
           const statusCode = (err as { statusCode?: number }).statusCode;
+          console.error("push send failed", statusCode, err);
           if (statusCode === 404 || statusCode === 410) {
             await supabase.from("push_subscriptions").delete().eq("endpoint", sub.endpoint);
           }
