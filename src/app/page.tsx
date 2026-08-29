@@ -1,10 +1,8 @@
-import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
-import { Button } from "@/components/ui/button";
-import { logout } from "./logout/actions";
+import { AppHeader } from "@/components/layout/app-header";
 
 type RawClient = {
   id: string;
@@ -108,17 +106,7 @@ export default async function Home({
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FAF1E4]">
-      <header className="flex items-center justify-between border-b border-black/5 bg-white px-4 py-3 sm:px-6">
-        <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Belrion" width={32} height={32} className="rounded-full" />
-          <span className="text-lg font-semibold text-[#BE5B2E]">Belrion</span>
-        </div>
-        <form action={logout}>
-          <Button type="submit" variant="ghost" size="sm">
-            Cerrar sesión
-          </Button>
-        </form>
-      </header>
+      <AppHeader />
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 p-4 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

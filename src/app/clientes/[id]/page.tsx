@@ -9,6 +9,7 @@ import { AddressMapLink } from "@/components/clients/address-map-link";
 import { ContactsSection, type Contact } from "@/components/clients/contacts-section";
 import { ProductsSection, type Product } from "@/components/clients/products-section";
 import { VisitsHistory, type VisitWithComments } from "@/components/clients/visits-history";
+import { AppHeader } from "@/components/layout/app-header";
 
 type Status = "activo" | "potencial" | "inactivo";
 
@@ -97,6 +98,7 @@ export default async function ClientDetailPage({
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FAF1E4]">
+      <AppHeader />
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 p-4 sm:p-6">
         <Link
           href="/"
