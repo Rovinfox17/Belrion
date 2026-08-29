@@ -9,9 +9,17 @@ insert into storage.buckets (id, name, public)
 values ('avatars', 'avatars', true)
 on conflict (id) do nothing;
 
+drop policy if exists "avatars_select_all" on storage.objects;
 drop policy if exists "avatars_insert_own" on storage.objects;
 drop policy if exists "avatars_update_own" on storage.objects;
 drop policy if exists "avatars_delete_own" on storage.objects;
+
+-- El flag "public" del bucket solo afecta a la URL pública directa; las
+-- operaciones normales del SDK (como upload con upsert, que primero
+-- comprueba si el archivo ya existe) necesitan su propia política de SELECT.
+create policy "avatars_select_all" on storage.objects
+  for select
+  using (bucket_id = 'avatars');
 
 create policy "avatars_insert_own" on storage.objects
   for insert to authenticated
