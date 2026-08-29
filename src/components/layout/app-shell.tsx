@@ -54,9 +54,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       <div className="flex min-h-screen flex-1 flex-col">
-        <header className="flex items-center gap-2 border-b border-black/5 bg-card px-4 py-3 md:hidden">
-          <Image src="/logo.png" alt="Belrion" width={28} height={28} className="rounded-full" />
-          <span className="font-heading text-base font-semibold text-primary">Belrion</span>
+        <header className="flex items-center justify-between gap-2 border-b border-black/5 bg-card px-4 py-3 md:hidden">
+          <div className="flex items-center gap-2">
+            <Image src="/logo.png" alt="Belrion" width={28} height={28} className="rounded-full" />
+            <span className="font-heading text-base font-semibold text-primary">Belrion</span>
+          </div>
+          <form action={logout}>
+            <button
+              type="submit"
+              aria-label="Cerrar sesión"
+              className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-black/[.03] hover:text-foreground"
+            >
+              <LogOutIcon className="size-4" />
+            </button>
+          </form>
         </header>
 
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
