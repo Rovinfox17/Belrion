@@ -89,7 +89,7 @@ export function TeamList({ teams }: { teams: TeamListItem[] }) {
                   <span className="text-sm">
                     <span className="font-medium">{t.name}</span>{" "}
                     <span className="text-muted-foreground">
-                      · {t.role === "owner" ? "Propietario" : "Miembro"}
+                      · {t.role === "owner" ? "Propietario" : "Colaborador"}
                     </span>
                   </span>
                   <ChevronRightIcon className="size-4 text-muted-foreground" />
@@ -119,7 +119,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
         setError(result.error);
         return;
       }
-      toast.success("Miembro añadido");
+      toast.success("Colaborador añadido");
       setEmail("");
       router.refresh();
     });
@@ -132,7 +132,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Miembro eliminado");
+        toast.success("Colaborador eliminado");
         router.refresh();
       }
       setRemovingId(null);
@@ -150,7 +150,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
             <div className="text-sm">
               <span className="font-medium">{m.email}</span>{" "}
               <span className="text-muted-foreground">
-                · {m.role === "owner" ? "Propietario" : "Miembro"}
+                · {m.role === "owner" ? "Propietario" : "Colaborador"}
               </span>
             </div>
             {team.isOwner && m.role !== "owner" && (

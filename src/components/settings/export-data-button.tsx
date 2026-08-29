@@ -1,19 +1,21 @@
 "use client";
 
 import { useTransition } from "react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { DownloadIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { exportMyData } from "@/app/actions/account";
 
 export function ExportDataButton() {
+  const t = useTranslations("settings.data");
   const [isPending, startTransition] = useTransition();
 
   function handleExport() {
     startTransition(async () => {
       const result = await exportMyData();
       if (result.error || !result.data) {
-        toast.error(result.error ?? "No se pudieron exportar los datos.");
+        toast.error(result.error ?? t("error"));
         return;
       }
 
@@ -28,14 +30,14 @@ export function ExportDataButton() {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-      toast.success("Datos exportados");
+      toast.success(t("success"));
     });
   }
 
   return (
     <Button variant="outline" onClick={handleExport} disabled={isPending} className="w-fit">
       <DownloadIcon />
-      {isPending ? "Exportando…" : "Exportar mis datos"}
+      {isPending ? t("exporting") : t("export")}
     </Button>
   );
 }

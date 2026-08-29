@@ -3,6 +3,7 @@
 import { useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -27,12 +28,6 @@ export type CalendarVisit = {
   comments: { id: string; comment: string; createdAt: string }[];
 };
 
-const STATUS_LABEL: Record<CalendarVisit["status"], string> = {
-  pendiente: "Pendiente",
-  completada: "Completada",
-  cancelada: "Cancelada",
-};
-
 const STATUS_CLASS: Record<CalendarVisit["status"], string> = {
   pendiente: "bg-amber-100 text-amber-800 hover:bg-amber-100",
   completada: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100",
@@ -47,16 +42,6 @@ function toDatetimeLocal(iso: string) {
   )}:${pad(d.getMinutes())}`;
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleString("es-ES", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 export function VisitDetailDialog({
   visit,
   onOpenChange,
@@ -64,6 +49,26 @@ export function VisitDetailDialog({
   visit: CalendarVisit;
   onOpenChange: (open: boolean) => void;
 }) {
+  const t = useTranslations("calendar.detailDialog");
+  const tVisits = useTranslations("clients.visits");
+  const locale = useLocale();
+
+  const STATUS_LABEL: Record<CalendarVisit["status"], string> = {
+    pendiente: tVisits("statusPending"),
+    completada: tVisits("statusCompleted"),
+    cancelada: tVisits("statusCancelled"),
+  };
+
+  function formatDate(iso: string) {
+    return new Date(iso).toLocaleString(locale, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   const [reprogramming, setReprogramming] = useState(false);
   const [scheduledAt, setScheduledAt] = useState(() => toDatetimeLocal(visit.scheduledAt));
   const [comment, setComment] = useState("");
@@ -77,7 +82,7 @@ export function VisitDetailDialog({
         toast.error(result.error);
         return;
       }
-      toast.success("Visita actualizada");
+      toast.success(t("statusUpdated"));
       router.refresh();
     });
   }
@@ -96,7 +101,7 @@ export function VisitDetailDialog({
         toast.error(result.error);
         return;
       }
-      toast.success("Visita reprogramada");
+      toast.success(t("rescheduled"));
       setReprogramming(false);
       router.refresh();
     });
@@ -128,7 +133,7 @@ export function VisitDetailDialog({
         toast.error(result.error);
         return;
       }
-      toast.success("Visita eliminada");
+      toast.success(t("deleted"));
       onOpenChange(false);
       router.refresh();
     });
@@ -146,7 +151,7 @@ export function VisitDetailDialog({
               href={`/clientes/${visit.clientId}`}
               className="text-sm font-medium text-primary hover:underline"
             >
-              Ver ficha del cliente →
+              {t("viewClient")}
             </Link>
             <Badge className={STATUS_CLASS[visit.status]} variant="secondary">
               {STATUS_LABEL[visit.status]}
@@ -155,7 +160,7 @@ export function VisitDetailDialog({
 
           {reprogramming ? (
             <form onSubmit={handleReprogram} className="flex flex-col gap-2">
-              <Label htmlFor="reprogram_at">Nueva fecha y hora</Label>
+              <Label htmlFor="reprogram_at">{t("newDate")}</Label>
               <Input
                 id="reprogram_at"
                 type="datetime-local"
@@ -171,10 +176,10 @@ export function VisitDetailDialog({
                   onClick={() => setReprogramming(false)}
                   disabled={isPending}
                 >
-                  Cancelar
+                  {t("cancel")}
                 </Button>
                 <Button type="submit" size="sm" disabled={isPending}>
-                  {isPending ? "Guardando…" : "Guardar"}
+                  {isPending ? t("saving") : t("save")}
                 </Button>
               </div>
             </form>
@@ -190,7 +195,7 @@ export function VisitDetailDialog({
                 onClick={() => handleStatus("completada")}
                 disabled={isPending}
               >
-                Marcar completada
+                {t("markCompleted")}
               </Button>
             )}
             {visit.status !== "cancelada" && (
@@ -200,23 +205,23 @@ export function VisitDetailDialog({
                 onClick={() => handleStatus("cancelada")}
                 disabled={isPending}
               >
-                Cancelar visita
+                {t("cancelVisit")}
               </Button>
             )}
             {!reprogramming && (
               <Button size="sm" variant="outline" onClick={() => setReprogramming(true)}>
-                Reprogramar
+                {t("reprogram")}
               </Button>
             )}
             <Button size="sm" variant="destructive" onClick={handleDelete} disabled={isPending}>
-              Eliminar
+              {t("delete")}
             </Button>
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label>Comentarios de seguimiento</Label>
+            <Label>{t("comments")}</Label>
             {visit.comments.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Sin comentarios todavía.</p>
+              <p className="text-sm text-muted-foreground">{t("noComments")}</p>
             ) : (
               <ul className="flex max-h-40 flex-col gap-2 overflow-y-auto">
                 {visit.comments.map((c) => (
@@ -231,10 +236,10 @@ export function VisitDetailDialog({
               <Input
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="Añadir comentario…"
+                placeholder={t("addComment")}
               />
               <Button type="submit" size="sm" disabled={isPending}>
-                Añadir
+                {t("addCommentSubmit")}
               </Button>
             </form>
           </div>

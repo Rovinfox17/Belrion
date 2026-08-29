@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { MapPinIcon } from "lucide-react";
 
 export function AddressMapLink({ address }: { address: string }) {
+  const t = useTranslations("clients.addressMap");
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     address
   )}`;
@@ -26,7 +28,7 @@ export function AddressMapLink({ address }: { address: string }) {
       render={
         <a href={href} target="_blank" rel="noopener noreferrer">
           <MapPinIcon />
-          Cómo llegar
+          {t("cta")}
         </a>
       }
     />

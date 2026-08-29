@@ -1,15 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import { LegalPage } from "@/components/legal/legal-page";
 
-export const metadata: Metadata = {
-  title: "Aviso Legal · Belrion",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("legal");
+  return { title: t("titleLegalNotice") };
+}
 
-export default function AvisoLegalPage() {
+export default async function AvisoLegalPage() {
+  const locale = await getLocale();
   const markdown = fs.readFileSync(
-    path.join(process.cwd(), "src/content/legal/aviso-legal.md"),
+    path.join(process.cwd(), `src/content/legal/${locale}/aviso-legal.md`),
     "utf-8"
   );
   return <LegalPage markdown={markdown} />;

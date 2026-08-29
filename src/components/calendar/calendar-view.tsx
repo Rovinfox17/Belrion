@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import esLocale from "@fullcalendar/core/locales/es";
+import caLocale from "@fullcalendar/core/locales/ca";
 import type { EventClickArg } from "@fullcalendar/core";
 import type { DateClickArg } from "@fullcalendar/interaction";
 import { Button } from "@/components/ui/button";
@@ -36,6 +38,8 @@ export function CalendarView({
   clients: ClientOption[];
   teams?: TeamOption[];
 }) {
+  const t = useTranslations("calendar");
+  const locale = useLocale();
   const [newVisitOpen, setNewVisitOpen] = useState(false);
   const [newVisitDate, setNewVisitDate] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
@@ -71,7 +75,7 @@ export function CalendarView({
           }}
         >
           <PlusIcon />
-          Nueva visita
+          {t("newVisit")}
         </Button>
       </div>
 
@@ -84,7 +88,7 @@ export function CalendarView({
             center: "title",
             right: "dayGridMonth,timeGridWeek",
           }}
-          locale={esLocale}
+          locale={locale === "ca" ? caLocale : esLocale}
           height="auto"
           events={events}
           dateClick={handleDateClick}

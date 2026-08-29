@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -33,6 +34,8 @@ export function NewClientDialog({
   teams?: TeamOption[];
   defaultTeamId?: string | null;
 }) {
+  const t = useTranslations("clients.newDialog");
+  const tFilters = useTranslations("clients.filters");
   const [open, setOpen] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [contactName, setContactName] = useState("");
@@ -71,7 +74,7 @@ export function NewClientDialog({
         setError(result.error);
         return;
       }
-      toast.success("Cliente creado");
+      toast.success(t("success"));
       handleOpenChange(false);
       setCompanyName("");
       setContactName("");
@@ -82,14 +85,14 @@ export function NewClientDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger render={<Button>Nuevo cliente</Button>} />
+      <DialogTrigger render={<Button>{t("trigger")}</Button>} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Nuevo cliente</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="company_name">Nombre de la empresa</Label>
+            <Label htmlFor="company_name">{t("companyName")}</Label>
             <Input
               id="company_name"
               value={companyName}
@@ -98,7 +101,7 @@ export function NewClientDialog({
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="contact_name">Persona de contacto</Label>
+            <Label htmlFor="contact_name">{t("contactName")}</Label>
             <Input
               id="contact_name"
               value={contactName}
@@ -107,37 +110,35 @@ export function NewClientDialog({
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="status">Estado</Label>
+            <Label htmlFor="status">{t("status")}</Label>
             <Select value={status} onValueChange={(v) => setStatus(v as Status)}>
               <SelectTrigger id="status">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="potencial">Potencial</SelectItem>
-                <SelectItem value="activo">Activo</SelectItem>
-                <SelectItem value="inactivo">Inactivo</SelectItem>
+                <SelectItem value="potencial">{tFilters("statusPotential")}</SelectItem>
+                <SelectItem value="activo">{tFilters("statusActive")}</SelectItem>
+                <SelectItem value="inactivo">{tFilters("statusInactive")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           {teams.length > 0 && (
             <div className="flex flex-col gap-2">
-              <Label>Compartir también con</Label>
+              <Label>{t("shareWith")}</Label>
               <div className="flex flex-col gap-1.5">
-                {teams.map((t) => (
-                  <label key={t.id} className="flex items-center gap-2 text-sm">
+                {teams.map((team) => (
+                  <label key={team.id} className="flex items-center gap-2 text-sm">
                     <input
                       type="checkbox"
                       className="size-4"
-                      checked={selectedTeamIds.includes(t.id)}
-                      onChange={(e) => toggleTeam(t.id, e.target.checked)}
+                      checked={selectedTeamIds.includes(team.id)}
+                      onChange={(e) => toggleTeam(team.id, e.target.checked)}
                     />
-                    {t.name}
+                    {team.name}
                   </label>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground">
-                Siempre queda en tu cartera personal, además de con lo que marques aquí.
-              </p>
+              <p className="text-xs text-muted-foreground">{t("shareHint")}</p>
             </div>
           )}
           {error && (
@@ -147,7 +148,7 @@ export function NewClientDialog({
           )}
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Guardando…" : "Guardar"}
+              {isPending ? t("saving") : t("save")}
             </Button>
           </DialogFooter>
         </form>

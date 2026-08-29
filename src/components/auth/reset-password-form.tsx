@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 const MIN_LENGTH = 8;
 
 export function ResetPasswordForm() {
+  const t = useTranslations("auth.reset");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -22,11 +24,11 @@ export function ResetPasswordForm() {
     setError(null);
 
     if (password.length < MIN_LENGTH) {
-      setError(`La contraseña debe tener al menos ${MIN_LENGTH} caracteres.`);
+      setError(t("tooShort", { min: MIN_LENGTH }));
       return;
     }
     if (password !== confirmPassword) {
-      setError("Las contraseñas no coinciden.");
+      setError(t("mismatch"));
       return;
     }
 
@@ -39,7 +41,7 @@ export function ResetPasswordForm() {
         return;
       }
 
-      toast.success("Contraseña actualizada");
+      toast.success(t("success"));
       router.push("/");
     });
   }
@@ -47,7 +49,7 @@ export function ResetPasswordForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <Label htmlFor="password">Nueva contraseña</Label>
+        <Label htmlFor="password">{t("password")}</Label>
         <Input
           id="password"
           type="password"
@@ -59,7 +61,7 @@ export function ResetPasswordForm() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor="confirm_password">Confirmar contraseña</Label>
+        <Label htmlFor="confirm_password">{t("confirmPassword")}</Label>
         <Input
           id="confirm_password"
           type="password"
@@ -76,7 +78,7 @@ export function ResetPasswordForm() {
         </p>
       )}
       <Button type="submit" disabled={isPending} className="mt-2 w-full">
-        {isPending ? "Guardando…" : "Guardar nueva contraseña"}
+        {isPending ? t("saving") : t("submit")}
       </Button>
     </form>
   );

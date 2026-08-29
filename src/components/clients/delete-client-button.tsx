@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -21,6 +22,7 @@ export function DeleteClientButton({
   clientId: string;
   companyName: string;
 }) {
+  const t = useTranslations("clients.deleteDialog");
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -32,28 +34,29 @@ export function DeleteClientButton({
         toast.error(result.error);
         return;
       }
-      toast.success("Cliente eliminado");
+      toast.success(t("success"));
       router.push("/");
     });
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="destructive">Eliminar</Button>} />
+      <DialogTrigger render={<Button variant="destructive">{t("trigger")}</Button>} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Eliminar cliente</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <p className="text-sm text-muted-foreground">
-          Vas a eliminar <span className="font-medium">{companyName}</span>. Esta acción no
-          se puede deshacer y borrará también sus contactos, productos y visitas.
+          {t.rich("description", {
+            name: () => <span className="font-medium">{companyName}</span>,
+          })}
         </p>
         <DialogFooter>
           <Button variant="outline" onClick={() => setOpen(false)} disabled={isPending}>
-            Cancelar
+            {t("cancel")}
           </Button>
           <Button variant="destructive" onClick={handleDelete} disabled={isPending}>
-            {isPending ? "Eliminando…" : "Eliminar definitivamente"}
+            {isPending ? t("deleting") : t("confirm")}
           </Button>
         </DialogFooter>
       </DialogContent>

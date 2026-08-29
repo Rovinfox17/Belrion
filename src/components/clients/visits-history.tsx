@@ -1,3 +1,4 @@
+import { getLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 
 export type VisitWithComments = {
@@ -7,37 +8,37 @@ export type VisitWithComments = {
   comments: { id: string; comment: string; createdAt: string }[];
 };
 
-const STATUS_LABEL: Record<VisitWithComments["status"], string> = {
-  pendiente: "Pendiente",
-  completada: "Completada",
-  cancelada: "Cancelada",
-};
-
 const STATUS_CLASS: Record<VisitWithComments["status"], string> = {
   pendiente: "bg-amber-100 text-amber-800 hover:bg-amber-100",
   completada: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100",
   cancelada: "bg-zinc-100 text-zinc-600 hover:bg-zinc-100",
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleString("es-ES", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
+export async function VisitsHistory({ visits }: { visits: VisitWithComments[] }) {
+  const locale = await getLocale();
+  const t = await getTranslations("clients.visits");
 
-export function VisitsHistory({ visits }: { visits: VisitWithComments[] }) {
+  const STATUS_LABEL: Record<VisitWithComments["status"], string> = {
+    pendiente: t("statusPending"),
+    completada: t("statusCompleted"),
+    cancelada: t("statusCancelled"),
+  };
+
+  function formatDate(iso: string) {
+    return new Date(iso).toLocaleString(locale, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="font-medium">Historial de visitas</h2>
+      <h2 className="font-medium">{t("title")}</h2>
       {visits.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          Sin visitas registradas todavía. Podrás programarlas desde el calendario en el
-          próximo paso.
-        </p>
+        <p className="text-sm text-muted-foreground">{t("empty")}</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {visits.map((v) => (

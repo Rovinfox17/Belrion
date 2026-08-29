@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +10,7 @@ import { createClient } from "@/lib/supabase/client";
 const MIN_LENGTH = 8;
 
 export function ChangePasswordSection() {
+  const t = useTranslations("settings.password");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -21,11 +23,11 @@ export function ChangePasswordSection() {
     setSuccess(null);
 
     if (newPassword.length < MIN_LENGTH) {
-      setError(`La contraseña debe tener al menos ${MIN_LENGTH} caracteres.`);
+      setError(t("tooShort", { min: MIN_LENGTH }));
       return;
     }
     if (newPassword !== confirmPassword) {
-      setError("Las contraseñas no coinciden.");
+      setError(t("mismatch"));
       return;
     }
 
@@ -40,7 +42,7 @@ export function ChangePasswordSection() {
         return;
       }
 
-      setSuccess("Contraseña actualizada.");
+      setSuccess(t("success"));
       setNewPassword("");
       setConfirmPassword("");
     });
@@ -49,7 +51,7 @@ export function ChangePasswordSection() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <Label htmlFor="new_password">Contraseña nueva</Label>
+        <Label htmlFor="new_password">{t("new")}</Label>
         <Input
           id="new_password"
           type="password"
@@ -61,7 +63,7 @@ export function ChangePasswordSection() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor="confirm_password">Confirmar contraseña nueva</Label>
+        <Label htmlFor="confirm_password">{t("confirm")}</Label>
         <Input
           id="confirm_password"
           type="password"
@@ -83,7 +85,7 @@ export function ChangePasswordSection() {
         </p>
       )}
       <Button type="submit" disabled={isPending} className="w-fit">
-        {isPending ? "Guardando…" : "Cambiar contraseña"}
+        {isPending ? t("saving") : t("submit")}
       </Button>
     </form>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,26 +13,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const STATUS_OPTIONS = [
-  { value: "all", label: "Todos los estados" },
-  { value: "activo", label: "Activo" },
-  { value: "potencial", label: "Potencial" },
-  { value: "inactivo", label: "Inactivo" },
-];
-
-const SORT_OPTIONS = [
-  { value: "alfabetico", label: "Alfabético" },
-  { value: "fecha_alta", label: "Fecha de alta" },
-  { value: "proxima_visita", label: "Próxima visita" },
-  { value: "ultima_visita", label: "Última visita" },
-];
-
 export function ClientFilters({ products }: { products: string[] }) {
+  const t = useTranslations("clients.filters");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [q, setQ] = useState(searchParams.get("q") ?? "");
   const [, startTransition] = useTransition();
+
+  const STATUS_OPTIONS = [
+    { value: "all", label: t("statusAll") },
+    { value: "activo", label: t("statusActive") },
+    { value: "potencial", label: t("statusPotential") },
+    { value: "inactivo", label: t("statusInactive") },
+  ];
+
+  const SORT_OPTIONS = [
+    { value: "alfabetico", label: t("sortAlphabetical") },
+    { value: "fecha_alta", label: t("sortCreatedAt") },
+    { value: "proxima_visita", label: t("sortNextVisit") },
+    { value: "ultima_visita", label: t("sortLastVisit") },
+  ];
 
   function updateParam(key: string, value: string | null) {
     const params = new URLSearchParams(searchParams.toString());
@@ -58,7 +60,7 @@ export function ClientFilters({ products }: { products: string[] }) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
       <Input
-        placeholder="Buscar por empresa o contacto…"
+        placeholder={t("searchPlaceholder")}
         value={q}
         onChange={(e) => setQ(e.target.value)}
         className="sm:max-w-xs"
@@ -68,7 +70,7 @@ export function ClientFilters({ products }: { products: string[] }) {
         onValueChange={(v) => updateParam("status", v)}
       >
         <SelectTrigger className="sm:w-44">
-          <SelectValue placeholder="Estado" />
+          <SelectValue placeholder={t("statusPlaceholder")} />
         </SelectTrigger>
         <SelectContent>
           {STATUS_OPTIONS.map((o) => (
@@ -84,10 +86,10 @@ export function ClientFilters({ products }: { products: string[] }) {
           onValueChange={(v) => updateParam("product", v)}
         >
           <SelectTrigger className="sm:w-44">
-            <SelectValue placeholder="Producto" />
+            <SelectValue placeholder={t("productPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Todos los productos</SelectItem>
+            <SelectItem value="all">{t("productAll")}</SelectItem>
             {products.map((p) => (
               <SelectItem key={p} value={p}>
                 {p}
@@ -101,7 +103,7 @@ export function ClientFilters({ products }: { products: string[] }) {
         onValueChange={(v) => updateParam("sort", v)}
       >
         <SelectTrigger className="sm:w-44">
-          <SelectValue placeholder="Ordenar" />
+          <SelectValue placeholder={t("sortPlaceholder")} />
         </SelectTrigger>
         <SelectContent>
           {SORT_OPTIONS.map((o) => (
@@ -117,7 +119,7 @@ export function ClientFilters({ products }: { products: string[] }) {
         size="sm"
         onClick={() => updateParam("upcoming", upcomingActive ? null : "true")}
       >
-        Con visita próxima
+        {t("upcomingOnly")}
       </Button>
     </div>
   );

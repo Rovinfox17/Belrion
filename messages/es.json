@@ -1,0 +1,294 @@
+{
+  "nav": {
+    "clients": "Clientes",
+    "calendar": "Calendario",
+    "team": "Equipo",
+    "settings": "Ajustes",
+    "logout": "Cerrar sesión",
+    "profile": "Perfil"
+  },
+  "footer": {
+    "copyright": "© {year} Belrion",
+    "legal": "Aviso legal",
+    "cookies": "Cookies",
+    "privacy": "Privacidad"
+  },
+  "auth": {
+    "tagline": "Gestión de cartera de clientes",
+    "login": {
+      "subtitle": "Gestión de cartera de clientes",
+      "email": "Email",
+      "password": "Contraseña",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "submit": "Entrar",
+      "noAccount": "¿No tienes cuenta?",
+      "signup": "Regístrate"
+    },
+    "signup": {
+      "subtitle": "Crea tu cuenta",
+      "name": "Nombre",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Crear cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "login": "Entra aquí"
+    },
+    "recover": {
+      "subtitle": "Recupera tu contraseña",
+      "email": "Email",
+      "submit": "Enviar enlace",
+      "sent": "Si ese email tiene una cuenta en Belrion, te hemos enviado un enlace para restablecer la contraseña. Revisa tu bandeja de entrada.",
+      "back": "← Volver a entrar"
+    },
+    "reset": {
+      "subtitle": "Elige tu nueva contraseña",
+      "password": "Nueva contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "submit": "Guardar nueva contraseña",
+      "saving": "Guardando…",
+      "success": "Contraseña actualizada",
+      "tooShort": "La contraseña debe tener al menos {min} caracteres.",
+      "mismatch": "Las contraseñas no coinciden."
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "profile": {
+      "title": "Perfil",
+      "name": "Nombre visible",
+      "namePlaceholder": "Tu nombre",
+      "save": "Guardar perfil",
+      "saving": "Guardando…",
+      "success": "Perfil actualizado",
+      "uploadError": "No se pudo subir la foto: {message}",
+      "invalidImage": "Selecciona un archivo de imagen."
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Automático"
+    },
+    "language": {
+      "title": "Idioma"
+    },
+    "notifications": {
+      "title": "Notificaciones de visitas",
+      "description": "Recibe un aviso en este dispositivo con la antelación que definas al programar cada visita, aunque tengas la app cerrada.",
+      "enable": "Activar notificaciones",
+      "disable": "Desactivar notificaciones",
+      "unsupported": "Tu navegador no admite notificaciones push.",
+      "denied": "Bloqueaste las notificaciones para Belrion. Actívalas desde los ajustes de tu navegador para recibir recordatorios de visitas.",
+      "enabled": "Notificaciones activadas",
+      "disabled": "Notificaciones desactivadas",
+      "enableError": "No se pudieron activar las notificaciones.",
+      "disableError": "No se pudieron desactivar las notificaciones.",
+      "missingKey": "Faltan las claves de notificaciones push."
+    },
+    "password": {
+      "title": "Cambiar contraseña",
+      "new": "Contraseña nueva",
+      "confirm": "Confirmar contraseña nueva",
+      "submit": "Cambiar contraseña",
+      "saving": "Guardando…",
+      "success": "Contraseña actualizada.",
+      "tooShort": "La contraseña debe tener al menos {min} caracteres.",
+      "mismatch": "Las contraseñas no coinciden."
+    },
+    "data": {
+      "title": "Tus datos",
+      "description": "Descarga una copia de todos los clientes, contactos, productos, visitas y comentarios que has creado, en un archivo JSON.",
+      "export": "Exportar mis datos",
+      "exporting": "Exportando…",
+      "success": "Datos exportados",
+      "error": "No se pudieron exportar los datos."
+    },
+    "deleteAccount": {
+      "title": "Eliminar cuenta",
+      "description": "Esto elimina permanentemente tu cuenta, tus clientes, contactos, productos, visitas y comentarios. Si eres propietario de algún equipo compartido, ese equipo también se eliminará para el resto de miembros. Esta acción no se puede deshacer.",
+      "confirmWord": "ELIMINAR",
+      "confirmLabel": "Escribe <word>{word}</word> para confirmar",
+      "submit": "Eliminar mi cuenta",
+      "deleting": "Eliminando…",
+      "error": "No se pudo eliminar la cuenta: {message}",
+      "loginMessage": "Tu cuenta y datos han sido eliminados."
+    },
+    "legal": {
+      "title": "Legal"
+    }
+  },
+  "legal": {
+    "back": "← Volver a Belrion",
+    "titleLegalNotice": "Aviso Legal · Belrion",
+    "titlePrivacy": "Política de Privacidad · Belrion",
+    "titleCookies": "Política de Cookies · Belrion"
+  },
+  "clients": {
+    "title": "Clientes",
+    "myClients": "Mis clientes",
+    "filters": {
+      "searchPlaceholder": "Buscar por empresa o contacto…",
+      "statusAll": "Todos los estados",
+      "statusActive": "Activo",
+      "statusPotential": "Potencial",
+      "statusInactive": "Inactivo",
+      "statusPlaceholder": "Estado",
+      "productAll": "Todos los productos",
+      "productPlaceholder": "Producto",
+      "sortAlphabetical": "Alfabético",
+      "sortCreatedAt": "Fecha de alta",
+      "sortNextVisit": "Próxima visita",
+      "sortLastVisit": "Última visita",
+      "sortPlaceholder": "Ordenar",
+      "upcomingOnly": "Con visita próxima"
+    },
+    "list": {
+      "company": "Empresa",
+      "contact": "Contacto",
+      "status": "Estado",
+      "nextVisit": "Próxima visita",
+      "noVisit": "Sin visita programada",
+      "noContact": "Sin contacto",
+      "emptyFiltered": "Ningún cliente coincide con estos filtros.",
+      "emptyNoClients": "Todavía no tienes clientes.",
+      "emptyHint": "Usa \"Nuevo cliente\" para dar de alta el primero.",
+      "loadError": "No se pudieron cargar los clientes."
+    },
+    "newDialog": {
+      "trigger": "Nuevo cliente",
+      "title": "Nuevo cliente",
+      "companyName": "Nombre de la empresa",
+      "contactName": "Persona de contacto",
+      "status": "Estado",
+      "shareWith": "Compartir también con",
+      "shareHint": "Siempre queda en tu cartera personal, además de con lo que marques aquí.",
+      "save": "Guardar",
+      "saving": "Guardando…",
+      "success": "Cliente creado"
+    },
+    "addExisting": {
+      "trigger": "Añadir de mi cartera",
+      "title": "Añadir clientes de mi cartera a {team}",
+      "empty": "Todos tus clientes personales ya están en este equipo, o todavía no tienes ninguno.",
+      "submit": "Añadir ({count})",
+      "adding": "Añadiendo…",
+      "success": "{count, plural, one {# cliente añadido} other {# clientes añadidos}} a {team}"
+    },
+    "detail": {
+      "back": "← Volver a clientes"
+    },
+    "editDialog": {
+      "trigger": "Editar",
+      "title": "Editar cliente",
+      "companyName": "Nombre de la empresa",
+      "status": "Estado",
+      "address": "Dirección",
+      "addressPlaceholder": "Calle, número, ciudad…",
+      "notes": "Datos de interés",
+      "notesPlaceholder": "Información general de la empresa…",
+      "save": "Guardar cambios",
+      "saving": "Guardando…",
+      "success": "Cliente actualizado"
+    },
+    "deleteDialog": {
+      "trigger": "Eliminar",
+      "title": "Eliminar cliente",
+      "description": "Vas a eliminar <name>{name}</name>. Esta acción no se puede deshacer y borrará también sus contactos, productos y visitas.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar definitivamente",
+      "deleting": "Eliminando…",
+      "success": "Cliente eliminado"
+    },
+    "addressMap": {
+      "cta": "Cómo llegar"
+    },
+    "contacts": {
+      "title": "Contactos",
+      "add": "Añadir contacto",
+      "name": "Nombre",
+      "role": "Cargo",
+      "phone": "Teléfono",
+      "email": "Email",
+      "primary": "Contacto principal",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "saving": "Guardando…",
+      "addSubmit": "Añadir",
+      "success": "Contacto actualizado",
+      "addSuccess": "Contacto añadido",
+      "deleteSuccess": "Contacto eliminado"
+    },
+    "products": {
+      "title": "Productos contratados",
+      "add": "Añadir producto",
+      "empty": "Sin productos contratados todavía.",
+      "name": "Nombre del producto",
+      "details": "Detalles",
+      "detailsPlaceholder": "Condiciones, fecha de contratación…",
+      "cancel": "Cancelar",
+      "saving": "Guardando…",
+      "addSubmit": "Añadir",
+      "addSuccess": "Producto añadido",
+      "deleteSuccess": "Producto eliminado"
+    },
+    "teams": {
+      "title": "Equipos",
+      "onlyPersonal": "Este cliente solo está en tu cartera personal.",
+      "share": "Compartir con un equipo",
+      "add": "Añadir",
+      "adding": "Añadiendo…",
+      "cancel": "Cancelar",
+      "shareSuccess": "Cliente compartido con el equipo",
+      "removeSuccess": "Cliente quitado del equipo"
+    },
+    "visits": {
+      "title": "Historial de visitas",
+      "empty": "Sin visitas registradas todavía. Podrás programarlas desde el calendario.",
+      "statusPending": "Pendiente",
+      "statusCompleted": "Completada",
+      "statusCancelled": "Cancelada"
+    }
+  },
+  "calendar": {
+    "title": "Calendario de visitas",
+    "newVisit": "Nueva visita",
+    "newDialog": {
+      "title": "Nueva visita",
+      "client": "Cliente",
+      "clientSearch": "Buscar cliente…",
+      "noResults": "Sin resultados",
+      "change": "Cambiar",
+      "date": "Fecha y hora",
+      "reminder": "Recordatorio",
+      "reminderNone": "Sin recordatorio",
+      "reminder15": "15 minutos antes",
+      "reminder30": "30 minutos antes",
+      "reminder60": "1 hora antes",
+      "reminder1440": "1 día antes",
+      "shareWith": "Compartir esta visita con",
+      "shareHint": "El equipo verá esta visita (y el resto de datos de este cliente) en su calendario.",
+      "selectClientError": "Selecciona un cliente.",
+      "submit": "Programar visita",
+      "saving": "Guardando…",
+      "success": "Visita programada"
+    },
+    "detailDialog": {
+      "viewClient": "Ver ficha del cliente →",
+      "newDate": "Nueva fecha y hora",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "saving": "Guardando…",
+      "markCompleted": "Marcar completada",
+      "cancelVisit": "Cancelar visita",
+      "reprogram": "Reprogramar",
+      "delete": "Eliminar",
+      "comments": "Comentarios de seguimiento",
+      "noComments": "Sin comentarios todavía.",
+      "addComment": "Añadir comentario…",
+      "addCommentSubmit": "Añadir",
+      "statusUpdated": "Visita actualizada",
+      "rescheduled": "Visita reprogramada",
+      "deleted": "Visita eliminada"
+    }
+  }
+}

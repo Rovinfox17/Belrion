@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
@@ -35,6 +36,7 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const params = await searchParams;
+  const t = await getTranslations("clients");
   const supabase = await createClient();
   const {
     data: { user },
@@ -143,7 +145,7 @@ export default async function Home({
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
+        <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
         <div className="flex flex-wrap gap-2">
           {activeTeam && (
             <AddExistingClientsDialog
@@ -164,7 +166,7 @@ export default async function Home({
               !activeTeam ? "bg-card shadow-sm" : "text-muted-foreground"
             }`}
           >
-            Mis clientes
+            {t("myClients")}
           </Link>
           {teams.map((t) => (
             <Link
@@ -183,7 +185,7 @@ export default async function Home({
       <ClientFilters products={allProducts} />
 
       {error && (
-        <p className="text-sm text-destructive">No se pudieron cargar los clientes.</p>
+        <p className="text-sm text-destructive">{t("list.loadError")}</p>
       )}
 
       <ClientList clients={rows} isFiltered={isFiltered} />

@@ -1,0 +1,294 @@
+{
+  "nav": {
+    "clients": "Clients",
+    "calendar": "Calendari",
+    "team": "Equip",
+    "settings": "Ajustos",
+    "logout": "Tanca la sessió",
+    "profile": "Perfil"
+  },
+  "footer": {
+    "copyright": "© {year} Belrion",
+    "legal": "Avís legal",
+    "cookies": "Cookies",
+    "privacy": "Privacitat"
+  },
+  "auth": {
+    "tagline": "Gestió de cartera de clients",
+    "login": {
+      "subtitle": "Gestió de cartera de clients",
+      "email": "Email",
+      "password": "Contrasenya",
+      "forgot": "Has oblidat la contrasenya?",
+      "submit": "Entra",
+      "noAccount": "No tens compte?",
+      "signup": "Registra't"
+    },
+    "signup": {
+      "subtitle": "Crea el teu compte",
+      "name": "Nom",
+      "email": "Email",
+      "password": "Contrasenya",
+      "submit": "Crea un compte",
+      "hasAccount": "Ja tens compte?",
+      "login": "Entra aquí"
+    },
+    "recover": {
+      "subtitle": "Recupera la teva contrasenya",
+      "email": "Email",
+      "submit": "Envia l'enllaç",
+      "sent": "Si aquest email té un compte a Belrion, t'hem enviat un enllaç per restablir la contrasenya. Revisa la teva safata d'entrada.",
+      "back": "← Torna a entrar"
+    },
+    "reset": {
+      "subtitle": "Tria la teva nova contrasenya",
+      "password": "Contrasenya nova",
+      "confirmPassword": "Confirma la contrasenya",
+      "submit": "Desa la nova contrasenya",
+      "saving": "Desant…",
+      "success": "Contrasenya actualitzada",
+      "tooShort": "La contrasenya ha de tenir almenys {min} caràcters.",
+      "mismatch": "Les contrasenyes no coincideixen."
+    }
+  },
+  "settings": {
+    "title": "Ajustos",
+    "profile": {
+      "title": "Perfil",
+      "name": "Nom visible",
+      "namePlaceholder": "El teu nom",
+      "save": "Desa el perfil",
+      "saving": "Desant…",
+      "success": "Perfil actualitzat",
+      "uploadError": "No s'ha pogut pujar la foto: {message}",
+      "invalidImage": "Selecciona un fitxer d'imatge."
+    },
+    "appearance": {
+      "title": "Aparença",
+      "light": "Clar",
+      "dark": "Fosc",
+      "system": "Automàtic"
+    },
+    "language": {
+      "title": "Idioma"
+    },
+    "notifications": {
+      "title": "Notificacions de visites",
+      "description": "Rep un avís en aquest dispositiu amb l'antelació que triïs en programar cada visita, encara que tinguis l'aplicació tancada.",
+      "enable": "Activa les notificacions",
+      "disable": "Desactiva les notificacions",
+      "unsupported": "El teu navegador no admet notificacions push.",
+      "denied": "Has bloquejat les notificacions per a Belrion. Activa-les des dels ajustos del navegador per rebre recordatoris de visites.",
+      "enabled": "Notificacions activades",
+      "disabled": "Notificacions desactivades",
+      "enableError": "No s'han pogut activar les notificacions.",
+      "disableError": "No s'han pogut desactivar les notificacions.",
+      "missingKey": "Falten les claus de notificacions push."
+    },
+    "password": {
+      "title": "Canvia la contrasenya",
+      "new": "Contrasenya nova",
+      "confirm": "Confirma la contrasenya nova",
+      "submit": "Canvia la contrasenya",
+      "saving": "Desant…",
+      "success": "Contrasenya actualitzada.",
+      "tooShort": "La contrasenya ha de tenir almenys {min} caràcters.",
+      "mismatch": "Les contrasenyes no coincideixen."
+    },
+    "data": {
+      "title": "Les teves dades",
+      "description": "Descarrega una còpia de tots els clients, contactes, productes, visites i comentaris que has creat, en un fitxer JSON.",
+      "export": "Exporta les meves dades",
+      "exporting": "Exportant…",
+      "success": "Dades exportades",
+      "error": "No s'han pogut exportar les dades."
+    },
+    "deleteAccount": {
+      "title": "Elimina el compte",
+      "description": "Això elimina permanentment el teu compte, els teus clients, contactes, productes, visites i comentaris. Si ets propietari d'algun equip compartit, aquest equip també s'eliminarà per a la resta de membres. Aquesta acció no es pot desfer.",
+      "confirmWord": "ELIMINA",
+      "confirmLabel": "Escriu <word>{word}</word> per confirmar",
+      "submit": "Elimina el meu compte",
+      "deleting": "Eliminant…",
+      "error": "No s'ha pogut eliminar el compte: {message}",
+      "loginMessage": "El teu compte i dades s'han eliminat."
+    },
+    "legal": {
+      "title": "Legal"
+    }
+  },
+  "legal": {
+    "back": "← Torna a Belrion",
+    "titleLegalNotice": "Avís Legal · Belrion",
+    "titlePrivacy": "Política de Privacitat · Belrion",
+    "titleCookies": "Política de Cookies · Belrion"
+  },
+  "clients": {
+    "title": "Clients",
+    "myClients": "Els meus clients",
+    "filters": {
+      "searchPlaceholder": "Cerca per empresa o contacte…",
+      "statusAll": "Tots els estats",
+      "statusActive": "Actiu",
+      "statusPotential": "Potencial",
+      "statusInactive": "Inactiu",
+      "statusPlaceholder": "Estat",
+      "productAll": "Tots els productes",
+      "productPlaceholder": "Producte",
+      "sortAlphabetical": "Alfabètic",
+      "sortCreatedAt": "Data d'alta",
+      "sortNextVisit": "Propera visita",
+      "sortLastVisit": "Darrera visita",
+      "sortPlaceholder": "Ordenar",
+      "upcomingOnly": "Amb visita propera"
+    },
+    "list": {
+      "company": "Empresa",
+      "contact": "Contacte",
+      "status": "Estat",
+      "nextVisit": "Propera visita",
+      "noVisit": "Sense visita programada",
+      "noContact": "Sense contacte",
+      "emptyFiltered": "Cap client coincideix amb aquests filtres.",
+      "emptyNoClients": "Encara no tens clients.",
+      "emptyHint": "Utilitza \"Nou client\" per donar d'alta el primer.",
+      "loadError": "No s'han pogut carregar els clients."
+    },
+    "newDialog": {
+      "trigger": "Nou client",
+      "title": "Nou client",
+      "companyName": "Nom de l'empresa",
+      "contactName": "Persona de contacte",
+      "status": "Estat",
+      "shareWith": "Compartir també amb",
+      "shareHint": "Sempre queda a la teva cartera personal, a més del que marquis aquí.",
+      "save": "Desa",
+      "saving": "Desant…",
+      "success": "Client creat"
+    },
+    "addExisting": {
+      "trigger": "Afegir de la meva cartera",
+      "title": "Afegeix clients de la meva cartera a {team}",
+      "empty": "Tots els teus clients personals ja són en aquest equip, o encara no en tens cap.",
+      "submit": "Afegeix ({count})",
+      "adding": "Afegint…",
+      "success": "{count, plural, one {# client afegit} other {# clients afegits}} a {team}"
+    },
+    "detail": {
+      "back": "← Torna als clients"
+    },
+    "editDialog": {
+      "trigger": "Edita",
+      "title": "Edita el client",
+      "companyName": "Nom de l'empresa",
+      "status": "Estat",
+      "address": "Adreça",
+      "addressPlaceholder": "Carrer, número, ciutat…",
+      "notes": "Dades d'interès",
+      "notesPlaceholder": "Informació general de l'empresa…",
+      "save": "Desa els canvis",
+      "saving": "Desant…",
+      "success": "Client actualitzat"
+    },
+    "deleteDialog": {
+      "trigger": "Elimina",
+      "title": "Elimina el client",
+      "description": "Estàs a punt d'eliminar <name>{name}</name>. Aquesta acció no es pot desfer i també esborrarà els seus contactes, productes i visites.",
+      "cancel": "Cancel·la",
+      "confirm": "Elimina definitivament",
+      "deleting": "Eliminant…",
+      "success": "Client eliminat"
+    },
+    "addressMap": {
+      "cta": "Com arribar-hi"
+    },
+    "contacts": {
+      "title": "Contactes",
+      "add": "Afegeix contacte",
+      "name": "Nom",
+      "role": "Càrrec",
+      "phone": "Telèfon",
+      "email": "Email",
+      "primary": "Contacte principal",
+      "cancel": "Cancel·la",
+      "save": "Desa",
+      "saving": "Desant…",
+      "addSubmit": "Afegeix",
+      "success": "Contacte actualitzat",
+      "addSuccess": "Contacte afegit",
+      "deleteSuccess": "Contacte eliminat"
+    },
+    "products": {
+      "title": "Productes contractats",
+      "add": "Afegeix producte",
+      "empty": "Sense productes contractats encara.",
+      "name": "Nom del producte",
+      "details": "Detalls",
+      "detailsPlaceholder": "Condicions, data de contractació…",
+      "cancel": "Cancel·la",
+      "saving": "Desant…",
+      "addSubmit": "Afegeix",
+      "addSuccess": "Producte afegit",
+      "deleteSuccess": "Producte eliminat"
+    },
+    "teams": {
+      "title": "Equips",
+      "onlyPersonal": "Aquest client només és a la teva cartera personal.",
+      "share": "Comparteix amb un equip",
+      "add": "Afegeix",
+      "adding": "Afegint…",
+      "cancel": "Cancel·la",
+      "shareSuccess": "Client compartit amb l'equip",
+      "removeSuccess": "Client tret de l'equip"
+    },
+    "visits": {
+      "title": "Historial de visites",
+      "empty": "Sense visites registrades encara. Les podràs programar des del calendari.",
+      "statusPending": "Pendent",
+      "statusCompleted": "Completada",
+      "statusCancelled": "Cancel·lada"
+    }
+  },
+  "calendar": {
+    "title": "Calendari de visites",
+    "newVisit": "Nova visita",
+    "newDialog": {
+      "title": "Nova visita",
+      "client": "Client",
+      "clientSearch": "Cerca client…",
+      "noResults": "Sense resultats",
+      "change": "Canvia",
+      "date": "Data i hora",
+      "reminder": "Recordatori",
+      "reminderNone": "Sense recordatori",
+      "reminder15": "15 minuts abans",
+      "reminder30": "30 minuts abans",
+      "reminder60": "1 hora abans",
+      "reminder1440": "1 dia abans",
+      "shareWith": "Comparteix aquesta visita amb",
+      "shareHint": "L'equip veurà aquesta visita (i la resta de dades d'aquest client) al seu calendari.",
+      "selectClientError": "Selecciona un client.",
+      "submit": "Programa la visita",
+      "saving": "Desant…",
+      "success": "Visita programada"
+    },
+    "detailDialog": {
+      "viewClient": "Veure fitxa del client →",
+      "newDate": "Nova data i hora",
+      "cancel": "Cancel·la",
+      "save": "Desa",
+      "saving": "Desant…",
+      "markCompleted": "Marca com a completada",
+      "cancelVisit": "Cancel·la la visita",
+      "reprogram": "Reprograma",
+      "delete": "Elimina",
+      "comments": "Comentaris de seguiment",
+      "noComments": "Sense comentaris encara.",
+      "addComment": "Afegeix un comentari…",
+      "addCommentSubmit": "Afegeix",
+      "statusUpdated": "Visita actualitzada",
+      "rescheduled": "Visita reprogramada",
+      "deleted": "Visita eliminada"
+    }
+  }
+}

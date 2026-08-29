@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -36,6 +37,8 @@ export function EditClientDialog({
     notes: string | null;
   };
 }) {
+  const t = useTranslations("clients.editDialog");
+  const tFilters = useTranslations("clients.filters");
   const [open, setOpen] = useState(false);
   const [companyName, setCompanyName] = useState(client.companyName);
   const [status, setStatus] = useState<Status>(client.status);
@@ -71,7 +74,7 @@ export function EditClientDialog({
         setError(result.error);
         return;
       }
-      toast.success("Cliente actualizado");
+      toast.success(t("success"));
       setOpen(false);
       router.refresh();
     });
@@ -79,14 +82,14 @@ export function EditClientDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger render={<Button variant="outline">Editar</Button>} />
+      <DialogTrigger render={<Button variant="outline">{t("trigger")}</Button>} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Editar cliente</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="edit_company_name">Nombre de la empresa</Label>
+            <Label htmlFor="edit_company_name">{t("companyName")}</Label>
             <Input
               id="edit_company_name"
               value={companyName}
@@ -95,36 +98,36 @@ export function EditClientDialog({
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="edit_status">Estado</Label>
+            <Label htmlFor="edit_status">{t("status")}</Label>
             <Select value={status} onValueChange={(v) => setStatus(v as Status)}>
               <SelectTrigger id="edit_status">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="potencial">Potencial</SelectItem>
-                <SelectItem value="activo">Activo</SelectItem>
-                <SelectItem value="inactivo">Inactivo</SelectItem>
+                <SelectItem value="potencial">{tFilters("statusPotential")}</SelectItem>
+                <SelectItem value="activo">{tFilters("statusActive")}</SelectItem>
+                <SelectItem value="inactivo">{tFilters("statusInactive")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="edit_address">Dirección</Label>
+            <Label htmlFor="edit_address">{t("address")}</Label>
             <Input
               id="edit_address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="Calle, número, ciudad…"
+              placeholder={t("addressPlaceholder")}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="edit_notes">Datos de interés</Label>
+            <Label htmlFor="edit_notes">{t("notes")}</Label>
             <textarea
               id="edit_notes"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={4}
               className="rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-              placeholder="Información general de la empresa…"
+              placeholder={t("notesPlaceholder")}
             />
           </div>
           {error && (
@@ -134,7 +137,7 @@ export function EditClientDialog({
           )}
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Guardando…" : "Guardar cambios"}
+              {isPending ? t("saving") : t("save")}
             </Button>
           </DialogFooter>
         </form>

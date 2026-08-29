@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { BellIcon, BellOffIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ function urlBase64ToUint8Array(base64String: string) {
 type Status = "unsupported" | "loading" | "denied" | "subscribed" | "unsubscribed";
 
 export function NotificationsToggle() {
+  const t = useTranslations("settings.notifications");
   const [status, setStatus] = useState<Status>("loading");
   const [isPending, setIsPending] = useState(false);
 
@@ -50,7 +52,7 @@ export function NotificationsToggle() {
 
       const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
       if (!vapidPublicKey) {
-        toast.error("Faltan las claves de notificaciones push.");
+        toast.error(t("missingKey"));
         return;
       }
 
@@ -73,9 +75,9 @@ export function NotificationsToggle() {
       }
 
       setStatus("subscribed");
-      toast.success("Notificaciones activadas");
+      toast.success(t("enabled"));
     } catch {
-      toast.error("No se pudieron activar las notificaciones.");
+      toast.error(t("enableError"));
     } finally {
       setIsPending(false);
     }
@@ -91,9 +93,9 @@ export function NotificationsToggle() {
         await subscription.unsubscribe();
       }
       setStatus("unsubscribed");
-      toast.success("Notificaciones desactivadas");
+      toast.success(t("disabled"));
     } catch {
-      toast.error("No se pudieron desactivar las notificaciones.");
+      toast.error(t("disableError"));
     } finally {
       setIsPending(false);
     }
@@ -102,27 +104,18 @@ export function NotificationsToggle() {
   if (status === "loading") return null;
 
   if (status === "unsupported") {
-    return (
-      <p className="text-sm text-muted-foreground">
-        Tu navegador no admite notificaciones push.
-      </p>
-    );
+    return <p className="text-sm text-muted-foreground">{t("unsupported")}</p>;
   }
 
   if (status === "denied") {
-    return (
-      <p className="text-sm text-muted-foreground">
-        Bloqueaste las notificaciones para Belrion. Actívalas desde los ajustes de tu
-        navegador para recibir recordatorios de visitas.
-      </p>
-    );
+    return <p className="text-sm text-muted-foreground">{t("denied")}</p>;
   }
 
   if (status === "subscribed") {
     return (
       <Button variant="outline" onClick={handleDisable} disabled={isPending}>
         <BellOffIcon />
-        Desactivar notificaciones
+        {t("disable")}
       </Button>
     );
   }
@@ -130,7 +123,7 @@ export function NotificationsToggle() {
   return (
     <Button onClick={handleEnable} disabled={isPending}>
       <BellIcon />
-      Activar notificaciones
+      {t("enable")}
     </Button>
   );
 }

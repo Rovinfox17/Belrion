@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -25,14 +26,6 @@ import { createVisit } from "@/app/actions/visits";
 export type ClientOption = { id: string; companyName: string };
 export type TeamOption = { id: string; name: string };
 
-const REMINDER_OPTIONS = [
-  { value: "0", label: "Sin recordatorio" },
-  { value: "15", label: "15 minutos antes" },
-  { value: "30", label: "30 minutos antes" },
-  { value: "60", label: "1 hora antes" },
-  { value: "1440", label: "1 día antes" },
-];
-
 export function NewVisitDialog({
   open,
   onOpenChange,
@@ -46,6 +39,14 @@ export function NewVisitDialog({
   teams?: TeamOption[];
   initialDate: string | null;
 }) {
+  const t = useTranslations("calendar.newDialog");
+  const REMINDER_OPTIONS = [
+    { value: "0", label: t("reminderNone") },
+    { value: "15", label: t("reminder15") },
+    { value: "30", label: t("reminder30") },
+    { value: "60", label: t("reminder60") },
+    { value: "1440", label: t("reminder1440") },
+  ];
   const [search, setSearch] = useState("");
   const [clientId, setClientId] = useState("");
   const [scheduledAt, setScheduledAt] = useState("");
@@ -85,7 +86,7 @@ export function NewVisitDialog({
     event.preventDefault();
     setError(null);
     if (!clientId) {
-      setError("Selecciona un cliente.");
+      setError(t("selectClientError"));
       return;
     }
     startTransition(async () => {
@@ -99,7 +100,7 @@ export function NewVisitDialog({
         setError(result.error);
         return;
       }
-      toast.success("Visita programada");
+      toast.success(t("success"));
       handleOpenChange(false);
       router.refresh();
     });
@@ -109,11 +110,11 @@ export function NewVisitDialog({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Nueva visita</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label>Cliente</Label>
+            <Label>{t("client")}</Label>
             {selectedClient ? (
               <div className="flex items-center justify-between rounded-md border border-input px-3 py-2 text-sm">
                 <span>{selectedClient.companyName}</span>
@@ -122,19 +123,19 @@ export function NewVisitDialog({
                   className="text-xs text-muted-foreground hover:underline"
                   onClick={() => setClientId("")}
                 >
-                  Cambiar
+                  {t("change")}
                 </button>
               </div>
             ) : (
               <>
                 <Input
-                  placeholder="Buscar cliente…"
+                  placeholder={t("clientSearch")}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <div className="max-h-40 overflow-y-auto rounded-md border border-input">
                   {filteredClients.length === 0 ? (
-                    <p className="px-3 py-2 text-sm text-muted-foreground">Sin resultados</p>
+                    <p className="px-3 py-2 text-sm text-muted-foreground">{t("noResults")}</p>
                   ) : (
                     filteredClients.map((c) => (
                       <button
@@ -156,7 +157,7 @@ export function NewVisitDialog({
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="scheduled_at">Fecha y hora</Label>
+            <Label htmlFor="scheduled_at">{t("date")}</Label>
             <Input
               id="scheduled_at"
               type="datetime-local"
@@ -167,7 +168,7 @@ export function NewVisitDialog({
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="reminder">Recordatorio</Label>
+            <Label htmlFor="reminder">{t("reminder")}</Label>
             <Select value={reminder} onValueChange={(v) => setReminder(v ?? "30")}>
               <SelectTrigger id="reminder">
                 <SelectValue />
@@ -184,24 +185,21 @@ export function NewVisitDialog({
 
           {teams.length > 0 && (
             <div className="flex flex-col gap-2">
-              <Label>Compartir esta visita con</Label>
+              <Label>{t("shareWith")}</Label>
               <div className="flex flex-col gap-1.5">
-                {teams.map((t) => (
-                  <label key={t.id} className="flex items-center gap-2 text-sm">
+                {teams.map((team) => (
+                  <label key={team.id} className="flex items-center gap-2 text-sm">
                     <input
                       type="checkbox"
                       className="size-4"
-                      checked={selectedTeamIds.includes(t.id)}
-                      onChange={(e) => toggleTeam(t.id, e.target.checked)}
+                      checked={selectedTeamIds.includes(team.id)}
+                      onChange={(e) => toggleTeam(team.id, e.target.checked)}
                     />
-                    {t.name}
+                    {team.name}
                   </label>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground">
-                El equipo verá esta visita (y el resto de datos de este cliente) en su
-                calendario.
-              </p>
+              <p className="text-xs text-muted-foreground">{t("shareHint")}</p>
             </div>
           )}
 
@@ -213,7 +211,7 @@ export function NewVisitDialog({
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Guardando…" : "Programar visita"}
+              {isPending ? t("saving") : t("submit")}
             </Button>
           </DialogFooter>
         </form>

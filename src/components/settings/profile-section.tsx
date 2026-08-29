@@ -2,6 +2,7 @@
 
 import { useRef, useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { CameraIcon, UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ export function ProfileSection({
   initialName: string;
   initialAvatarUrl: string | null;
 }) {
+  const t = useTranslations("settings.profile");
   const [name, setName] = useState(initialName);
   const [avatarUrl, setAvatarUrl] = useState(initialAvatarUrl);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
@@ -31,7 +33,7 @@ export function ProfileSection({
     const file = event.target.files?.[0];
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      setError("Selecciona un archivo de imagen.");
+      setError(t("invalidImage"));
       return;
     }
     setError(null);
@@ -56,7 +58,7 @@ export function ProfileSection({
 
         if (uploadError) {
           console.error("avatar upload failed", uploadError);
-          setError(`No se pudo subir la foto: ${uploadError.message}`);
+          setError(t("uploadError", { message: uploadError.message }));
           return;
         }
 
@@ -75,7 +77,7 @@ export function ProfileSection({
 
       setAvatarUrl(nextAvatarUrl);
       setAvatarFile(null);
-      toast.success("Perfil actualizado");
+      toast.success(t("success"));
       router.refresh();
     });
   }
@@ -108,12 +110,12 @@ export function ProfileSection({
           className="hidden"
         />
         <div className="flex flex-col gap-2">
-          <Label htmlFor="display_name">Nombre visible</Label>
+          <Label htmlFor="display_name">{t("name")}</Label>
           <Input
             id="display_name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Tu nombre"
+            placeholder={t("namePlaceholder")}
           />
         </div>
       </div>
@@ -123,7 +125,7 @@ export function ProfileSection({
         </p>
       )}
       <Button type="submit" disabled={isPending} className="w-fit">
-        {isPending ? "Guardando…" : "Guardar perfil"}
+        {isPending ? t("saving") : t("save")}
       </Button>
     </form>
   );

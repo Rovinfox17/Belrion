@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import {
   Card,
   CardContent,
@@ -12,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { login } from "./actions";
 import { Footer } from "@/components/layout/footer";
+import { LocaleSwitcher } from "@/components/language/locale-switcher";
 
 export default async function LoginPage({
   searchParams,
@@ -19,9 +21,13 @@ export default async function LoginPage({
   searchParams: Promise<{ error?: string; message?: string }>;
 }) {
   const { error, message } = await searchParams;
+  const t = await getTranslations("auth.login");
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="relative flex min-h-screen flex-col bg-background">
+      <div className="absolute right-3 top-3">
+        <LocaleSwitcher compact />
+      </div>
       <main className="flex flex-1 items-center justify-center px-4">
         <Card className="w-full max-w-sm border-none shadow-lg">
           <CardHeader className="items-center text-center">
@@ -34,7 +40,7 @@ export default async function LoginPage({
               priority
             />
             <CardTitle className="font-heading text-2xl text-primary">Belrion</CardTitle>
-            <CardDescription>Gestión de cartera de clientes</CardDescription>
+            <CardDescription>{t("subtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
             {message && (
@@ -44,7 +50,7 @@ export default async function LoginPage({
             )}
             <form action={login} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t("email")}</Label>
                 <Input
                   id="email"
                   name="email"
@@ -56,12 +62,12 @@ export default async function LoginPage({
               </div>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Contraseña</Label>
+                  <Label htmlFor="password">{t("password")}</Label>
                   <Link
                     href="/recuperar"
                     className="text-xs text-muted-foreground hover:text-primary hover:underline"
                   >
-                    ¿Olvidaste tu contraseña?
+                    {t("forgot")}
                   </Link>
                 </div>
                 <Input
@@ -78,13 +84,13 @@ export default async function LoginPage({
                 </p>
               )}
               <Button type="submit" className="mt-2 w-full">
-                Entrar
+                {t("submit")}
               </Button>
             </form>
             <p className="mt-4 text-center text-sm text-muted-foreground">
-              ¿No tienes cuenta?{" "}
+              {t("noAccount")}{" "}
               <Link href="/signup" className="font-medium text-primary hover:underline">
-                Regístrate
+                {t("signup")}
               </Link>
             </p>
           </CardContent>

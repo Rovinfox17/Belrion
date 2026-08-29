@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { UsersRoundIcon } from "lucide-react";
 import {
@@ -26,6 +27,7 @@ export function AddExistingClientsDialog({
   teamName: string;
   clients: PersonalClientOption[];
 }) {
+  const t = useTranslations("clients.addExisting");
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
@@ -43,11 +45,7 @@ export function AddExistingClientsDialog({
         toast.error(result.error);
         return;
       }
-      toast.success(
-        `${selected.length} cliente${selected.length === 1 ? "" : "s"} añadido${
-          selected.length === 1 ? "" : "s"
-        } a ${teamName}`
-      );
+      toast.success(t("success", { count: selected.length, team: teamName }));
       setOpen(false);
       setSelected([]);
       router.refresh();
@@ -56,16 +54,13 @@ export function AddExistingClientsDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline">Añadir de mi cartera</Button>} />
+      <DialogTrigger render={<Button variant="outline">{t("trigger")}</Button>} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Añadir clientes de mi cartera a {teamName}</DialogTitle>
+          <DialogTitle>{t("title", { team: teamName })}</DialogTitle>
         </DialogHeader>
         {clients.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            Todos tus clientes personales ya están en este equipo, o todavía no tienes
-            ninguno.
-          </p>
+          <p className="text-sm text-muted-foreground">{t("empty")}</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex max-h-64 flex-col gap-1.5 overflow-y-auto rounded-md border border-input p-2">
@@ -87,7 +82,7 @@ export function AddExistingClientsDialog({
             <DialogFooter>
               <Button type="submit" disabled={isPending || selected.length === 0}>
                 <UsersRoundIcon />
-                {isPending ? "Añadiendo…" : `Añadir (${selected.length})`}
+                {isPending ? t("adding") : t("submit", { count: selected.length })}
               </Button>
             </DialogFooter>
           </form>

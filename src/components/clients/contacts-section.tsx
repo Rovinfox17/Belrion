@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { PhoneIcon, MailIcon, StarIcon, PencilIcon, TrashIcon, PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,7 @@ function ContactForm({
   isPending: boolean;
   submitLabel: string;
 }) {
+  const t = useTranslations("clients.contacts");
   const [name, setName] = useState(initial.name);
   const [phone, setPhone] = useState(initial.phone);
   const [email, setEmail] = useState(initial.email);
@@ -52,19 +54,19 @@ function ContactForm({
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-lg border border-border bg-accent p-3">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <Label>Nombre</Label>
+          <Label>{t("name")}</Label>
           <Input value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
         <div className="flex flex-col gap-1.5">
-          <Label>Cargo</Label>
+          <Label>{t("role")}</Label>
           <Input value={role} onChange={(e) => setRole(e.target.value)} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <Label>Teléfono</Label>
+          <Label>{t("phone")}</Label>
           <Input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" />
         </div>
         <div className="flex flex-col gap-1.5">
-          <Label>Email</Label>
+          <Label>{t("email")}</Label>
           <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
         </div>
       </div>
@@ -75,16 +77,16 @@ function ContactForm({
           onChange={(e) => setIsPrimary(e.target.checked)}
           className="size-4"
         />
-        Contacto principal
+        {t("primary")}
       </label>
       <div className="flex justify-end gap-2">
         {onCancel && (
           <Button type="button" variant="ghost" size="sm" onClick={onCancel} disabled={isPending}>
-            Cancelar
+            {t("cancel")}
           </Button>
         )}
         <Button type="submit" size="sm" disabled={isPending}>
-          {isPending ? "Guardando…" : submitLabel}
+          {isPending ? t("saving") : submitLabel}
         </Button>
       </div>
     </form>
@@ -92,6 +94,7 @@ function ContactForm({
 }
 
 function ContactRow({ clientId, contact }: { clientId: string; contact: Contact }) {
+  const t = useTranslations("clients.contacts");
   const [editing, setEditing] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -109,7 +112,7 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
         toast.error(result.error);
         return;
       }
-      toast.success("Contacto actualizado");
+      toast.success(t("success"));
       setEditing(false);
       router.refresh();
     });
@@ -122,7 +125,7 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
         toast.error(result.error);
         return;
       }
-      toast.success("Contacto eliminado");
+      toast.success(t("deleteSuccess"));
       router.refresh();
     });
   }
@@ -140,7 +143,7 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
         onCancel={() => setEditing(false)}
         onSubmit={handleUpdate}
         isPending={isPending}
-        submitLabel="Guardar"
+        submitLabel={t("save")}
       />
     );
   }
@@ -191,6 +194,7 @@ export function ContactsSection({
   clientId: string;
   contacts: Contact[];
 }) {
+  const t = useTranslations("clients.contacts");
   const [adding, setAdding] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -208,7 +212,7 @@ export function ContactsSection({
         toast.error(result.error);
         return;
       }
-      toast.success("Contacto añadido");
+      toast.success(t("addSuccess"));
       setAdding(false);
       router.refresh();
     });
@@ -217,11 +221,11 @@ export function ContactsSection({
   return (
     <section className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2 className="font-medium">Contactos</h2>
+        <h2 className="font-medium">{t("title")}</h2>
         {!adding && (
           <Button variant="outline" size="sm" onClick={() => setAdding(true)}>
             <PlusIcon />
-            Añadir contacto
+            {t("add")}
           </Button>
         )}
       </div>
@@ -235,7 +239,7 @@ export function ContactsSection({
             onCancel={() => setAdding(false)}
             onSubmit={handleCreate}
             isPending={isPending}
-            submitLabel="Añadir"
+            submitLabel={t("addSubmit")}
           />
         )}
       </div>

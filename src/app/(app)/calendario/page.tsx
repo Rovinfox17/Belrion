@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { CalendarView } from "@/components/calendar/calendar-view";
 import type { ClientOption } from "@/components/calendar/new-visit-dialog";
@@ -14,6 +15,7 @@ type RawVisit = {
 };
 
 export default async function CalendarioPage() {
+  const t = await getTranslations("calendar");
   const supabase = await createClient();
   const {
     data: { user },
@@ -58,7 +60,7 @@ export default async function CalendarioPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
-      <h1 className="font-heading text-2xl font-semibold">Calendario de visitas</h1>
+      <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
       <CalendarView visits={visits} clients={clients} teams={teams} />
     </div>
   );

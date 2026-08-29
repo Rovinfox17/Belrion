@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { PlusIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ export function ClientTeamsSection({
   sharedWith: ClientTeam[];
   availableTeams: TeamOption[];
 }) {
+  const t = useTranslations("clients.teams");
   const [adding, setAdding] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState(availableTeams[0]?.id ?? "");
   const [isPending, startTransition] = useTransition();
@@ -43,7 +45,7 @@ export function ClientTeamsSection({
         toast.error(result.error);
         return;
       }
-      toast.success("Cliente compartido con el equipo");
+      toast.success(t("shareSuccess"));
       setAdding(false);
       router.refresh();
     });
@@ -56,7 +58,7 @@ export function ClientTeamsSection({
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Cliente quitado del equipo");
+        toast.success(t("removeSuccess"));
         router.refresh();
       }
       setRemovingId(null);
@@ -65,25 +67,23 @@ export function ClientTeamsSection({
 
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="font-medium">Equipos</h2>
+      <h2 className="font-medium">{t("title")}</h2>
       {sharedWith.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          Este cliente solo está en tu cartera personal.
-        </p>
+        <p className="text-sm text-muted-foreground">{t("onlyPersonal")}</p>
       ) : (
         <ul className="flex flex-col gap-2">
-          {sharedWith.map((t) => (
+          {sharedWith.map((team) => (
             <li
-              key={t.teamId}
+              key={team.teamId}
               className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3"
             >
-              <span className="text-sm font-medium">{t.teamName}</span>
+              <span className="text-sm font-medium">{team.teamName}</span>
               {isOwner && (
                 <Button
                   variant="ghost"
                   size="icon-sm"
-                  onClick={() => handleRemove(t.teamId)}
-                  disabled={isPending && removingId === t.teamId}
+                  onClick={() => handleRemove(team.teamId)}
+                  disabled={isPending && removingId === team.teamId}
                 >
                   <TrashIcon />
                 </Button>
@@ -102,15 +102,15 @@ export function ClientTeamsSection({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {availableTeams.map((t) => (
-                    <SelectItem key={t.id} value={t.id}>
-                      {t.name}
+                  {availableTeams.map((team) => (
+                    <SelectItem key={team.id} value={team.id}>
+                      {team.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Button type="submit" size="sm" disabled={isPending}>
-                {isPending ? "Añadiendo…" : "Añadir"}
+                {isPending ? t("adding") : t("add")}
               </Button>
               <Button
                 type="button"
@@ -119,13 +119,13 @@ export function ClientTeamsSection({
                 onClick={() => setAdding(false)}
                 disabled={isPending}
               >
-                Cancelar
+                {t("cancel")}
               </Button>
             </form>
           ) : (
             <Button variant="outline" size="sm" className="w-fit" onClick={() => setAdding(true)}>
               <PlusIcon />
-              Compartir con un equipo
+              {t("share")}
             </Button>
           )}
         </>

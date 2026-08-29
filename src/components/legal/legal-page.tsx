@@ -3,7 +3,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Components } from "react-markdown";
-import { ArrowLeftIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 const markdownComponents: Components = {
   h1: ({ children }) => (
@@ -55,7 +55,9 @@ const markdownComponents: Components = {
   ),
 };
 
-export function LegalPage({ markdown }: { markdown: string }) {
+export async function LegalPage({ markdown }: { markdown: string }) {
+  const t = await getTranslations("legal");
+
   return (
     <div className="min-h-screen bg-background">
       <header className="flex items-center gap-2 border-b border-border bg-card px-4 py-3 sm:px-6">
@@ -67,8 +69,7 @@ export function LegalPage({ markdown }: { markdown: string }) {
           href="/"
           className="mb-6 flex w-fit items-center gap-1 text-sm text-muted-foreground hover:underline"
         >
-          <ArrowLeftIcon className="size-3.5" />
-          Volver a Belrion
+          {t("back")}
         </Link>
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
           {markdown}

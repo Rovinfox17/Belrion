@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 
 export type ClientRow = {
@@ -9,48 +10,48 @@ export type ClientRow = {
   nextVisitAt: string | null;
 };
 
-const STATUS_LABEL: Record<ClientRow["status"], string> = {
-  activo: "Activo",
-  potencial: "Potencial",
-  inactivo: "Inactivo",
-};
-
 const STATUS_CLASS: Record<ClientRow["status"], string> = {
   activo: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100",
   potencial: "bg-amber-100 text-amber-800 hover:bg-amber-100",
   inactivo: "bg-zinc-100 text-zinc-600 hover:bg-zinc-100",
 };
 
-function formatVisit(iso: string | null) {
-  if (!iso) return "Sin visita programada";
-  return new Date(iso).toLocaleString("es-ES", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
-export function ClientList({
+export async function ClientList({
   clients,
   isFiltered,
 }: {
   clients: ClientRow[];
   isFiltered: boolean;
 }) {
+  const locale = await getLocale();
+  const t = await getTranslations("clients");
+  const tFilters = await getTranslations("clients.filters");
+
+  const STATUS_LABEL: Record<ClientRow["status"], string> = {
+    activo: tFilters("statusActive"),
+    potencial: tFilters("statusPotential"),
+    inactivo: tFilters("statusInactive"),
+  };
+
+  function formatVisit(iso: string | null) {
+    if (!iso) return t("list.noVisit");
+    return new Date(iso).toLocaleString(locale, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   if (clients.length === 0) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-card/60 p-12 text-center">
         <p className="font-medium">
-          {isFiltered
-            ? "Ningún cliente coincide con estos filtros."
-            : "Todavía no tienes clientes."}
+          {isFiltered ? t("list.emptyFiltered") : t("list.emptyNoClients")}
         </p>
         {!isFiltered && (
-          <p className="text-sm text-muted-foreground">
-            Usa &ldquo;Nuevo cliente&rdquo; para dar de alta el primero.
-          </p>
+          <p className="text-sm text-muted-foreground">{t("list.emptyHint")}</p>
         )}
       </div>
     );
@@ -62,10 +63,10 @@ export function ClientList({
         <table className="w-full text-left text-sm">
           <thead className="bg-accent text-xs uppercase text-muted-foreground">
             <tr>
-              <th className="px-4 py-3 font-medium">Empresa</th>
-              <th className="px-4 py-3 font-medium">Contacto</th>
-              <th className="px-4 py-3 font-medium">Estado</th>
-              <th className="px-4 py-3 font-medium">Próxima visita</th>
+              <th className="px-4 py-3 font-medium">{t("list.company")}</th>
+              <th className="px-4 py-3 font-medium">{t("list.contact")}</th>
+              <th className="px-4 py-3 font-medium">{t("list.status")}</th>
+              <th className="px-4 py-3 font-medium">{t("list.nextVisit")}</th>
             </tr>
           </thead>
           <tbody>
@@ -107,7 +108,7 @@ export function ClientList({
                 </Badge>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
-                {c.primaryContactName ?? "Sin contacto"}
+                {c.primaryContactName ?? t("list.noContact")}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 {formatVisit(c.nextVisitAt)}

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Trash2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,14 +10,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createClient } from "@/lib/supabase/client";
 
-const CONFIRM_WORD = "ELIMINAR";
-
 export function DeleteAccountSection() {
+  const t = useTranslations("settings.deleteAccount");
+  const confirmWord = t("confirmWord");
   const [confirmText, setConfirmText] = useState("");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const canDelete = confirmText === CONFIRM_WORD;
+  const canDelete = confirmText === confirmWord;
 
   function handleDelete() {
     startTransition(async () => {
@@ -25,33 +26,29 @@ export function DeleteAccountSection() {
 
       if (error) {
         console.error("delete-account failed", error);
-        toast.error(`No se pudo eliminar la cuenta: ${error.message}`);
+        toast.error(t("error", { message: error.message }));
         return;
       }
 
       await supabase.auth.signOut();
-      router.push(
-        `/login?message=${encodeURIComponent("Tu cuenta y datos han sido eliminados.")}`
-      );
+      router.push(`/login?message=${encodeURIComponent(t("loginMessage"))}`);
     });
   }
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-sm text-muted-foreground">
-        Esto elimina permanentemente tu cuenta, tus clientes, contactos, productos, visitas
-        y comentarios. Si eres propietario de algún equipo compartido, ese equipo también se
-        eliminará para el resto de miembros. Esta acción no se puede deshacer.
-      </p>
+      <p className="text-sm text-muted-foreground">{t("description")}</p>
       <div className="flex flex-col gap-2">
         <Label htmlFor="confirm_delete">
-          Escribe <span className="font-semibold">{CONFIRM_WORD}</span> para confirmar
+          {t.rich("confirmLabel", {
+            word: () => <span className="font-semibold">{confirmWord}</span>,
+          })}
         </Label>
         <Input
           id="confirm_delete"
           value={confirmText}
           onChange={(e) => setConfirmText(e.target.value)}
-          placeholder={CONFIRM_WORD}
+          placeholder={confirmWord}
           autoComplete="off"
           className="max-w-xs"
         />
@@ -63,7 +60,7 @@ export function DeleteAccountSection() {
         className="w-fit"
       >
         <Trash2Icon />
-        {isPending ? "Eliminando…" : "Eliminar mi cuenta"}
+        {isPending ? t("deleting") : t("submit")}
       </Button>
     </div>
   );

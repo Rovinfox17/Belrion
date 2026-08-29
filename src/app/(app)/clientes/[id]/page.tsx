@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
 import { EditClientDialog } from "@/components/clients/edit-client-dialog";
@@ -12,12 +12,6 @@ import { VisitsHistory, type VisitWithComments } from "@/components/clients/visi
 import { ClientTeamsSection } from "@/components/clients/client-teams-section";
 
 type Status = "activo" | "potencial" | "inactivo";
-
-const STATUS_LABEL: Record<Status, string> = {
-  activo: "Activo",
-  potencial: "Potencial",
-  inactivo: "Inactivo",
-};
 
 const STATUS_CLASS: Record<Status, string> = {
   activo: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100",
@@ -55,6 +49,13 @@ export default async function ClientDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const t = await getTranslations("clients");
+  const tFilters = await getTranslations("clients.filters");
+  const STATUS_LABEL: Record<Status, string> = {
+    activo: tFilters("statusActive"),
+    potencial: tFilters("statusPotential"),
+    inactivo: tFilters("statusInactive"),
+  };
   const supabase = await createClient();
   const {
     data: { user },
@@ -134,8 +135,7 @@ export default async function ClientDetailPage({
         href="/"
         className="flex w-fit items-center gap-1 text-sm text-muted-foreground hover:underline"
       >
-        <ArrowLeftIcon className="size-3.5" />
-        Volver a clientes
+        {t("detail.back")}
       </Link>
 
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-start sm:justify-between">

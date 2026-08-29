@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   UsersIcon,
   CalendarDaysIcon,
@@ -15,18 +16,16 @@ import { logout } from "@/app/logout/actions";
 import { Footer } from "@/components/layout/footer";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Clientes", icon: UsersIcon },
-  { href: "/calendario", label: "Calendario", icon: CalendarDaysIcon },
-  { href: "/equipo", label: "Equipo", icon: Building2Icon },
-  { href: "/ajustes", label: "Ajustes", icon: SettingsIcon },
+  { href: "/", key: "clients" as const, icon: UsersIcon },
+  { href: "/calendario", key: "calendar" as const, icon: CalendarDaysIcon },
+  { href: "/equipo", key: "team" as const, icon: Building2Icon },
+  { href: "/ajustes", key: "settings" as const, icon: SettingsIcon },
 ];
 
 function UserAvatar({
-  name,
   avatarUrl,
   size,
 }: {
-  name: string;
   avatarUrl: string | null;
   size: number;
 }) {
@@ -63,6 +62,7 @@ export function AppShell({
   userAvatarUrl: string | null;
 }) {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -86,7 +86,7 @@ export function AppShell({
                 }`}
               >
                 <Icon className="size-4" />
-                {item.label}
+                {t(item.key)}
               </Link>
             );
           })}
@@ -96,7 +96,7 @@ export function AppShell({
             href="/ajustes"
             className="mb-1 flex items-center gap-2 rounded-md px-1 py-1.5 text-sm font-medium transition-colors hover:bg-accent"
           >
-            <UserAvatar name={userName} avatarUrl={userAvatarUrl} size={28} />
+            <UserAvatar avatarUrl={userAvatarUrl} size={28} />
             <span className="truncate">{userName}</span>
           </Link>
           <form action={logout}>
@@ -105,7 +105,7 @@ export function AppShell({
               className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               <LogOutIcon className="size-4" />
-              Cerrar sesión
+              {t("logout")}
             </button>
           </form>
         </div>
@@ -118,13 +118,13 @@ export function AppShell({
             <span className="font-heading text-base font-semibold text-primary">Belrion</span>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/ajustes" aria-label="Perfil">
-              <UserAvatar name={userName} avatarUrl={userAvatarUrl} size={28} />
+            <Link href="/ajustes" aria-label={t("profile")}>
+              <UserAvatar avatarUrl={userAvatarUrl} size={28} />
             </Link>
             <form action={logout}>
               <button
                 type="submit"
-                aria-label="Cerrar sesión"
+                aria-label={t("logout")}
                 className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 <LogOutIcon className="size-4" />
@@ -155,7 +155,7 @@ export function AppShell({
                 }`}
               >
                 <Icon className="size-5" />
-                {item.label}
+                {t(item.key)}
               </Link>
             );
           })}

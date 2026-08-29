@@ -2,6 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { PlusIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ export function ProductsSection({
   clientId: string;
   products: Product[];
 }) {
+  const t = useTranslations("clients.products");
   const [adding, setAdding] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
@@ -37,7 +39,7 @@ export function ProductsSection({
         toast.error(result.error);
         return;
       }
-      toast.success("Producto añadido");
+      toast.success(t("addSuccess"));
       setAdding(false);
       setName("");
       setDetails("");
@@ -52,7 +54,7 @@ export function ProductsSection({
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Producto eliminado");
+        toast.success(t("deleteSuccess"));
         router.refresh();
       }
       setDeletingId(null);
@@ -62,17 +64,17 @@ export function ProductsSection({
   return (
     <section className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2 className="font-medium">Productos contratados</h2>
+        <h2 className="font-medium">{t("title")}</h2>
         {!adding && (
           <Button variant="outline" size="sm" onClick={() => setAdding(true)}>
             <PlusIcon />
-            Añadir producto
+            {t("add")}
           </Button>
         )}
       </div>
 
       {products.length === 0 && !adding && (
-        <p className="text-sm text-muted-foreground">Sin productos contratados todavía.</p>
+        <p className="text-sm text-muted-foreground">{t("empty")}</p>
       )}
 
       <ul className="flex flex-col gap-2">
@@ -103,15 +105,15 @@ export function ProductsSection({
           className="flex flex-col gap-3 rounded-lg border border-border bg-accent p-3"
         >
           <div className="flex flex-col gap-1.5">
-            <Label>Nombre del producto</Label>
+            <Label>{t("name")}</Label>
             <Input value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
           <div className="flex flex-col gap-1.5">
-            <Label>Detalles</Label>
+            <Label>{t("details")}</Label>
             <Input
               value={details}
               onChange={(e) => setDetails(e.target.value)}
-              placeholder="Condiciones, fecha de contratación…"
+              placeholder={t("detailsPlaceholder")}
             />
           </div>
           <div className="flex justify-end gap-2">
@@ -122,10 +124,10 @@ export function ProductsSection({
               onClick={() => setAdding(false)}
               disabled={isPending}
             >
-              Cancelar
+              {t("cancel")}
             </Button>
             <Button type="submit" size="sm" disabled={isPending}>
-              {isPending ? "Guardando…" : "Añadir"}
+              {isPending ? t("saving") : t("addSubmit")}
             </Button>
           </div>
         </form>
