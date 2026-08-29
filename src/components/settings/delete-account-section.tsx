@@ -24,7 +24,8 @@ export function DeleteAccountSection() {
       const { error } = await supabase.functions.invoke("delete-account", { method: "POST" });
 
       if (error) {
-        toast.error("No se pudo eliminar la cuenta. Inténtalo de nuevo.");
+        console.error("delete-account failed", error);
+        toast.error(`No se pudo eliminar la cuenta: ${error.message}`);
         return;
       }
 

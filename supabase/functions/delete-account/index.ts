@@ -15,10 +15,29 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
+// Se llama directamente desde el navegador, así que necesita cabeceras CORS
+// (a diferencia de send-visit-reminders, que solo la invoca el cron).
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+function json(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
   const authHeader = req.headers.get("Authorization");
   if (!authHeader) {
-    return new Response(JSON.stringify({ error: "No autenticado." }), { status: 401 });
+    return json({ error: "No autenticado." }, 401);
   }
 
   // Cliente "como el usuario": solo sirve para confirmar quién es, con su
@@ -33,7 +52,7 @@ Deno.serve(async (req) => {
   } = await supabaseAsUser.auth.getUser();
 
   if (userError || !user) {
-    return new Response(JSON.stringify({ error: "No autenticado." }), { status: 401 });
+    return json({ error: "No autenticado." }, 401);
   }
 
   const supabaseAdmin = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
@@ -44,9 +63,7 @@ Deno.serve(async (req) => {
     .eq("user_id", user.id);
 
   if (clientsError) {
-    return new Response(JSON.stringify({ error: "No se pudieron leer los datos a borrar." }), {
-      status: 500,
-    });
+    return json({ error: "No se pudieron leer los datos a borrar." }, 500);
   }
 
   const clientIds = (ownedClients ?? []).map((c) => c.id);
@@ -75,12 +92,8 @@ Deno.serve(async (req) => {
   const { error: deleteUserError } = await supabaseAdmin.auth.admin.deleteUser(user.id);
 
   if (deleteUserError) {
-    return new Response(JSON.stringify({ error: "No se pudo eliminar la cuenta." }), {
-      status: 500,
-    });
+    return json({ error: "No se pudo eliminar la cuenta." }, 500);
   }
 
-  return new Response(JSON.stringify({ success: true }), {
-    headers: { "Content-Type": "application/json" },
-  });
+  return json({ success: true });
 });
