@@ -52,6 +52,7 @@ export async function updateVisit(input: {
       scheduled_at: new Date(input.scheduledAt).toISOString(),
       status: input.status,
       reminder_minutes_before: input.reminderMinutesBefore,
+      notified_at: null,
     })
     .eq("id", input.id);
 
