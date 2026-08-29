@@ -1,5 +1,7 @@
 // Belrion — recordatorios de visitas por notificación push.
 // Se ejecuta periódicamente vía pg_cron (ver supabase/migrations/0003_schedule_reminders.sql).
+// La cartera de clientes es compartida por todo el equipo (ver 0004_shared_access.sql),
+// así que un recordatorio de visita se envía a TODOS los dispositivos suscritos.
 // Secrets necesarios (Project Settings -> Edge Functions -> Secrets):
 //   VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT (ej. "mailto:tucorreo@ejemplo.com")
 // SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY los inyecta Supabase automáticamente.
@@ -20,8 +22,10 @@ type VisitRow = {
   client_id: string;
   scheduled_at: string;
   reminder_minutes_before: number;
-  clients: { company_name: string; user_id: string } | null;
+  clients: { company_name: string } | null;
 };
+
+type SubscriptionRow = { endpoint: string; p256dh: string; auth: string };
 
 Deno.serve(async () => {
   const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
@@ -29,9 +33,7 @@ Deno.serve(async () => {
 
   const { data, error } = await supabase
     .from("visits")
-    .select(
-      "id, client_id, scheduled_at, reminder_minutes_before, clients(company_name, user_id)"
-    )
+    .select("id, client_id, scheduled_at, reminder_minutes_before, clients(company_name)")
     .eq("status", "pendiente")
     .is("notified_at", null)
     .not("reminder_minutes_before", "is", null);
@@ -49,14 +51,14 @@ Deno.serve(async () => {
 
   let sent = 0;
 
-  for (const visit of due) {
-    const userId = visit.clients?.user_id;
-    if (userId) {
-      const { data: subscriptions } = await supabase
-        .from("push_subscriptions")
-        .select("endpoint, p256dh, auth")
-        .eq("user_id", userId);
+  if (due.length > 0) {
+    const { data: subscriptions } = await supabase
+      .from("push_subscriptions")
+      .select("endpoint, p256dh, auth");
 
+    const allSubscriptions = (subscriptions ?? []) as SubscriptionRow[];
+
+    for (const visit of due) {
       const scheduledTime = new Date(visit.scheduled_at).toLocaleString("es-ES", {
         day: "2-digit",
         month: "2-digit",
@@ -70,7 +72,7 @@ Deno.serve(async () => {
         url: `/clientes/${visit.client_id}`,
       });
 
-      for (const sub of subscriptions ?? []) {
+      for (const sub of allSubscriptions) {
         try {
           await webpush.sendNotification(
             { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
@@ -85,9 +87,12 @@ Deno.serve(async () => {
           }
         }
       }
-    }
 
-    await supabase.from("visits").update({ notified_at: now.toISOString() }).eq("id", visit.id);
+      await supabase
+        .from("visits")
+        .update({ notified_at: now.toISOString() })
+        .eq("id", visit.id);
+    }
   }
 
   return new Response(
