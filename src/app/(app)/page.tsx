@@ -39,24 +39,20 @@ export default async function Home({
     data: { user },
   } = await supabase.auth.getUser();
 
-  let team: { id: string; name: string } | null = null;
+  let teams: { id: string; name: string }[] = [];
   if (user) {
-    const { data: membership } = await supabase
+    const { data: memberships } = await supabase
       .from("team_members")
       .select("team_id, teams(name)")
-      .eq("user_id", user.id)
-      .limit(1)
-      .maybeSingle();
+      .eq("user_id", user.id);
 
-    if (membership) {
-      team = {
-        id: membership.team_id,
-        name: (membership.teams as unknown as { name: string } | null)?.name ?? "Equipo",
-      };
-    }
+    teams = (memberships ?? []).map((m) => ({
+      id: m.team_id,
+      name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+    }));
   }
 
-  const scope = params.scope === "team" && team ? "team" : "personal";
+  const activeTeam = teams.find((t) => t.id === params.team) ?? null;
 
   let query = supabase
     .from("clients")
@@ -64,7 +60,7 @@ export default async function Home({
       "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status)"
     );
 
-  query = scope === "team" && team ? query.eq("team_id", team.id) : query.is("team_id", null);
+  query = activeTeam ? query.eq("team_id", activeTeam.id) : query.is("team_id", null);
 
   const { data, error } = await query;
 
@@ -134,30 +130,30 @@ export default async function Home({
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
-        <NewClientDialog
-          teamId={scope === "team" ? team?.id ?? null : null}
-          teamName={scope === "team" ? team?.name : undefined}
-        />
+        <NewClientDialog teamId={activeTeam?.id ?? null} teamName={activeTeam?.name} />
       </div>
 
-      {team && (
-        <div className="flex w-fit gap-1 rounded-lg bg-black/[.04] p-1">
+      {teams.length > 0 && (
+        <div className="flex w-fit flex-wrap gap-1 rounded-lg bg-black/[.04] p-1">
           <Link
             href="/"
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-              scope === "personal" ? "bg-card shadow-sm" : "text-muted-foreground"
+              !activeTeam ? "bg-card shadow-sm" : "text-muted-foreground"
             }`}
           >
             Mis clientes
           </Link>
-          <Link
-            href="/?scope=team"
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-              scope === "team" ? "bg-card shadow-sm" : "text-muted-foreground"
-            }`}
-          >
-            {team.name}
-          </Link>
+          {teams.map((t) => (
+            <Link
+              key={t.id}
+              href={`/?team=${t.id}`}
+              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                activeTeam?.id === t.id ? "bg-card shadow-sm" : "text-muted-foreground"
+              }`}
+            >
+              {t.name}
+            </Link>
+          ))}
         </div>
       )}
 
