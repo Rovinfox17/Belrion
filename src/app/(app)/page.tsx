@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
+import { AddExistingClientsDialog } from "@/components/clients/add-existing-clients-dialog";
 
 type RawClient = {
   id: string;
@@ -63,6 +64,19 @@ export default async function Home({
         .select(`${selectColumns}, client_teams!inner(team_id)`)
         .eq("client_teams.team_id", activeTeam.id)
     : await supabase.from("clients").select(selectColumns).eq("user_id", user?.id ?? "");
+
+  let availableToShare: { id: string; companyName: string }[] = [];
+  if (activeTeam && user) {
+    const [{ data: personalClients }, { data: alreadyShared }] = await Promise.all([
+      supabase.from("clients").select("id, company_name").eq("user_id", user.id),
+      supabase.from("client_teams").select("client_id").eq("team_id", activeTeam.id),
+    ]);
+
+    const sharedIds = new Set((alreadyShared ?? []).map((r) => r.client_id));
+    availableToShare = (personalClients ?? [])
+      .filter((c) => !sharedIds.has(c.id))
+      .map((c) => ({ id: c.id, companyName: c.company_name }));
+  }
 
   const clients = (data ?? []) as unknown as RawClient[];
   const now = Date.now();
@@ -130,7 +144,16 @@ export default async function Home({
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
-        <NewClientDialog teams={teams} defaultTeamId={activeTeam?.id ?? null} />
+        <div className="flex flex-wrap gap-2">
+          {activeTeam && (
+            <AddExistingClientsDialog
+              teamId={activeTeam.id}
+              teamName={activeTeam.name}
+              clients={availableToShare}
+            />
+          )}
+          <NewClientDialog teams={teams} defaultTeamId={activeTeam?.id ?? null} />
+        </div>
       </div>
 
       {teams.length > 0 && (
