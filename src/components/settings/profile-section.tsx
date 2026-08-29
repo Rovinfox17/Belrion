@@ -55,7 +55,8 @@ export function ProfileSection({
           .upload(path, avatarFile, { upsert: true });
 
         if (uploadError) {
-          setError("No se pudo subir la foto.");
+          console.error("avatar upload failed", uploadError);
+          setError(`No se pudo subir la foto: ${uploadError.message}`);
           return;
         }
 
