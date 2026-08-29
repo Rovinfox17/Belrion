@@ -75,6 +75,7 @@ export type Database = {
           status: "pendiente" | "completada" | "cancelada";
           reminder_minutes_before: number | null;
           created_at: string;
+          notified_at: string | null;
         };
         Insert: {
           id?: string;
@@ -83,8 +84,29 @@ export type Database = {
           status?: "pendiente" | "completada" | "cancelada";
           reminder_minutes_before?: number | null;
           created_at?: string;
+          notified_at?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["visits"]["Insert"]>;
+        Relationships: [];
+      };
+      push_subscriptions: {
+        Row: {
+          id: string;
+          user_id: string;
+          endpoint: string;
+          p256dh: string;
+          auth: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string;
+          endpoint: string;
+          p256dh: string;
+          auth: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["push_subscriptions"]["Insert"]>;
         Relationships: [];
       };
       visit_comments: {

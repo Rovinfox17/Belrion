@@ -9,6 +9,7 @@ import { logout } from "@/app/logout/actions";
 const NAV_ITEMS = [
   { href: "/", label: "Clientes" },
   { href: "/calendario", label: "Calendario" },
+  { href: "/ajustes", label: "Ajustes" },
 ];
 
 export function AppHeader() {
