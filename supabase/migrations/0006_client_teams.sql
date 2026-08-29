@@ -17,6 +17,14 @@ insert into public.client_teams (client_id, team_id)
 select id, team_id from public.clients where team_id is not null
 on conflict do nothing;
 
+-- Hay que quitar las políticas viejas ANTES de borrar la columna: dependen de
+-- clients.team_id y Postgres no deja borrar una columna con políticas que la
+-- usan todavía.
+drop policy if exists "clients_select" on public.clients;
+drop policy if exists "clients_insert" on public.clients;
+drop policy if exists "clients_update" on public.clients;
+drop policy if exists "clients_delete" on public.clients;
+
 alter table public.clients drop column if exists team_id;
 
 -- ---------------------------------------------------------------------------
@@ -48,11 +56,6 @@ $$;
 -- clients: RLS simplificada
 -- ---------------------------------------------------------------------------
 
-drop policy if exists "clients_select" on public.clients;
-drop policy if exists "clients_insert" on public.clients;
-drop policy if exists "clients_update" on public.clients;
-drop policy if exists "clients_delete" on public.clients;
-
 create policy "clients_select" on public.clients
   for select using (public.can_access_client(id));
 create policy "clients_insert" on public.clients
@@ -67,6 +70,10 @@ create policy "clients_delete" on public.clients
 -- ---------------------------------------------------------------------------
 
 alter table public.client_teams enable row level security;
+
+drop policy if exists "client_teams_select" on public.client_teams;
+drop policy if exists "client_teams_insert_owner" on public.client_teams;
+drop policy if exists "client_teams_delete_owner_or_team_owner" on public.client_teams;
 
 create policy "client_teams_select" on public.client_teams
   for select using (public.can_access_client(client_id));
