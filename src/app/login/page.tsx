@@ -16,9 +16,9 @@ import { Footer } from "@/components/layout/footer";
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; message?: string }>;
 }) {
-  const { error } = await searchParams;
+  const { error, message } = await searchParams;
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -37,6 +37,11 @@ export default async function LoginPage({
             <CardDescription>Gestión de cartera de clientes</CardDescription>
           </CardHeader>
           <CardContent>
+            {message && (
+              <p className="mb-4 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+                {message}
+              </p>
+            )}
             <form action={login} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <Label htmlFor="email">Email</Label>

@@ -1,4 +1,6 @@
 import { NotificationsToggle } from "@/components/settings/notifications-toggle";
+import { ExportDataButton } from "@/components/settings/export-data-button";
+import { DeleteAccountSection } from "@/components/settings/delete-account-section";
 
 export default function AjustesPage() {
   return (
@@ -14,6 +16,22 @@ export default function AjustesPage() {
           </p>
         </div>
         <NotificationsToggle />
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-lg border border-black/5 bg-card p-4">
+        <div>
+          <h2 className="font-medium">Tus datos</h2>
+          <p className="text-sm text-muted-foreground">
+            Descarga una copia de todos los clientes, contactos, productos, visitas y
+            comentarios que has creado, en un archivo JSON.
+          </p>
+        </div>
+        <ExportDataButton />
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-lg border border-destructive/30 bg-card p-4">
+        <h2 className="font-medium text-destructive">Eliminar cuenta</h2>
+        <DeleteAccountSection />
       </section>
     </div>
   );
