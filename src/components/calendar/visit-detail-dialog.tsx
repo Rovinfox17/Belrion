@@ -144,7 +144,7 @@ export function VisitDetailDialog({
           <div className="flex items-center justify-between">
             <Link
               href={`/clientes/${visit.clientId}`}
-              className="text-sm font-medium text-[#BE5B2E] hover:underline"
+              className="text-sm font-medium text-primary hover:underline"
             >
               Ver ficha del cliente →
             </Link>

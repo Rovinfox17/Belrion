@@ -9,7 +9,6 @@ import { AddressMapLink } from "@/components/clients/address-map-link";
 import { ContactsSection, type Contact } from "@/components/clients/contacts-section";
 import { ProductsSection, type Product } from "@/components/clients/products-section";
 import { VisitsHistory, type VisitWithComments } from "@/components/clients/visits-history";
-import { AppHeader } from "@/components/layout/app-header";
 
 type Status = "activo" | "potencial" | "inactivo";
 
@@ -97,55 +96,54 @@ export default async function ClientDetailPage({
     .sort((a, b) => new Date(b.scheduledAt).getTime() - new Date(a.scheduledAt).getTime());
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FAF1E4]">
-      <AppHeader />
-      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 p-4 sm:p-6">
-        <Link
-          href="/"
-          className="flex w-fit items-center gap-1 text-sm text-muted-foreground hover:underline"
-        >
-          <ArrowLeftIcon className="size-3.5" />
-          Volver a clientes
-        </Link>
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 p-4 sm:p-6">
+      <Link
+        href="/"
+        className="flex w-fit items-center gap-1 text-sm text-muted-foreground hover:underline"
+      >
+        <ArrowLeftIcon className="size-3.5" />
+        Volver a clientes
+      </Link>
 
-        <div className="flex flex-col gap-3 rounded-lg border border-black/5 bg-white p-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-semibold text-[#BE5B2E]">{client.company_name}</h1>
-              <Badge className={STATUS_CLASS[client.status]} variant="secondary">
-                {STATUS_LABEL[client.status]}
-              </Badge>
+      <div className="flex flex-col gap-3 rounded-lg border border-black/5 bg-card p-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="font-heading text-2xl font-semibold text-primary">
+              {client.company_name}
+            </h1>
+            <Badge className={STATUS_CLASS[client.status]} variant="secondary">
+              {STATUS_LABEL[client.status]}
+            </Badge>
+          </div>
+          {client.address && (
+            <div className="flex items-center gap-2">
+              <p className="text-sm text-muted-foreground">{client.address}</p>
+              <AddressMapLink address={client.address} />
             </div>
-            {client.address && (
-              <div className="flex items-center gap-2">
-                <p className="text-sm text-muted-foreground">{client.address}</p>
-                <AddressMapLink address={client.address} />
-              </div>
-            )}
-            {client.notes && (
-              <p className="whitespace-pre-wrap text-sm text-muted-foreground">
-                {client.notes}
-              </p>
-            )}
-          </div>
-          <div className="flex shrink-0 gap-2">
-            <EditClientDialog
-              client={{
-                id: client.id,
-                companyName: client.company_name,
-                status: client.status,
-                address: client.address,
-                notes: client.notes,
-              }}
-            />
-            <DeleteClientButton clientId={client.id} companyName={client.company_name} />
-          </div>
+          )}
+          {client.notes && (
+            <p className="whitespace-pre-wrap text-sm text-muted-foreground">
+              {client.notes}
+            </p>
+          )}
         </div>
-
-        <ContactsSection clientId={client.id} contacts={contacts} />
-        <ProductsSection clientId={client.id} products={products} />
-        <VisitsHistory visits={visits} />
+        <div className="flex shrink-0 gap-2">
+          <EditClientDialog
+            client={{
+              id: client.id,
+              companyName: client.company_name,
+              status: client.status,
+              address: client.address,
+              notes: client.notes,
+            }}
+          />
+          <DeleteClientButton clientId={client.id} companyName={client.company_name} />
+        </div>
       </div>
+
+      <ContactsSection clientId={client.id} contacts={contacts} />
+      <ProductsSection clientId={client.id} products={products} />
+      <VisitsHistory visits={visits} />
     </div>
   );
 }

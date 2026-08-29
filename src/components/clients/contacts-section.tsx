@@ -146,12 +146,12 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
   }
 
   return (
-    <div className="flex items-start justify-between gap-3 rounded-lg border border-black/5 bg-white p-3">
+    <div className="flex items-start justify-between gap-3 rounded-lg border border-black/5 bg-card p-3">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1.5 font-medium">
           {contact.name}
           {contact.isPrimary && (
-            <StarIcon className="size-3.5 fill-[#BE5B2E] text-[#BE5B2E]" />
+            <StarIcon className="size-3.5 fill-primary text-primary" />
           )}
           {contact.role && (
             <span className="font-normal text-muted-foreground">· {contact.role}</span>

@@ -2,7 +2,6 @@ import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
-import { AppHeader } from "@/components/layout/app-header";
 
 type RawClient = {
   id: string;
@@ -105,23 +104,19 @@ export default async function Home({
   const isFiltered = Boolean(q || status || product || upcomingOnly);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FAF1E4]">
-      <AppHeader />
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
+        <NewClientDialog />
+      </div>
 
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 p-4 sm:p-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h1 className="text-xl font-semibold">Clientes</h1>
-          <NewClientDialog />
-        </div>
+      <ClientFilters products={allProducts} />
 
-        <ClientFilters products={allProducts} />
+      {error && (
+        <p className="text-sm text-destructive">No se pudieron cargar los clientes.</p>
+      )}
 
-        {error && (
-          <p className="text-sm text-destructive">No se pudieron cargar los clientes.</p>
-        )}
-
-        <ClientList clients={rows} isFiltered={isFiltered} />
-      </main>
+      <ClientList clients={rows} isFiltered={isFiltered} />
     </div>
   );
 }

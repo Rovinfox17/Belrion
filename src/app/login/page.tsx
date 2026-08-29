@@ -19,7 +19,7 @@ export default async function LoginPage({
   const { error } = await searchParams;
 
   return (
-    <main className="flex min-h-screen flex-1 items-center justify-center bg-[#FAF1E4] px-4">
+    <main className="flex min-h-screen flex-1 items-center justify-center bg-background px-4">
       <Card className="w-full max-w-sm border-none shadow-lg">
         <CardHeader className="items-center text-center">
           <Image
@@ -30,7 +30,7 @@ export default async function LoginPage({
             className="mb-2 rounded-full"
             priority
           />
-          <CardTitle className="text-2xl">Belrion</CardTitle>
+          <CardTitle className="font-heading text-2xl text-primary">Belrion</CardTitle>
           <CardDescription>Gestión de cartera de clientes</CardDescription>
         </CardHeader>
         <CardContent>

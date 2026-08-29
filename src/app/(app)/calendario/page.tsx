@@ -1,5 +1,4 @@
 import { createClient } from "@/lib/supabase/server";
-import { AppHeader } from "@/components/layout/app-header";
 import { CalendarView } from "@/components/calendar/calendar-view";
 import type { ClientOption } from "@/components/calendar/new-visit-dialog";
 import type { CalendarVisit } from "@/components/calendar/visit-detail-dialog";
@@ -46,12 +45,9 @@ export default async function CalendarioPage() {
   }));
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FAF1E4]">
-      <AppHeader />
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 p-4 sm:p-6">
-        <h1 className="text-xl font-semibold">Calendario de visitas</h1>
-        <CalendarView visits={visits} clients={clients} />
-      </main>
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
+      <h1 className="font-heading text-2xl font-semibold">Calendario de visitas</h1>
+      <CalendarView visits={visits} clients={clients} />
     </div>
   );
 }
