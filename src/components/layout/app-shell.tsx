@@ -3,12 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UsersIcon, CalendarDaysIcon, SettingsIcon, LogOutIcon } from "lucide-react";
+import {
+  UsersIcon,
+  CalendarDaysIcon,
+  Building2Icon,
+  SettingsIcon,
+  LogOutIcon,
+} from "lucide-react";
 import { logout } from "@/app/logout/actions";
 
 const NAV_ITEMS = [
   { href: "/", label: "Clientes", icon: UsersIcon },
   { href: "/calendario", label: "Calendario", icon: CalendarDaysIcon },
+  { href: "/equipo", label: "Equipo", icon: Building2Icon },
   { href: "/ajustes", label: "Ajustes", icon: SettingsIcon },
 ];
 
