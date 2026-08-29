@@ -127,14 +127,25 @@ grant execute on function public.get_team_members(uuid) to authenticated;
 alter table public.teams enable row level security;
 alter table public.team_members enable row level security;
 
+drop policy if exists "teams_select_member" on public.teams;
+drop policy if exists "teams_insert_self" on public.teams;
+drop policy if exists "teams_update_owner" on public.teams;
+drop policy if exists "teams_delete_owner" on public.teams;
+
+-- owner_id se comprueba aparte de is_team_member() porque, al crear el
+-- equipo, todavía no existe la fila de team_members que te haría miembro.
 create policy "teams_select_member" on public.teams
-  for select using (public.is_team_member(id));
+  for select using (owner_id = auth.uid() or public.is_team_member(id));
 create policy "teams_insert_self" on public.teams
   for insert with check (owner_id = auth.uid());
 create policy "teams_update_owner" on public.teams
   for update using (owner_id = auth.uid()) with check (owner_id = auth.uid());
 create policy "teams_delete_owner" on public.teams
   for delete using (owner_id = auth.uid());
+
+drop policy if exists "team_members_select_member" on public.team_members;
+drop policy if exists "team_members_insert_owner" on public.team_members;
+drop policy if exists "team_members_delete_owner_or_self" on public.team_members;
 
 create policy "team_members_select_member" on public.team_members
   for select using (public.is_team_member(team_id));
