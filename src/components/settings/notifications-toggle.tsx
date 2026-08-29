@@ -29,7 +29,10 @@ export function NotificationsToggle() {
         setStatus("denied");
         return;
       }
-      const registration = await navigator.serviceWorker.ready.catch(() => null);
+      const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), 4000));
+      const registration = await Promise.race([navigator.serviceWorker.ready, timeout]).catch(
+        () => null
+      );
       const subscription = await registration?.pushManager.getSubscription();
       setStatus(subscription ? "subscribed" : "unsubscribed");
     }
