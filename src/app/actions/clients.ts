@@ -9,7 +9,7 @@ export async function createClientWithContact(input: {
   companyName: string;
   contactName: string;
   status: ClientStatus;
-  teamId?: string | null;
+  teamIds?: string[];
 }) {
   const companyName = input.companyName.trim();
   const contactName = input.contactName.trim();
@@ -29,12 +29,7 @@ export async function createClientWithContact(input: {
 
   const { data: client, error: clientError } = await supabase
     .from("clients")
-    .insert({
-      company_name: companyName,
-      status: input.status,
-      user_id: user.id,
-      team_id: input.teamId ?? null,
-    })
+    .insert({ company_name: companyName, status: input.status, user_id: user.id })
     .select("id")
     .single();
 
@@ -48,6 +43,17 @@ export async function createClientWithContact(input: {
 
   if (contactError) {
     return { error: "El cliente se creó, pero no se pudo guardar el contacto." };
+  }
+
+  const teamIds = input.teamIds ?? [];
+  if (teamIds.length > 0) {
+    const { error: teamsError } = await supabase
+      .from("client_teams")
+      .insert(teamIds.map((teamId) => ({ client_id: client.id, team_id: teamId })));
+
+    if (teamsError) {
+      return { error: "El cliente se creó, pero no se pudo compartir con el equipo." };
+    }
   }
 
   revalidatePath("/");

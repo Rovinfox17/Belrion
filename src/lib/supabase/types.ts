@@ -5,7 +5,6 @@ export type Database = {
         Row: {
           id: string;
           user_id: string;
-          team_id: string | null;
           company_name: string;
           address: string | null;
           latitude: number | null;
@@ -18,7 +17,6 @@ export type Database = {
         Insert: {
           id?: string;
           user_id?: string;
-          team_id?: string | null;
           company_name: string;
           address?: string | null;
           latitude?: number | null;
@@ -29,6 +27,20 @@ export type Database = {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["clients"]["Insert"]>;
+        Relationships: [];
+      };
+      client_teams: {
+        Row: {
+          client_id: string;
+          team_id: string;
+          added_at: string;
+        };
+        Insert: {
+          client_id: string;
+          team_id: string;
+          added_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["client_teams"]["Insert"]>;
         Relationships: [];
       };
       teams: {

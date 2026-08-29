@@ -9,6 +9,7 @@ import { AddressMapLink } from "@/components/clients/address-map-link";
 import { ContactsSection, type Contact } from "@/components/clients/contacts-section";
 import { ProductsSection, type Product } from "@/components/clients/products-section";
 import { VisitsHistory, type VisitWithComments } from "@/components/clients/visits-history";
+import { ClientTeamsSection } from "@/components/clients/client-teams-section";
 
 type Status = "activo" | "potencial" | "inactivo";
 
@@ -26,6 +27,7 @@ const STATUS_CLASS: Record<Status, string> = {
 
 type RawClientDetail = {
   id: string;
+  user_id: string;
   company_name: string;
   status: Status;
   address: string | null;
@@ -54,11 +56,14 @@ export default async function ClientDetailPage({
 }) {
   const { id } = await params;
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const { data } = await supabase
     .from("clients")
     .select(
-      "id, company_name, status, address, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, visit_comments(id, comment, created_at))"
+      "id, user_id, company_name, status, address, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, visit_comments(id, comment, created_at))"
     )
     .eq("id", id)
     .single();
@@ -66,6 +71,34 @@ export default async function ClientDetailPage({
   const client = data as unknown as RawClientDetail | null;
 
   if (!client) notFound();
+
+  const isOwner = client.user_id === user?.id;
+
+  const { data: clientTeamsData } = await supabase
+    .from("client_teams")
+    .select("team_id, teams(name)")
+    .eq("client_id", id);
+
+  const sharedWith = (clientTeamsData ?? []).map((ct) => ({
+    teamId: ct.team_id,
+    teamName: (ct.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+  }));
+
+  let availableTeams: { id: string; name: string }[] = [];
+  if (user) {
+    const { data: memberships } = await supabase
+      .from("team_members")
+      .select("team_id, teams(name)")
+      .eq("user_id", user.id);
+
+    const sharedTeamIds = new Set(sharedWith.map((t) => t.teamId));
+    availableTeams = (memberships ?? [])
+      .map((m) => ({
+        id: m.team_id,
+        name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+      }))
+      .filter((t) => !sharedTeamIds.has(t.id));
+  }
 
   const contacts: Contact[] = (client.contacts ?? [])
     .map((c) => ({
@@ -143,6 +176,12 @@ export default async function ClientDetailPage({
 
       <ContactsSection clientId={client.id} contacts={contacts} />
       <ProductsSection clientId={client.id} products={products} />
+      <ClientTeamsSection
+        clientId={client.id}
+        isOwner={isOwner}
+        sharedWith={sharedWith}
+        availableTeams={availableTeams}
+      />
       <VisitsHistory visits={visits} />
     </div>
   );

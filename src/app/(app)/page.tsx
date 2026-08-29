@@ -54,15 +54,15 @@ export default async function Home({
 
   const activeTeam = teams.find((t) => t.id === params.team) ?? null;
 
-  let query = supabase
-    .from("clients")
-    .select(
-      "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status)"
-    );
+  const selectColumns =
+    "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status)";
 
-  query = activeTeam ? query.eq("team_id", activeTeam.id) : query.is("team_id", null);
-
-  const { data, error } = await query;
+  const { data, error } = activeTeam
+    ? await supabase
+        .from("clients")
+        .select(`${selectColumns}, client_teams!inner(team_id)`)
+        .eq("client_teams.team_id", activeTeam.id)
+    : await supabase.from("clients").select(selectColumns).eq("user_id", user?.id ?? "");
 
   const clients = (data ?? []) as unknown as RawClient[];
   const now = Date.now();
@@ -130,7 +130,7 @@ export default async function Home({
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
-        <NewClientDialog teamId={activeTeam?.id ?? null} teamName={activeTeam?.name} />
+        <NewClientDialog teams={teams} defaultTeamId={activeTeam?.id ?? null} />
       </div>
 
       {teams.length > 0 && (

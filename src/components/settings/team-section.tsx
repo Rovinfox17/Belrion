@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useTransition, type FormEvent } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { PlusIcon, TrashIcon } from "lucide-react";
+import { ChevronRightIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,13 +19,9 @@ export type TeamData = {
   members: TeamMember[];
 };
 
-function CreateTeamForm({
-  hasTeams,
-  onCancel,
-}: {
-  hasTeams: boolean;
-  onCancel?: () => void;
-}) {
+export type TeamListItem = { id: string; name: string; role: "owner" | "member" };
+
+export function CreateTeamForm() {
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -41,19 +38,12 @@ function CreateTeamForm({
       }
       toast.success("Equipo creado");
       setName("");
-      onCancel?.();
       router.refresh();
     });
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      {!hasTeams && (
-        <p className="text-sm text-muted-foreground">
-          Todavía no perteneces a ningún equipo. Crea uno para compartir una cartera de
-          clientes con tus compañeros — la que ya tienes seguirá siendo solo tuya.
-        </p>
-      )}
       <div className="flex gap-2">
         <Input
           placeholder="Nombre del equipo"
@@ -64,11 +54,6 @@ function CreateTeamForm({
         <Button type="submit" disabled={isPending}>
           {isPending ? "Creando…" : "Crear equipo"}
         </Button>
-        {onCancel && (
-          <Button type="button" variant="ghost" onClick={onCancel} disabled={isPending}>
-            Cancelar
-          </Button>
-        )}
       </div>
       {error && (
         <p className="text-sm text-destructive" role="alert">
@@ -79,7 +64,46 @@ function CreateTeamForm({
   );
 }
 
-function ManageTeam({ team }: { team: TeamData }) {
+export function TeamList({ teams }: { teams: TeamListItem[] }) {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h2 className="mb-2 font-medium">Crear un equipo</h2>
+        <CreateTeamForm />
+      </div>
+
+      <div>
+        <h2 className="mb-2 font-medium">Tus equipos</h2>
+        {teams.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Todavía no perteneces a ningún equipo.
+          </p>
+        ) : (
+          <ul className="flex flex-col gap-2">
+            {teams.map((t) => (
+              <li key={t.id}>
+                <Link
+                  href={`/equipo/${t.id}`}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-black/5 bg-card p-3 hover:bg-black/[.02]"
+                >
+                  <span className="text-sm">
+                    <span className="font-medium">{t.name}</span>{" "}
+                    <span className="text-muted-foreground">
+                      · {t.role === "owner" ? "Propietario" : "Miembro"}
+                    </span>
+                  </span>
+                  <ChevronRightIcon className="size-4 text-muted-foreground" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function ManageTeam({ team }: { team: TeamData }) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -168,33 +192,6 @@ function ManageTeam({ team }: { team: TeamData }) {
             </p>
           )}
         </form>
-      )}
-    </div>
-  );
-}
-
-export function TeamSection({ teams }: { teams: TeamData[] }) {
-  const [creating, setCreating] = useState(teams.length === 0);
-
-  return (
-    <div className="flex flex-col gap-6">
-      {teams.map((team) => (
-        <div key={team.id} className="flex flex-col gap-3 rounded-lg border border-black/5 p-4">
-          <h3 className="font-heading text-lg font-semibold">{team.name}</h3>
-          <ManageTeam team={team} />
-        </div>
-      ))}
-
-      {creating ? (
-        <CreateTeamForm
-          hasTeams={teams.length > 0}
-          onCancel={teams.length > 0 ? () => setCreating(false) : undefined}
-        />
-      ) : (
-        <Button variant="outline" className="w-fit" onClick={() => setCreating(true)}>
-          <PlusIcon />
-          Crear otro equipo
-        </Button>
       )}
     </div>
   );
