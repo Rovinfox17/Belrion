@@ -31,12 +31,14 @@ export async function updateSession(request: NextRequest) {
 
   const isAuthRoute =
     request.nextUrl.pathname.startsWith("/login") ||
-    request.nextUrl.pathname.startsWith("/signup");
+    request.nextUrl.pathname.startsWith("/signup") ||
+    request.nextUrl.pathname.startsWith("/recuperar");
 
   const isPublicRoute =
     request.nextUrl.pathname.startsWith("/aviso-legal") ||
     request.nextUrl.pathname.startsWith("/cookies") ||
-    request.nextUrl.pathname.startsWith("/privacidad");
+    request.nextUrl.pathname.startsWith("/privacidad") ||
+    request.nextUrl.pathname.startsWith("/auth/callback");
 
   if (!user && !isAuthRoute && !isPublicRoute) {
     const url = request.nextUrl.clone();
