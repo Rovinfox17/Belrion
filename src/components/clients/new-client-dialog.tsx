@@ -25,7 +25,13 @@ import { createClientWithContact } from "@/app/actions/clients";
 
 type Status = "activo" | "potencial" | "inactivo";
 
-export function NewClientDialog() {
+export function NewClientDialog({
+  teamId = null,
+  teamName,
+}: {
+  teamId?: string | null;
+  teamName?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [contactName, setContactName] = useState("");
@@ -38,7 +44,7 @@ export function NewClientDialog() {
     event.preventDefault();
     setError(null);
     startTransition(async () => {
-      const result = await createClientWithContact({ companyName, contactName, status });
+      const result = await createClientWithContact({ companyName, contactName, status, teamId });
       if (result?.error) {
         setError(result.error);
         return;
@@ -57,7 +63,7 @@ export function NewClientDialog() {
       <DialogTrigger render={<Button>Nuevo cliente</Button>} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Nuevo cliente</DialogTitle>
+          <DialogTitle>Nuevo cliente{teamName ? ` · ${teamName}` : ""}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">

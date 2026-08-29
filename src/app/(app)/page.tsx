@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
@@ -34,12 +35,38 @@ export default async function Home({
 }) {
   const params = await searchParams;
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const { data, error } = await supabase
+  let team: { id: string; name: string } | null = null;
+  if (user) {
+    const { data: membership } = await supabase
+      .from("team_members")
+      .select("team_id, teams(name)")
+      .eq("user_id", user.id)
+      .limit(1)
+      .maybeSingle();
+
+    if (membership) {
+      team = {
+        id: membership.team_id,
+        name: (membership.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+      };
+    }
+  }
+
+  const scope = params.scope === "team" && team ? "team" : "personal";
+
+  let query = supabase
     .from("clients")
     .select(
       "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status)"
     );
+
+  query = scope === "team" && team ? query.eq("team_id", team.id) : query.is("team_id", null);
+
+  const { data, error } = await query;
 
   const clients = (data ?? []) as unknown as RawClient[];
   const now = Date.now();
@@ -107,8 +134,32 @@ export default async function Home({
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-heading text-2xl font-semibold">Clientes</h1>
-        <NewClientDialog />
+        <NewClientDialog
+          teamId={scope === "team" ? team?.id ?? null : null}
+          teamName={scope === "team" ? team?.name : undefined}
+        />
       </div>
+
+      {team && (
+        <div className="flex w-fit gap-1 rounded-lg bg-black/[.04] p-1">
+          <Link
+            href="/"
+            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+              scope === "personal" ? "bg-card shadow-sm" : "text-muted-foreground"
+            }`}
+          >
+            Mis clientes
+          </Link>
+          <Link
+            href="/?scope=team"
+            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+              scope === "team" ? "bg-card shadow-sm" : "text-muted-foreground"
+            }`}
+          >
+            {team.name}
+          </Link>
+        </div>
+      )}
 
       <ClientFilters products={allProducts} />
 

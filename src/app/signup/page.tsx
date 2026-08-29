@@ -10,9 +10,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { login } from "./actions";
+import { signup } from "./actions";
 
-export default async function LoginPage({
+export default async function SignupPage({
   searchParams,
 }: {
   searchParams: Promise<{ error?: string }>;
@@ -32,10 +32,14 @@ export default async function LoginPage({
             priority
           />
           <CardTitle className="font-heading text-2xl text-primary">Belrion</CardTitle>
-          <CardDescription>Gestión de cartera de clientes</CardDescription>
+          <CardDescription>Crea tu cuenta</CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={login} className="flex flex-col gap-4">
+          <form action={signup} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="name">Nombre</Label>
+              <Input id="name" name="name" type="text" autoComplete="name" required />
+            </div>
             <div className="flex flex-col gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -53,7 +57,8 @@ export default async function LoginPage({
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
+                minLength={8}
                 required
               />
             </div>
@@ -63,13 +68,13 @@ export default async function LoginPage({
               </p>
             )}
             <Button type="submit" className="mt-2 w-full">
-              Entrar
+              Crear cuenta
             </Button>
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            ¿No tienes cuenta?{" "}
-            <Link href="/signup" className="font-medium text-primary hover:underline">
-              Regístrate
+            ¿Ya tienes cuenta?{" "}
+            <Link href="/login" className="font-medium text-primary hover:underline">
+              Entra aquí
             </Link>
           </p>
         </CardContent>

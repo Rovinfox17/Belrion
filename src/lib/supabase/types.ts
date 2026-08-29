@@ -5,6 +5,7 @@ export type Database = {
         Row: {
           id: string;
           user_id: string;
+          team_id: string | null;
           company_name: string;
           address: string | null;
           latitude: number | null;
@@ -17,6 +18,7 @@ export type Database = {
         Insert: {
           id?: string;
           user_id?: string;
+          team_id?: string | null;
           company_name: string;
           address?: string | null;
           latitude?: number | null;
@@ -27,6 +29,38 @@ export type Database = {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["clients"]["Insert"]>;
+        Relationships: [];
+      };
+      teams: {
+        Row: {
+          id: string;
+          name: string;
+          owner_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          owner_id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["teams"]["Insert"]>;
+        Relationships: [];
+      };
+      team_members: {
+        Row: {
+          team_id: string;
+          user_id: string;
+          role: "owner" | "member";
+          created_at: string;
+        };
+        Insert: {
+          team_id: string;
+          user_id: string;
+          role?: "owner" | "member";
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["team_members"]["Insert"]>;
         Relationships: [];
       };
       contacts: {
@@ -129,7 +163,16 @@ export type Database = {
       };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      find_user_id_by_email: {
+        Args: { p_email: string };
+        Returns: string | null;
+      };
+      get_team_members: {
+        Args: { p_team_id: string };
+        Returns: { user_id: string; email: string; role: "owner" | "member" }[];
+      };
+    };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };

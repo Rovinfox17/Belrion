@@ -9,6 +9,7 @@ export async function createClientWithContact(input: {
   companyName: string;
   contactName: string;
   status: ClientStatus;
+  teamId?: string | null;
 }) {
   const companyName = input.companyName.trim();
   const contactName = input.contactName.trim();
@@ -28,7 +29,12 @@ export async function createClientWithContact(input: {
 
   const { data: client, error: clientError } = await supabase
     .from("clients")
-    .insert({ company_name: companyName, status: input.status, user_id: user.id })
+    .insert({
+      company_name: companyName,
+      status: input.status,
+      user_id: user.id,
+      team_id: input.teamId ?? null,
+    })
     .select("id")
     .single();
 
