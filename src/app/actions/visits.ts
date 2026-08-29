@@ -9,6 +9,7 @@ export async function createVisit(input: {
   clientId: string;
   scheduledAt: string;
   reminderMinutesBefore: number | null;
+  teamIds?: string[];
 }) {
   if (!input.clientId) {
     return { error: "Selecciona un cliente." };
@@ -26,6 +27,14 @@ export async function createVisit(input: {
 
   if (error) {
     return { error: "No se pudo crear la visita." };
+  }
+
+  // Compartir la visita con un equipo significa compartir su cliente con ese
+  // equipo (así el resto de visitas y el historial también quedan visibles).
+  // Best-effort: si ya estaba compartido o el usuario no es el dueño del
+  // cliente, se ignora sin bloquear la creación de la visita.
+  for (const teamId of input.teamIds ?? []) {
+    await supabase.from("client_teams").insert({ client_id: input.clientId, team_id: teamId });
   }
 
   revalidatePath("/calendario");

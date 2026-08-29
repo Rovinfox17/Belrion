@@ -23,6 +23,7 @@ import {
 import { createVisit } from "@/app/actions/visits";
 
 export type ClientOption = { id: string; companyName: string };
+export type TeamOption = { id: string; name: string };
 
 const REMINDER_OPTIONS = [
   { value: "0", label: "Sin recordatorio" },
@@ -36,17 +37,20 @@ export function NewVisitDialog({
   open,
   onOpenChange,
   clients,
+  teams = [],
   initialDate,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   clients: ClientOption[];
+  teams?: TeamOption[];
   initialDate: string | null;
 }) {
   const [search, setSearch] = useState("");
   const [clientId, setClientId] = useState("");
   const [scheduledAt, setScheduledAt] = useState("");
   const [reminder, setReminder] = useState("30");
+  const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -66,8 +70,15 @@ export function NewVisitDialog({
       setClientId("");
       setScheduledAt(initialDate ?? "");
       setReminder("30");
+      setSelectedTeamIds([]);
       setError(null);
     }
+  }
+
+  function toggleTeam(teamId: string, checked: boolean) {
+    setSelectedTeamIds((prev) =>
+      checked ? [...prev, teamId] : prev.filter((id) => id !== teamId)
+    );
   }
 
   function handleSubmit(event: FormEvent) {
@@ -82,6 +93,7 @@ export function NewVisitDialog({
         clientId,
         scheduledAt,
         reminderMinutesBefore: reminder === "0" ? null : Number(reminder),
+        teamIds: selectedTeamIds,
       });
       if (result?.error) {
         setError(result.error);
@@ -169,6 +181,29 @@ export function NewVisitDialog({
               </SelectContent>
             </Select>
           </div>
+
+          {teams.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <Label>Compartir esta visita con</Label>
+              <div className="flex flex-col gap-1.5">
+                {teams.map((t) => (
+                  <label key={t.id} className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      className="size-4"
+                      checked={selectedTeamIds.includes(t.id)}
+                      onChange={(e) => toggleTeam(t.id, e.target.checked)}
+                    />
+                    {t.name}
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                El equipo verá esta visita (y el resto de datos de este cliente) en su
+                calendario.
+              </p>
+            </div>
+          )}
 
           {error && (
             <p className="text-sm text-destructive" role="alert">

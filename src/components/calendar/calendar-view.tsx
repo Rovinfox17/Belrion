@@ -10,7 +10,7 @@ import type { EventClickArg } from "@fullcalendar/core";
 import type { DateClickArg } from "@fullcalendar/interaction";
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
-import { NewVisitDialog, type ClientOption } from "./new-visit-dialog";
+import { NewVisitDialog, type ClientOption, type TeamOption } from "./new-visit-dialog";
 import { VisitDetailDialog, type CalendarVisit } from "./visit-detail-dialog";
 
 const STATUS_COLOR: Record<CalendarVisit["status"], string> = {
@@ -30,9 +30,11 @@ function nowAsDatetimeLocal() {
 export function CalendarView({
   visits,
   clients,
+  teams = [],
 }: {
   visits: CalendarVisit[];
   clients: ClientOption[];
+  teams?: TeamOption[];
 }) {
   const [newVisitOpen, setNewVisitOpen] = useState(false);
   const [newVisitDate, setNewVisitDate] = useState<string | null>(null);
@@ -94,6 +96,7 @@ export function CalendarView({
         open={newVisitOpen}
         onOpenChange={setNewVisitOpen}
         clients={clients}
+        teams={teams}
         initialDate={newVisitDate}
       />
 

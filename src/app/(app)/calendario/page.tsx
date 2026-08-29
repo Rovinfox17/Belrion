@@ -15,15 +15,27 @@ type RawVisit = {
 
 export default async function CalendarioPage() {
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const [{ data: visitsData }, { data: clientsData }] = await Promise.all([
-    supabase
-      .from("visits")
-      .select(
-        "id, scheduled_at, status, reminder_minutes_before, client_id, clients(company_name), visit_comments(id, comment, created_at)"
-      ),
-    supabase.from("clients").select("id, company_name").order("company_name"),
-  ]);
+  const [{ data: visitsData }, { data: clientsData }, { data: membershipsData }] =
+    await Promise.all([
+      supabase
+        .from("visits")
+        .select(
+          "id, scheduled_at, status, reminder_minutes_before, client_id, clients(company_name), visit_comments(id, comment, created_at)"
+        ),
+      supabase.from("clients").select("id, company_name").order("company_name"),
+      user
+        ? supabase.from("team_members").select("team_id, teams(name)").eq("user_id", user.id)
+        : Promise.resolve({ data: null }),
+    ]);
+
+  const teams = (membershipsData ?? []).map((m) => ({
+    id: m.team_id,
+    name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+  }));
 
   const rawVisits = (visitsData ?? []) as unknown as RawVisit[];
 
@@ -47,7 +59,7 @@ export default async function CalendarioPage() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <h1 className="font-heading text-2xl font-semibold">Calendario de visitas</h1>
-      <CalendarView visits={visits} clients={clients} />
+      <CalendarView visits={visits} clients={clients} teams={teams} />
     </div>
   );
 }
