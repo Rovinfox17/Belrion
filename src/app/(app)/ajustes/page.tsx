@@ -1,6 +1,14 @@
+import Link from "next/link";
 import { NotificationsToggle } from "@/components/settings/notifications-toggle";
+import { ChangePasswordSection } from "@/components/settings/change-password-section";
 import { ExportDataButton } from "@/components/settings/export-data-button";
 import { DeleteAccountSection } from "@/components/settings/delete-account-section";
+
+const LEGAL_LINKS = [
+  { href: "/aviso-legal", label: "Aviso Legal" },
+  { href: "/privacidad", label: "Política de Privacidad" },
+  { href: "/cookies", label: "Política de Cookies" },
+];
 
 export default function AjustesPage() {
   return (
@@ -19,6 +27,11 @@ export default function AjustesPage() {
       </section>
 
       <section className="flex flex-col gap-3 rounded-lg border border-black/5 bg-card p-4">
+        <h2 className="font-medium">Cambiar contraseña</h2>
+        <ChangePasswordSection />
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-lg border border-black/5 bg-card p-4">
         <div>
           <h2 className="font-medium">Tus datos</h2>
           <p className="text-sm text-muted-foreground">
@@ -32,6 +45,17 @@ export default function AjustesPage() {
       <section className="flex flex-col gap-3 rounded-lg border border-destructive/30 bg-card p-4">
         <h2 className="font-medium text-destructive">Eliminar cuenta</h2>
         <DeleteAccountSection />
+      </section>
+
+      <section className="flex flex-col gap-2 rounded-lg border border-black/5 bg-card p-4">
+        <h2 className="font-medium">Legal</h2>
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {LEGAL_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="text-primary hover:underline">
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   );
