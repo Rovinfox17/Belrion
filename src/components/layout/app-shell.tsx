@@ -11,6 +11,7 @@ import {
   LogOutIcon,
 } from "lucide-react";
 import { logout } from "@/app/logout/actions";
+import { Footer } from "@/components/layout/footer";
 
 const NAV_ITEMS = [
   { href: "/", label: "Clientes", icon: UsersIcon },
@@ -77,7 +78,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </form>
         </header>
 
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <main className="flex-1">{children}</main>
+
+        <div className="pb-20 md:pb-0">
+          <Footer />
+        </div>
 
         <nav
           className="fixed inset-x-0 bottom-0 z-40 flex border-t border-black/5 bg-card md:hidden"
