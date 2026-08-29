@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
@@ -14,7 +15,8 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  const t = await getTranslations("auth.errors");
   return NextResponse.redirect(
-    `${origin}/login?error=${encodeURIComponent("El enlace no es válido o ha caducado.")}`
+    `${origin}/login?error=${encodeURIComponent(t("invalidOrExpiredLink"))}`
   );
 }

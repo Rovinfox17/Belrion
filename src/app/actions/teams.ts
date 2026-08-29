@@ -1,12 +1,14 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function createTeam(name: string) {
   const trimmed = name.trim();
+  const t = await getTranslations("team.errors");
   if (!trimmed) {
-    return { error: "El nombre del equipo es obligatorio." };
+    return { error: t("nameRequired") };
   }
 
   const supabase = await createClient();
@@ -15,7 +17,7 @@ export async function createTeam(name: string) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { error: "No autenticado." };
+    return { error: t("notAuthenticated") };
   }
 
   const { data: team, error } = await supabase
@@ -25,7 +27,7 @@ export async function createTeam(name: string) {
     .single();
 
   if (error || !team) {
-    return { error: "No se pudo crear el equipo." };
+    return { error: t("createFailed") };
   }
 
   const { error: memberError } = await supabase
@@ -33,7 +35,7 @@ export async function createTeam(name: string) {
     .insert({ team_id: team.id, user_id: user.id, role: "owner" });
 
   if (memberError) {
-    return { error: "El equipo se creó, pero no se pudo añadirte como miembro." };
+    return { error: t("addAsMemberFailed") };
   }
 
   revalidatePath("/ajustes");
@@ -43,8 +45,9 @@ export async function createTeam(name: string) {
 
 export async function addTeamMember(input: { teamId: string; email: string }) {
   const email = input.email.trim();
+  const t = await getTranslations("team.errors");
   if (!email) {
-    return { error: "Introduce un email." };
+    return { error: t("emailRequired") };
   }
 
   const supabase = await createClient();
@@ -53,10 +56,10 @@ export async function addTeamMember(input: { teamId: string; email: string }) {
   });
 
   if (lookupError) {
-    return { error: "No se pudo buscar ese email." };
+    return { error: t("emailLookupFailed") };
   }
   if (!userId) {
-    return { error: "Ese email todavía no tiene una cuenta creada en Belrion." };
+    return { error: t("emailNotRegistered") };
   }
 
   const { error } = await supabase
@@ -65,9 +68,9 @@ export async function addTeamMember(input: { teamId: string; email: string }) {
 
   if (error) {
     if (error.code === "23505") {
-      return { error: "Esa persona ya es miembro del equipo." };
+      return { error: t("alreadyMember") };
     }
-    return { error: "No se pudo añadir al equipo." };
+    return { error: t("addFailed") };
   }
 
   revalidatePath("/ajustes");
@@ -83,7 +86,8 @@ export async function removeTeamMember(input: { teamId: string; userId: string }
     .eq("user_id", input.userId);
 
   if (error) {
-    return { error: "No se pudo eliminar a esa persona del equipo." };
+    const t = await getTranslations("team.errors");
+    return { error: t("removeFailed") };
   }
 
   revalidatePath("/ajustes");

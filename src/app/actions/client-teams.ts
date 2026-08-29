@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function addClientToTeam(input: { clientId: string; teamId: string }) {
@@ -10,10 +11,11 @@ export async function addClientToTeam(input: { clientId: string; teamId: string 
     .insert({ client_id: input.clientId, team_id: input.teamId });
 
   if (error) {
+    const t = await getTranslations("clients.teams.errors");
     if (error.code === "23505") {
-      return { error: "Ese cliente ya está compartido con ese equipo." };
+      return { error: t("alreadyShared") };
     }
-    return { error: "No se pudo compartir el cliente con el equipo." };
+    return { error: t("shareFailed") };
   }
 
   revalidatePath("/");
@@ -22,8 +24,9 @@ export async function addClientToTeam(input: { clientId: string; teamId: string 
 }
 
 export async function addClientsToTeam(input: { teamId: string; clientIds: string[] }) {
+  const t = await getTranslations("clients.teams.errors");
   if (input.clientIds.length === 0) {
-    return { error: "Selecciona al menos un cliente." };
+    return { error: t("selectAtLeastOne") };
   }
 
   const supabase = await createClient();
@@ -32,7 +35,7 @@ export async function addClientsToTeam(input: { teamId: string; clientIds: strin
     .insert(input.clientIds.map((clientId) => ({ client_id: clientId, team_id: input.teamId })));
 
   if (error) {
-    return { error: "No se pudieron añadir los clientes al equipo." };
+    return { error: t("addMultipleFailed") };
   }
 
   revalidatePath("/");
@@ -48,7 +51,8 @@ export async function removeClientFromTeam(input: { clientId: string; teamId: st
     .eq("team_id", input.teamId);
 
   if (error) {
-    return { error: "No se pudo quitar el cliente del equipo." };
+    const t = await getTranslations("clients.teams.errors");
+    return { error: t("removeFailed") };
   }
 
   revalidatePath("/");

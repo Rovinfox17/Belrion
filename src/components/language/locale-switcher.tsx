@@ -36,9 +36,8 @@ export function LocaleSwitcher({ compact = false }: { compact?: boolean }) {
       </SelectTrigger>
       <SelectContent>
         {LOCALE_OPTIONS.map((option) => (
-          <SelectItem key={option.code} value={option.code} disabled={option.comingSoon}>
+          <SelectItem key={option.code} value={option.code}>
             {option.label}
-            {option.comingSoon ? " (Próximamente)" : ""}
           </SelectItem>
         ))}
       </SelectContent>
@@ -66,11 +65,10 @@ export function LocaleSwitcherButtons() {
           type="button"
           variant={locale === option.code ? "default" : "outline"}
           size="sm"
-          disabled={option.comingSoon || isPending}
+          disabled={isPending}
           onClick={() => handleChange(option.code)}
         >
           {option.label}
-          {option.comingSoon ? " · Próximamente" : ""}
         </Button>
       ))}
     </div>

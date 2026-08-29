@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 type VisitStatus = "pendiente" | "completada" | "cancelada";
@@ -11,11 +12,12 @@ export async function createVisit(input: {
   reminderMinutesBefore: number | null;
   teamIds?: string[];
 }) {
+  const t = await getTranslations("calendar.errors");
   if (!input.clientId) {
-    return { error: "Selecciona un cliente." };
+    return { error: t("selectClient") };
   }
   if (!input.scheduledAt) {
-    return { error: "Selecciona una fecha y hora." };
+    return { error: t("selectDateTime") };
   }
 
   const supabase = await createClient();
@@ -26,7 +28,7 @@ export async function createVisit(input: {
   });
 
   if (error) {
-    return { error: "No se pudo crear la visita." };
+    return { error: t("createFailed") };
   }
 
   // Compartir la visita con un equipo significa compartir su cliente con ese
@@ -50,8 +52,9 @@ export async function updateVisit(input: {
   status: VisitStatus;
   reminderMinutesBefore: number | null;
 }) {
+  const t = await getTranslations("calendar.errors");
   if (!input.scheduledAt) {
-    return { error: "Selecciona una fecha y hora." };
+    return { error: t("selectDateTime") };
   }
 
   const supabase = await createClient();
@@ -66,7 +69,7 @@ export async function updateVisit(input: {
     .eq("id", input.id);
 
   if (error) {
-    return { error: "No se pudo actualizar la visita." };
+    return { error: t("updateFailed") };
   }
 
   revalidatePath("/calendario");
@@ -87,7 +90,8 @@ export async function setVisitStatus(input: {
     .eq("id", input.id);
 
   if (error) {
-    return { error: "No se pudo actualizar el estado de la visita." };
+    const t = await getTranslations("calendar.errors");
+    return { error: t("statusUpdateFailed") };
   }
 
   revalidatePath("/calendario");
@@ -101,7 +105,8 @@ export async function deleteVisit(input: { id: string; clientId: string }) {
   const { error } = await supabase.from("visits").delete().eq("id", input.id);
 
   if (error) {
-    return { error: "No se pudo eliminar la visita." };
+    const t = await getTranslations("calendar.errors");
+    return { error: t("deleteFailed") };
   }
 
   revalidatePath("/calendario");

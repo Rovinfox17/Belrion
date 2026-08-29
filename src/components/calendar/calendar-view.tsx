@@ -88,7 +88,7 @@ export function CalendarView({
             center: "title",
             right: "dayGridMonth,timeGridWeek",
           }}
-          locale={locale === "ca" ? caLocale : esLocale}
+          locale={locale === "ca" ? caLocale : locale === "en" ? undefined : esLocale}
           height="auto"
           events={events}
           dateClick={handleDateClick}

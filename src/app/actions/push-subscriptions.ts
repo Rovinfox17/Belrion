@@ -1,5 +1,6 @@
 "use server";
 
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function savePushSubscription(input: {
@@ -13,7 +14,8 @@ export async function savePushSubscription(input: {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { error: "No autenticado." };
+    const t = await getTranslations("errors");
+    return { error: t("notAuthenticated") };
   }
 
   const { error } = await supabase
@@ -29,7 +31,8 @@ export async function savePushSubscription(input: {
     );
 
   if (error) {
-    return { error: "No se pudo guardar la suscripción a notificaciones." };
+    const t = await getTranslations("settings.notifications.errors");
+    return { error: t("subscriptionSaveFailed") };
   }
 
   return { success: true as const };
@@ -43,7 +46,8 @@ export async function deletePushSubscription(endpoint: string) {
     .eq("endpoint", endpoint);
 
   if (error) {
-    return { error: "No se pudo eliminar la suscripción a notificaciones." };
+    const t = await getTranslations("settings.notifications.errors");
+    return { error: t("subscriptionDeleteFailed") };
   }
 
   return { success: true as const };

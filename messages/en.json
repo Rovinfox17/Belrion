@@ -1,0 +1,383 @@
+{
+  "nav": {
+    "clients": "Clients",
+    "calendar": "Calendar",
+    "team": "Team",
+    "settings": "Settings",
+    "logout": "Log out",
+    "profile": "Profile"
+  },
+  "footer": {
+    "copyright": "© {year} Belrion",
+    "legal": "Legal notice",
+    "cookies": "Cookies",
+    "privacy": "Privacy"
+  },
+  "auth": {
+    "tagline": "Client portfolio management",
+    "login": {
+      "subtitle": "Client portfolio management",
+      "email": "Email",
+      "password": "Password",
+      "forgot": "Forgot your password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signup": "Sign up"
+    },
+    "signup": {
+      "subtitle": "Create your account",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in here"
+    },
+    "recover": {
+      "subtitle": "Recover your password",
+      "email": "Email",
+      "submit": "Send link",
+      "sent": "If that email has a Belrion account, we've sent you a link to reset your password. Check your inbox.",
+      "back": "← Back to sign in"
+    },
+    "reset": {
+      "subtitle": "Choose your new password",
+      "password": "New password",
+      "confirmPassword": "Confirm password",
+      "submit": "Save new password",
+      "saving": "Saving…",
+      "success": "Password updated",
+      "tooShort": "The password must be at least {min} characters long.",
+      "mismatch": "The passwords don't match."
+    },
+    "errors": {
+      "loginMissingFields": "Enter your email and password.",
+      "loginInvalidCredentials": "Incorrect email or password.",
+      "signupMissingFields": "Fill in all the fields.",
+      "signupPasswordTooShort": "The password must be at least 8 characters long.",
+      "signupAccountCreated": "Account created. Check your email to confirm it before signing in.",
+      "recoverMissingEmail": "Enter your email.",
+      "invalidOrExpiredLink": "The link is invalid or has expired."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": {
+      "title": "Profile",
+      "name": "Display name",
+      "namePlaceholder": "Your name",
+      "save": "Save profile",
+      "saving": "Saving…",
+      "success": "Profile updated",
+      "uploadError": "Could not upload the photo: {message}",
+      "invalidImage": "Select an image file."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "Automatic"
+    },
+    "language": {
+      "title": "Language"
+    },
+    "notifications": {
+      "title": "Visit notifications",
+      "description": "Get an alert on this device with the lead time you set when scheduling each visit, even if the app is closed.",
+      "enable": "Enable notifications",
+      "disable": "Disable notifications",
+      "unsupported": "Your browser doesn't support push notifications.",
+      "denied": "You blocked notifications for Belrion. Enable them from your browser settings to receive visit reminders.",
+      "enabled": "Notifications enabled",
+      "disabled": "Notifications disabled",
+      "enableError": "Could not enable notifications.",
+      "disableError": "Could not disable notifications.",
+      "missingKey": "Push notification keys are missing.",
+      "errors": {
+        "subscriptionSaveFailed": "Could not save the notification subscription.",
+        "subscriptionDeleteFailed": "Could not delete the notification subscription."
+      }
+    },
+    "password": {
+      "title": "Change password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Change password",
+      "saving": "Saving…",
+      "success": "Password updated.",
+      "tooShort": "The password must be at least {min} characters long.",
+      "mismatch": "The passwords don't match."
+    },
+    "data": {
+      "title": "Your data",
+      "description": "Download a copy of all the clients, contacts, products, visits, and comments you've created, as a JSON file.",
+      "export": "Export my data",
+      "exporting": "Exporting…",
+      "success": "Data exported",
+      "error": "Could not export the data."
+    },
+    "deleteAccount": {
+      "title": "Delete account",
+      "description": "This permanently deletes your account, your clients, contacts, products, visits, and comments. If you own any shared teams, that team will also be deleted for the other members. This action cannot be undone.",
+      "confirmWord": "DELETE",
+      "confirmLabel": "Type <word>{word}</word> to confirm",
+      "submit": "Delete my account",
+      "deleting": "Deleting…",
+      "error": "Could not delete the account: {message}",
+      "loginMessage": "Your account and data have been deleted."
+    },
+    "legal": {
+      "title": "Legal"
+    }
+  },
+  "legal": {
+    "back": "← Back to Belrion",
+    "titleLegalNotice": "Legal Notice · Belrion",
+    "titlePrivacy": "Privacy Policy · Belrion",
+    "titleCookies": "Cookie Policy · Belrion"
+  },
+  "clients": {
+    "title": "Clients",
+    "myClients": "My clients",
+    "filters": {
+      "searchPlaceholder": "Search by company or contact…",
+      "statusAll": "All statuses",
+      "statusActive": "Active",
+      "statusPotential": "Potential",
+      "statusInactive": "Inactive",
+      "statusPlaceholder": "Status",
+      "productAll": "All products",
+      "productPlaceholder": "Product",
+      "sortAlphabetical": "Alphabetical",
+      "sortCreatedAt": "Date added",
+      "sortNextVisit": "Next visit",
+      "sortLastVisit": "Last visit",
+      "sortPlaceholder": "Sort",
+      "upcomingOnly": "With upcoming visit"
+    },
+    "list": {
+      "company": "Company",
+      "contact": "Contact",
+      "status": "Status",
+      "nextVisit": "Next visit",
+      "noVisit": "No visit scheduled",
+      "noContact": "No contact",
+      "emptyFiltered": "No client matches these filters.",
+      "emptyNoClients": "You don't have any clients yet.",
+      "emptyHint": "Use \"New client\" to add your first one.",
+      "loadError": "Could not load the clients."
+    },
+    "newDialog": {
+      "trigger": "New client",
+      "title": "New client",
+      "companyName": "Company name",
+      "contactName": "Contact person",
+      "status": "Status",
+      "shareWith": "Also share with",
+      "shareHint": "It always stays in your personal portfolio, in addition to whatever you select here.",
+      "save": "Save",
+      "saving": "Saving…",
+      "success": "Client created",
+      "errors": {
+        "fieldsRequired": "The company name and a contact are required.",
+        "createFailed": "Could not create the client.",
+        "contactSaveFailed": "The client was created, but the contact could not be saved.",
+        "teamShareFailed": "The client was created, but could not be shared with the team."
+      }
+    },
+    "addExisting": {
+      "trigger": "Add from my portfolio",
+      "title": "Add clients from my portfolio to {team}",
+      "empty": "All your personal clients are already on this team, or you don't have any yet.",
+      "submit": "Add ({count})",
+      "adding": "Adding…",
+      "success": "{count, plural, one {# client added} other {# clients added}} to {team}"
+    },
+    "detail": {
+      "back": "← Back to clients"
+    },
+    "editDialog": {
+      "trigger": "Edit",
+      "title": "Edit client",
+      "companyName": "Company name",
+      "status": "Status",
+      "address": "Address",
+      "addressPlaceholder": "Street, number, city…",
+      "notes": "Notes",
+      "notesPlaceholder": "General information about the company…",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "success": "Client updated",
+      "errors": {
+        "nameRequired": "The company name is required.",
+        "saveFailed": "Could not save the client."
+      }
+    },
+    "deleteDialog": {
+      "trigger": "Delete",
+      "title": "Delete client",
+      "description": "You're about to delete <name>{name}</name>. This action cannot be undone and will also delete its contacts, products, and visits.",
+      "cancel": "Cancel",
+      "confirm": "Delete permanently",
+      "deleting": "Deleting…",
+      "success": "Client deleted",
+      "errors": {
+        "deleteFailed": "Could not delete the client."
+      }
+    },
+    "addressMap": {
+      "cta": "Get directions"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "add": "Add contact",
+      "name": "Name",
+      "role": "Role",
+      "phone": "Phone",
+      "email": "Email",
+      "primary": "Primary contact",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "addSubmit": "Add",
+      "success": "Contact updated",
+      "addSuccess": "Contact added",
+      "deleteSuccess": "Contact deleted",
+      "errors": {
+        "nameRequired": "The contact name is required.",
+        "addFailed": "Could not add the contact.",
+        "updateFailed": "Could not update the contact.",
+        "minOneContact": "The client must have at least one contact.",
+        "deleteFailed": "Could not delete the contact."
+      }
+    },
+    "products": {
+      "title": "Contracted products",
+      "add": "Add product",
+      "empty": "No contracted products yet.",
+      "name": "Product name",
+      "details": "Details",
+      "detailsPlaceholder": "Terms, contract date…",
+      "cancel": "Cancel",
+      "saving": "Saving…",
+      "addSubmit": "Add",
+      "addSuccess": "Product added",
+      "deleteSuccess": "Product deleted",
+      "errors": {
+        "nameRequired": "The product name is required.",
+        "addFailed": "Could not add the product.",
+        "deleteFailed": "Could not delete the product."
+      }
+    },
+    "teams": {
+      "title": "Teams",
+      "onlyPersonal": "This client is only in your personal portfolio.",
+      "share": "Share with a team",
+      "add": "Add",
+      "adding": "Adding…",
+      "cancel": "Cancel",
+      "shareSuccess": "Client shared with the team",
+      "removeSuccess": "Client removed from the team",
+      "errors": {
+        "alreadyShared": "That client is already shared with that team.",
+        "shareFailed": "Could not share the client with the team.",
+        "selectAtLeastOne": "Select at least one client.",
+        "addMultipleFailed": "Could not add the clients to the team.",
+        "removeFailed": "Could not remove the client from the team."
+      }
+    },
+    "visits": {
+      "title": "Visit history",
+      "empty": "No visits recorded yet. You'll be able to schedule them from the calendar.",
+      "statusPending": "Pending",
+      "statusCompleted": "Completed",
+      "statusCancelled": "Cancelled"
+    }
+  },
+  "calendar": {
+    "title": "Visit calendar",
+    "newVisit": "New visit",
+    "newDialog": {
+      "title": "New visit",
+      "client": "Client",
+      "clientSearch": "Search client…",
+      "noResults": "No results",
+      "change": "Change",
+      "date": "Date and time",
+      "reminder": "Reminder",
+      "reminderNone": "No reminder",
+      "reminder15": "15 minutes before",
+      "reminder30": "30 minutes before",
+      "reminder60": "1 hour before",
+      "reminder1440": "1 day before",
+      "shareWith": "Share this visit with",
+      "shareHint": "The team will see this visit (and the rest of this client's data) on their calendar.",
+      "selectClientError": "Select a client.",
+      "submit": "Schedule visit",
+      "saving": "Saving…",
+      "success": "Visit scheduled"
+    },
+    "detailDialog": {
+      "viewClient": "View client record →",
+      "newDate": "New date and time",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "markCompleted": "Mark as completed",
+      "cancelVisit": "Cancel visit",
+      "reprogram": "Reschedule",
+      "delete": "Delete",
+      "comments": "Follow-up comments",
+      "noComments": "No comments yet.",
+      "addComment": "Add a comment…",
+      "addCommentSubmit": "Add",
+      "statusUpdated": "Visit updated",
+      "rescheduled": "Visit rescheduled",
+      "deleted": "Visit deleted"
+    },
+    "errors": {
+      "selectClient": "Select a client.",
+      "selectDateTime": "Select a date and time.",
+      "createFailed": "Could not create the visit.",
+      "updateFailed": "Could not update the visit.",
+      "statusUpdateFailed": "Could not update the visit status.",
+      "deleteFailed": "Could not delete the visit.",
+      "commentRequired": "Write a comment.",
+      "commentSaveFailed": "Could not save the comment."
+    }
+  },
+  "team": {
+    "backToTeams": "← Back to teams",
+    "createTitle": "Create a team",
+    "namePlaceholder": "Team name",
+    "create": "Create team",
+    "creating": "Creating…",
+    "created": "Team created",
+    "yourTeams": "Your teams",
+    "noTeams": "You don't belong to any team yet.",
+    "roleOwner": "Owner",
+    "roleCollaborator": "Collaborator",
+    "addMemberLabel": "Add a member by email",
+    "emailPlaceholder": "colleague@example.com",
+    "add": "Add",
+    "adding": "Adding…",
+    "added": "Collaborator added",
+    "removed": "Collaborator removed",
+    "mustBeRegisteredHint": "They must have already registered on Belrion with that email.",
+    "errors": {
+      "nameRequired": "The team name is required.",
+      "notAuthenticated": "Not authenticated.",
+      "createFailed": "Could not create the team.",
+      "addAsMemberFailed": "The team was created, but you could not be added as a member.",
+      "emailRequired": "Enter an email.",
+      "emailLookupFailed": "Could not look up that email.",
+      "emailNotRegistered": "That email doesn't have a Belrion account yet.",
+      "alreadyMember": "That person is already a member of the team.",
+      "addFailed": "Could not add to the team.",
+      "removeFailed": "Could not remove that person from the team."
+    }
+  },
+  "errors": {
+    "notAuthenticated": "Not authenticated."
+  }
+}

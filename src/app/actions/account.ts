@@ -1,5 +1,6 @@
 "use server";
 
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function exportMyData() {
@@ -9,7 +10,8 @@ export async function exportMyData() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { error: "No autenticado." };
+    const t = await getTranslations("errors");
+    return { error: t("notAuthenticated") };
   }
 
   const { data: clients } = await supabase

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 type ClientStatus = "activo" | "potencial" | "inactivo";
@@ -13,9 +14,11 @@ export async function createClientWithContact(input: {
 }) {
   const companyName = input.companyName.trim();
   const contactName = input.contactName.trim();
+  const t = await getTranslations("clients.newDialog.errors");
+  const tErrors = await getTranslations("errors");
 
   if (!companyName || !contactName) {
-    return { error: "El nombre de la empresa y un contacto son obligatorios." };
+    return { error: t("fieldsRequired") };
   }
 
   const supabase = await createClient();
@@ -24,7 +27,7 @@ export async function createClientWithContact(input: {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { error: "No autenticado." };
+    return { error: tErrors("notAuthenticated") };
   }
 
   const { data: client, error: clientError } = await supabase
@@ -34,7 +37,7 @@ export async function createClientWithContact(input: {
     .single();
 
   if (clientError || !client) {
-    return { error: "No se pudo crear el cliente." };
+    return { error: t("createFailed") };
   }
 
   const { error: contactError } = await supabase
@@ -42,7 +45,7 @@ export async function createClientWithContact(input: {
     .insert({ client_id: client.id, name: contactName, is_primary: true });
 
   if (contactError) {
-    return { error: "El cliente se creó, pero no se pudo guardar el contacto." };
+    return { error: t("contactSaveFailed") };
   }
 
   const teamIds = input.teamIds ?? [];
@@ -52,7 +55,7 @@ export async function createClientWithContact(input: {
       .insert(teamIds.map((teamId) => ({ client_id: client.id, team_id: teamId })));
 
     if (teamsError) {
-      return { error: "El cliente se creó, pero no se pudo compartir con el equipo." };
+      return { error: t("teamShareFailed") };
     }
   }
 
@@ -68,9 +71,10 @@ export async function updateClient(input: {
   notes: string;
 }) {
   const companyName = input.companyName.trim();
+  const t = await getTranslations("clients.editDialog.errors");
 
   if (!companyName) {
-    return { error: "El nombre de la empresa es obligatorio." };
+    return { error: t("nameRequired") };
   }
 
   const supabase = await createClient();
@@ -85,7 +89,7 @@ export async function updateClient(input: {
     .eq("id", input.id);
 
   if (error) {
-    return { error: "No se pudo guardar el cliente." };
+    return { error: t("saveFailed") };
   }
 
   revalidatePath("/");
@@ -98,7 +102,8 @@ export async function deleteClient(id: string) {
   const { error } = await supabase.from("clients").delete().eq("id", id);
 
   if (error) {
-    return { error: "No se pudo eliminar el cliente." };
+    const t = await getTranslations("clients.deleteDialog.errors");
+    return { error: t("deleteFailed") };
   }
 
   revalidatePath("/");

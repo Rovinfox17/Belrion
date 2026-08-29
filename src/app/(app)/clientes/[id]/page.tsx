@@ -51,6 +51,7 @@ export default async function ClientDetailPage({
   const { id } = await params;
   const t = await getTranslations("clients");
   const tFilters = await getTranslations("clients.filters");
+  const tNav = await getTranslations("nav");
   const STATUS_LABEL: Record<Status, string> = {
     activo: tFilters("statusActive"),
     potencial: tFilters("statusPotential"),
@@ -82,7 +83,7 @@ export default async function ClientDetailPage({
 
   const sharedWith = (clientTeamsData ?? []).map((ct) => ({
     teamId: ct.team_id,
-    teamName: (ct.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+    teamName: (ct.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
   }));
 
   let availableTeams: { id: string; name: string }[] = [];
@@ -96,7 +97,7 @@ export default async function ClientDetailPage({
     availableTeams = (memberships ?? [])
       .map((m) => ({
         id: m.team_id,
-        name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+        name: (m.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
       }))
       .filter((t) => !sharedTeamIds.has(t.id));
   }

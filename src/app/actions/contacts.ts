@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function createContact(input: {
@@ -12,8 +13,9 @@ export async function createContact(input: {
   isPrimary: boolean;
 }) {
   const name = input.name.trim();
+  const t = await getTranslations("clients.contacts.errors");
   if (!name) {
-    return { error: "El nombre del contacto es obligatorio." };
+    return { error: t("nameRequired") };
   }
 
   const supabase = await createClient();
@@ -35,7 +37,7 @@ export async function createContact(input: {
   });
 
   if (error) {
-    return { error: "No se pudo añadir el contacto." };
+    return { error: t("addFailed") };
   }
 
   revalidatePath(`/clientes/${input.clientId}`);
@@ -53,8 +55,9 @@ export async function updateContact(input: {
   isPrimary: boolean;
 }) {
   const name = input.name.trim();
+  const t = await getTranslations("clients.contacts.errors");
   if (!name) {
-    return { error: "El nombre del contacto es obligatorio." };
+    return { error: t("nameRequired") };
   }
 
   const supabase = await createClient();
@@ -79,7 +82,7 @@ export async function updateContact(input: {
     .eq("id", input.id);
 
   if (error) {
-    return { error: "No se pudo actualizar el contacto." };
+    return { error: t("updateFailed") };
   }
 
   revalidatePath(`/clientes/${input.clientId}`);
@@ -89,6 +92,7 @@ export async function updateContact(input: {
 
 export async function deleteContact(input: { id: string; clientId: string }) {
   const supabase = await createClient();
+  const t = await getTranslations("clients.contacts.errors");
 
   const { count } = await supabase
     .from("contacts")
@@ -96,7 +100,7 @@ export async function deleteContact(input: { id: string; clientId: string }) {
     .eq("client_id", input.clientId);
 
   if ((count ?? 0) <= 1) {
-    return { error: "El cliente debe tener al menos un contacto." };
+    return { error: t("minOneContact") };
   }
 
   const { data: deleted, error } = await supabase
@@ -107,7 +111,7 @@ export async function deleteContact(input: { id: string; clientId: string }) {
     .single();
 
   if (error) {
-    return { error: "No se pudo eliminar el contacto." };
+    return { error: t("deleteFailed") };
   }
 
   if (deleted?.is_primary) {

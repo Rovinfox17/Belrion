@@ -16,6 +16,7 @@ type RawVisit = {
 
 export default async function CalendarioPage() {
   const t = await getTranslations("calendar");
+  const tNewDialog = await getTranslations("calendar.newDialog");
   const supabase = await createClient();
   const {
     data: { user },
@@ -34,9 +35,10 @@ export default async function CalendarioPage() {
         : Promise.resolve({ data: null }),
     ]);
 
+  const tNav = await getTranslations("nav");
   const teams = (membershipsData ?? []).map((m) => ({
     id: m.team_id,
-    name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+    name: (m.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
   }));
 
   const rawVisits = (visitsData ?? []) as unknown as RawVisit[];
@@ -44,7 +46,7 @@ export default async function CalendarioPage() {
   const visits: CalendarVisit[] = rawVisits.map((v) => ({
     id: v.id,
     clientId: v.client_id,
-    companyName: v.clients?.company_name ?? "Cliente",
+    companyName: v.clients?.company_name ?? tNewDialog("client"),
     scheduledAt: v.scheduled_at,
     status: v.status,
     reminderMinutesBefore: v.reminder_minutes_before,

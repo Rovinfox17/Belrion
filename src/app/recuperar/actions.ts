@@ -2,13 +2,15 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function requestPasswordReset(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
 
   if (!email) {
-    redirect(`/recuperar?error=${encodeURIComponent("Introduce tu email.")}`);
+    const t = await getTranslations("auth.errors");
+    redirect(`/recuperar?error=${encodeURIComponent(t("recoverMissingEmail"))}`);
   }
 
   const supabase = await createClient();

@@ -49,6 +49,15 @@
       "success": "Contrasenya actualitzada",
       "tooShort": "La contrasenya ha de tenir almenys {min} caràcters.",
       "mismatch": "Les contrasenyes no coincideixen."
+    },
+    "errors": {
+      "loginMissingFields": "Introdueix correu electrònic i contrasenya.",
+      "loginInvalidCredentials": "Correu electrònic o contrasenya incorrectes.",
+      "signupMissingFields": "Omple tots els camps.",
+      "signupPasswordTooShort": "La contrasenya ha de tenir com a mínim 8 caràcters.",
+      "signupAccountCreated": "Compte creat. Revisa el teu correu per confirmar-lo abans d'entrar.",
+      "recoverMissingEmail": "Introdueix el teu correu electrònic.",
+      "invalidOrExpiredLink": "L'enllaç no és vàlid o ha caducat."
     }
   },
   "settings": {
@@ -83,7 +92,11 @@
       "disabled": "Notificacions desactivades",
       "enableError": "No s'han pogut activar les notificacions.",
       "disableError": "No s'han pogut desactivar les notificacions.",
-      "missingKey": "Falten les claus de notificacions push."
+      "missingKey": "Falten les claus de notificacions push.",
+      "errors": {
+        "subscriptionSaveFailed": "No s'ha pogut desar la subscripció a notificacions.",
+        "subscriptionDeleteFailed": "No s'ha pogut eliminar la subscripció a notificacions."
+      }
     },
     "password": {
       "title": "Canvia la contrasenya",
@@ -164,7 +177,13 @@
       "shareHint": "Sempre queda a la teva cartera personal, a més del que marquis aquí.",
       "save": "Desa",
       "saving": "Desant…",
-      "success": "Client creat"
+      "success": "Client creat",
+      "errors": {
+        "fieldsRequired": "El nom de l'empresa i un contacte són obligatoris.",
+        "createFailed": "No s'ha pogut crear el client.",
+        "contactSaveFailed": "El client s'ha creat, però no s'ha pogut desar el contacte.",
+        "teamShareFailed": "El client s'ha creat, però no s'ha pogut compartir amb l'equip."
+      }
     },
     "addExisting": {
       "trigger": "Afegir de la meva cartera",
@@ -188,7 +207,11 @@
       "notesPlaceholder": "Informació general de l'empresa…",
       "save": "Desa els canvis",
       "saving": "Desant…",
-      "success": "Client actualitzat"
+      "success": "Client actualitzat",
+      "errors": {
+        "nameRequired": "El nom de l'empresa és obligatori.",
+        "saveFailed": "No s'ha pogut desar el client."
+      }
     },
     "deleteDialog": {
       "trigger": "Elimina",
@@ -197,7 +220,10 @@
       "cancel": "Cancel·la",
       "confirm": "Elimina definitivament",
       "deleting": "Eliminant…",
-      "success": "Client eliminat"
+      "success": "Client eliminat",
+      "errors": {
+        "deleteFailed": "No s'ha pogut eliminar el client."
+      }
     },
     "addressMap": {
       "cta": "Com arribar-hi"
@@ -216,7 +242,14 @@
       "addSubmit": "Afegeix",
       "success": "Contacte actualitzat",
       "addSuccess": "Contacte afegit",
-      "deleteSuccess": "Contacte eliminat"
+      "deleteSuccess": "Contacte eliminat",
+      "errors": {
+        "nameRequired": "El nom del contacte és obligatori.",
+        "addFailed": "No s'ha pogut afegir el contacte.",
+        "updateFailed": "No s'ha pogut actualitzar el contacte.",
+        "minOneContact": "El client ha de tenir almenys un contacte.",
+        "deleteFailed": "No s'ha pogut eliminar el contacte."
+      }
     },
     "products": {
       "title": "Productes contractats",
@@ -229,7 +262,12 @@
       "saving": "Desant…",
       "addSubmit": "Afegeix",
       "addSuccess": "Producte afegit",
-      "deleteSuccess": "Producte eliminat"
+      "deleteSuccess": "Producte eliminat",
+      "errors": {
+        "nameRequired": "El nom del producte és obligatori.",
+        "addFailed": "No s'ha pogut afegir el producte.",
+        "deleteFailed": "No s'ha pogut eliminar el producte."
+      }
     },
     "teams": {
       "title": "Equips",
@@ -239,7 +277,14 @@
       "adding": "Afegint…",
       "cancel": "Cancel·la",
       "shareSuccess": "Client compartit amb l'equip",
-      "removeSuccess": "Client tret de l'equip"
+      "removeSuccess": "Client tret de l'equip",
+      "errors": {
+        "alreadyShared": "Aquest client ja està compartit amb aquest equip.",
+        "shareFailed": "No s'ha pogut compartir el client amb l'equip.",
+        "selectAtLeastOne": "Selecciona almenys un client.",
+        "addMultipleFailed": "No s'han pogut afegir els clients a l'equip.",
+        "removeFailed": "No s'ha pogut treure el client de l'equip."
+      }
     },
     "visits": {
       "title": "Historial de visites",
@@ -289,6 +334,50 @@
       "statusUpdated": "Visita actualitzada",
       "rescheduled": "Visita reprogramada",
       "deleted": "Visita eliminada"
+    },
+    "errors": {
+      "selectClient": "Selecciona un client.",
+      "selectDateTime": "Selecciona una data i hora.",
+      "createFailed": "No s'ha pogut crear la visita.",
+      "updateFailed": "No s'ha pogut actualitzar la visita.",
+      "statusUpdateFailed": "No s'ha pogut actualitzar l'estat de la visita.",
+      "deleteFailed": "No s'ha pogut eliminar la visita.",
+      "commentRequired": "Escriu un comentari.",
+      "commentSaveFailed": "No s'ha pogut desar el comentari."
     }
+  },
+  "team": {
+    "backToTeams": "← Torna als equips",
+    "createTitle": "Crea un equip",
+    "namePlaceholder": "Nom de l'equip",
+    "create": "Crea l'equip",
+    "creating": "Creant…",
+    "created": "Equip creat",
+    "yourTeams": "Els teus equips",
+    "noTeams": "Encara no pertanys a cap equip.",
+    "roleOwner": "Propietari",
+    "roleCollaborator": "Col·laborador",
+    "addMemberLabel": "Afegeix un membre per correu electrònic",
+    "emailPlaceholder": "company@exemple.com",
+    "add": "Afegeix",
+    "adding": "Afegint…",
+    "added": "Col·laborador afegit",
+    "removed": "Col·laborador eliminat",
+    "mustBeRegisteredHint": "Ha d'haver-se registrat abans a Belrion amb aquest correu.",
+    "errors": {
+      "nameRequired": "El nom de l'equip és obligatori.",
+      "notAuthenticated": "No autenticat.",
+      "createFailed": "No s'ha pogut crear l'equip.",
+      "addAsMemberFailed": "L'equip s'ha creat, però no s'ha pogut afegir-te com a membre.",
+      "emailRequired": "Introdueix un correu electrònic.",
+      "emailLookupFailed": "No s'ha pogut cercar aquest correu.",
+      "emailNotRegistered": "Aquest correu encara no té un compte creat a Belrion.",
+      "alreadyMember": "Aquesta persona ja és membre de l'equip.",
+      "addFailed": "No s'ha pogut afegir a l'equip.",
+      "removeFailed": "No s'ha pogut eliminar aquesta persona de l'equip."
+    }
+  },
+  "errors": {
+    "notAuthenticated": "No autenticat."
   }
 }

@@ -37,6 +37,7 @@ export default async function Home({
 }) {
   const params = await searchParams;
   const t = await getTranslations("clients");
+  const tNav = await getTranslations("nav");
   const supabase = await createClient();
   const {
     data: { user },
@@ -51,7 +52,7 @@ export default async function Home({
 
     teams = (memberships ?? []).map((m) => ({
       id: m.team_id,
-      name: (m.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+      name: (m.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
     }));
   }
 

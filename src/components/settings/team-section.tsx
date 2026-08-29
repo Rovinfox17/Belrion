@@ -3,6 +3,7 @@
 import { useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { ChevronRightIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ export type TeamData = {
 export type TeamListItem = { id: string; name: string; role: "owner" | "member" };
 
 export function CreateTeamForm() {
+  const t = useTranslations("team");
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -36,7 +38,7 @@ export function CreateTeamForm() {
         setError(result.error);
         return;
       }
-      toast.success("Equipo creado");
+      toast.success(t("created"));
       setName("");
       router.refresh();
     });
@@ -46,13 +48,13 @@ export function CreateTeamForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <div className="flex gap-2">
         <Input
-          placeholder="Nombre del equipo"
+          placeholder={t("namePlaceholder")}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Creando…" : "Crear equipo"}
+          {isPending ? t("creating") : t("create")}
         </Button>
       </div>
       {error && (
@@ -65,31 +67,31 @@ export function CreateTeamForm() {
 }
 
 export function TeamList({ teams }: { teams: TeamListItem[] }) {
+  const t = useTranslations("team");
+
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h2 className="mb-2 font-medium">Crear un equipo</h2>
+        <h2 className="mb-2 font-medium">{t("createTitle")}</h2>
         <CreateTeamForm />
       </div>
 
       <div>
-        <h2 className="mb-2 font-medium">Tus equipos</h2>
+        <h2 className="mb-2 font-medium">{t("yourTeams")}</h2>
         {teams.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            Todavía no perteneces a ningún equipo.
-          </p>
+          <p className="text-sm text-muted-foreground">{t("noTeams")}</p>
         ) : (
           <ul className="flex flex-col gap-2">
-            {teams.map((t) => (
-              <li key={t.id}>
+            {teams.map((team) => (
+              <li key={team.id}>
                 <Link
-                  href={`/equipo/${t.id}`}
+                  href={`/equipo/${team.id}`}
                   className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 hover:bg-accent"
                 >
                   <span className="text-sm">
-                    <span className="font-medium">{t.name}</span>{" "}
+                    <span className="font-medium">{team.name}</span>{" "}
                     <span className="text-muted-foreground">
-                      · {t.role === "owner" ? "Propietario" : "Colaborador"}
+                      · {team.role === "owner" ? t("roleOwner") : t("roleCollaborator")}
                     </span>
                   </span>
                   <ChevronRightIcon className="size-4 text-muted-foreground" />
@@ -104,6 +106,7 @@ export function TeamList({ teams }: { teams: TeamListItem[] }) {
 }
 
 export function ManageTeam({ team }: { team: TeamData }) {
+  const t = useTranslations("team");
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -119,7 +122,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
         setError(result.error);
         return;
       }
-      toast.success("Colaborador añadido");
+      toast.success(t("added"));
       setEmail("");
       router.refresh();
     });
@@ -132,7 +135,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Colaborador eliminado");
+        toast.success(t("removed"));
         router.refresh();
       }
       setRemovingId(null);
@@ -150,7 +153,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
             <div className="text-sm">
               <span className="font-medium">{m.email}</span>{" "}
               <span className="text-muted-foreground">
-                · {m.role === "owner" ? "Propietario" : "Colaborador"}
+                · {m.role === "owner" ? t("roleOwner") : t("roleCollaborator")}
               </span>
             </div>
             {team.isOwner && m.role !== "owner" && (
@@ -169,23 +172,21 @@ export function ManageTeam({ team }: { team: TeamData }) {
 
       {team.isOwner && (
         <form onSubmit={handleAdd} className="flex flex-col gap-2">
-          <Label htmlFor={`member_email_${team.id}`}>Añadir miembro por email</Label>
+          <Label htmlFor={`member_email_${team.id}`}>{t("addMemberLabel")}</Label>
           <div className="flex gap-2">
             <Input
               id={`member_email_${team.id}`}
               type="email"
-              placeholder="companero@ejemplo.com"
+              placeholder={t("emailPlaceholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Añadiendo…" : "Añadir"}
+              {isPending ? t("adding") : t("add")}
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Debe haberse registrado antes en Belrion con ese email.
-          </p>
+          <p className="text-xs text-muted-foreground">{t("mustBeRegisteredHint")}</p>
           {error && (
             <p className="text-sm text-destructive" role="alert">
               {error}

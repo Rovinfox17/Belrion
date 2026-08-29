@@ -49,6 +49,15 @@
       "success": "Contraseña actualizada",
       "tooShort": "La contraseña debe tener al menos {min} caracteres.",
       "mismatch": "Las contraseñas no coinciden."
+    },
+    "errors": {
+      "loginMissingFields": "Introduce email y contraseña.",
+      "loginInvalidCredentials": "Email o contraseña incorrectos.",
+      "signupMissingFields": "Rellena todos los campos.",
+      "signupPasswordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+      "signupAccountCreated": "Cuenta creada. Revisa tu email para confirmarla antes de entrar.",
+      "recoverMissingEmail": "Introduce tu email.",
+      "invalidOrExpiredLink": "El enlace no es válido o ha caducado."
     }
   },
   "settings": {
@@ -83,7 +92,11 @@
       "disabled": "Notificaciones desactivadas",
       "enableError": "No se pudieron activar las notificaciones.",
       "disableError": "No se pudieron desactivar las notificaciones.",
-      "missingKey": "Faltan las claves de notificaciones push."
+      "missingKey": "Faltan las claves de notificaciones push.",
+      "errors": {
+        "subscriptionSaveFailed": "No se pudo guardar la suscripción a notificaciones.",
+        "subscriptionDeleteFailed": "No se pudo eliminar la suscripción a notificaciones."
+      }
     },
     "password": {
       "title": "Cambiar contraseña",
@@ -164,7 +177,13 @@
       "shareHint": "Siempre queda en tu cartera personal, además de con lo que marques aquí.",
       "save": "Guardar",
       "saving": "Guardando…",
-      "success": "Cliente creado"
+      "success": "Cliente creado",
+      "errors": {
+        "fieldsRequired": "El nombre de la empresa y un contacto son obligatorios.",
+        "createFailed": "No se pudo crear el cliente.",
+        "contactSaveFailed": "El cliente se creó, pero no se pudo guardar el contacto.",
+        "teamShareFailed": "El cliente se creó, pero no se pudo compartir con el equipo."
+      }
     },
     "addExisting": {
       "trigger": "Añadir de mi cartera",
@@ -188,7 +207,11 @@
       "notesPlaceholder": "Información general de la empresa…",
       "save": "Guardar cambios",
       "saving": "Guardando…",
-      "success": "Cliente actualizado"
+      "success": "Cliente actualizado",
+      "errors": {
+        "nameRequired": "El nombre de la empresa es obligatorio.",
+        "saveFailed": "No se pudo guardar el cliente."
+      }
     },
     "deleteDialog": {
       "trigger": "Eliminar",
@@ -197,7 +220,10 @@
       "cancel": "Cancelar",
       "confirm": "Eliminar definitivamente",
       "deleting": "Eliminando…",
-      "success": "Cliente eliminado"
+      "success": "Cliente eliminado",
+      "errors": {
+        "deleteFailed": "No se pudo eliminar el cliente."
+      }
     },
     "addressMap": {
       "cta": "Cómo llegar"
@@ -216,7 +242,14 @@
       "addSubmit": "Añadir",
       "success": "Contacto actualizado",
       "addSuccess": "Contacto añadido",
-      "deleteSuccess": "Contacto eliminado"
+      "deleteSuccess": "Contacto eliminado",
+      "errors": {
+        "nameRequired": "El nombre del contacto es obligatorio.",
+        "addFailed": "No se pudo añadir el contacto.",
+        "updateFailed": "No se pudo actualizar el contacto.",
+        "minOneContact": "El cliente debe tener al menos un contacto.",
+        "deleteFailed": "No se pudo eliminar el contacto."
+      }
     },
     "products": {
       "title": "Productos contratados",
@@ -229,7 +262,12 @@
       "saving": "Guardando…",
       "addSubmit": "Añadir",
       "addSuccess": "Producto añadido",
-      "deleteSuccess": "Producto eliminado"
+      "deleteSuccess": "Producto eliminado",
+      "errors": {
+        "nameRequired": "El nombre del producto es obligatorio.",
+        "addFailed": "No se pudo añadir el producto.",
+        "deleteFailed": "No se pudo eliminar el producto."
+      }
     },
     "teams": {
       "title": "Equipos",
@@ -239,7 +277,14 @@
       "adding": "Añadiendo…",
       "cancel": "Cancelar",
       "shareSuccess": "Cliente compartido con el equipo",
-      "removeSuccess": "Cliente quitado del equipo"
+      "removeSuccess": "Cliente quitado del equipo",
+      "errors": {
+        "alreadyShared": "Ese cliente ya está compartido con ese equipo.",
+        "shareFailed": "No se pudo compartir el cliente con el equipo.",
+        "selectAtLeastOne": "Selecciona al menos un cliente.",
+        "addMultipleFailed": "No se pudieron añadir los clientes al equipo.",
+        "removeFailed": "No se pudo quitar el cliente del equipo."
+      }
     },
     "visits": {
       "title": "Historial de visitas",
@@ -289,6 +334,50 @@
       "statusUpdated": "Visita actualizada",
       "rescheduled": "Visita reprogramada",
       "deleted": "Visita eliminada"
+    },
+    "errors": {
+      "selectClient": "Selecciona un cliente.",
+      "selectDateTime": "Selecciona una fecha y hora.",
+      "createFailed": "No se pudo crear la visita.",
+      "updateFailed": "No se pudo actualizar la visita.",
+      "statusUpdateFailed": "No se pudo actualizar el estado de la visita.",
+      "deleteFailed": "No se pudo eliminar la visita.",
+      "commentRequired": "Escribe un comentario.",
+      "commentSaveFailed": "No se pudo guardar el comentario."
     }
+  },
+  "team": {
+    "backToTeams": "← Volver a equipos",
+    "createTitle": "Crear un equipo",
+    "namePlaceholder": "Nombre del equipo",
+    "create": "Crear equipo",
+    "creating": "Creando…",
+    "created": "Equipo creado",
+    "yourTeams": "Tus equipos",
+    "noTeams": "Todavía no perteneces a ningún equipo.",
+    "roleOwner": "Propietario",
+    "roleCollaborator": "Colaborador",
+    "addMemberLabel": "Añadir miembro por email",
+    "emailPlaceholder": "companero@ejemplo.com",
+    "add": "Añadir",
+    "adding": "Añadiendo…",
+    "added": "Colaborador añadido",
+    "removed": "Colaborador eliminado",
+    "mustBeRegisteredHint": "Debe haberse registrado antes en Belrion con ese email.",
+    "errors": {
+      "nameRequired": "El nombre del equipo es obligatorio.",
+      "notAuthenticated": "No autenticado.",
+      "createFailed": "No se pudo crear el equipo.",
+      "addAsMemberFailed": "El equipo se creó, pero no se pudo añadirte como miembro.",
+      "emailRequired": "Introduce un email.",
+      "emailLookupFailed": "No se pudo buscar ese email.",
+      "emailNotRegistered": "Ese email todavía no tiene una cuenta creada en Belrion.",
+      "alreadyMember": "Esa persona ya es miembro del equipo.",
+      "addFailed": "No se pudo añadir al equipo.",
+      "removeFailed": "No se pudo eliminar a esa persona del equipo."
+    }
+  },
+  "errors": {
+    "notAuthenticated": "No autenticado."
   }
 }

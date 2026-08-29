@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { ManageTeam, type TeamData } from "@/components/settings/team-section";
 
@@ -10,6 +10,8 @@ export default async function EquipoDetailPage({
   params: Promise<{ teamId: string }>;
 }) {
   const { teamId } = await params;
+  const t = await getTranslations("team");
+  const tNav = await getTranslations("nav");
   const supabase = await createClient();
   const {
     data: { user },
@@ -30,7 +32,7 @@ export default async function EquipoDetailPage({
 
   const team: TeamData = {
     id: teamId,
-    name: (membership.teams as unknown as { name: string } | null)?.name ?? "Equipo",
+    name: (membership.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
     isOwner: membership.role === "owner",
     members: (members ?? []).map((m) => ({
       userId: m.user_id,
@@ -45,8 +47,7 @@ export default async function EquipoDetailPage({
         href="/equipo"
         className="flex w-fit items-center gap-1 text-sm text-muted-foreground hover:underline"
       >
-        <ArrowLeftIcon className="size-3.5" />
-        Volver a equipos
+        {t("backToTeams")}
       </Link>
       <h1 className="font-heading text-2xl font-semibold">{team.name}</h1>
       <ManageTeam team={team} />
