@@ -209,6 +209,58 @@ export type Database = {
         >;
         Relationships: [];
       };
+      access_requests: {
+        Row: {
+          id: string;
+          name: string;
+          email: string;
+          reason: string | null;
+          status: "pendiente" | "aprobada" | "rechazada";
+          created_at: string;
+          reviewed_at: string | null;
+          reviewed_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          email: string;
+          reason?: string | null;
+          status?: "pendiente" | "aprobada" | "rechazada";
+          created_at?: string;
+          reviewed_at?: string | null;
+          reviewed_by?: string | null;
+        };
+        Update: Partial<Database["public"]["Tables"]["access_requests"]["Insert"]>;
+        Relationships: [];
+      };
+      app_admins: {
+        Row: {
+          user_id: string;
+        };
+        Insert: {
+          user_id: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["app_admins"]["Insert"]>;
+        Relationships: [];
+      };
+      feedback_submissions: {
+        Row: {
+          id: string;
+          user_id: string;
+          category: "error" | "mejora" | "otro";
+          message: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string;
+          category: "error" | "mejora" | "otro";
+          message: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["feedback_submissions"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -224,6 +276,21 @@ export type Database = {
           role: "owner" | "member";
           name: string | null;
           avatar_url: string | null;
+        }[];
+      };
+      is_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      get_feedback_submissions: {
+        Args: Record<string, never>;
+        Returns: {
+          id: string;
+          user_id: string;
+          email: string;
+          category: "error" | "mejora" | "otro";
+          message: string;
+          created_at: string;
         }[];
       };
     };

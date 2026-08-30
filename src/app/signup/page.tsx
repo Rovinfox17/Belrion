@@ -11,16 +11,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { signup } from "./actions";
+import { requestAccess } from "./actions";
 import { Footer } from "@/components/layout/footer";
 import { LocaleSwitcher } from "@/components/language/locale-switcher";
 
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; sent?: string }>;
 }) {
-  const { error } = await searchParams;
+  const { error, sent } = await searchParams;
   const t = await getTranslations("auth.signup");
 
   return (
@@ -43,42 +43,41 @@ export default async function SignupPage({
             <CardDescription>{t("subtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <form action={signup} className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="name">{t("name")}</Label>
-                <Input id="name" name="name" type="text" autoComplete="name" required />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="email">{t("email")}</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="tucorreo@ejemplo.com"
-                  required
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="password">{t("password")}</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="new-password"
-                  minLength={8}
-                  required
-                />
-              </div>
-              {error && (
-                <p className="text-sm text-destructive" role="alert">
-                  {error}
-                </p>
-              )}
-              <Button type="submit" className="mt-2 w-full">
-                {t("submit")}
-              </Button>
-            </form>
+            {sent ? (
+              <p className="rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+                {t("sent")}
+              </p>
+            ) : (
+              <form action={requestAccess} className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="name">{t("name")}</Label>
+                  <Input id="name" name="name" type="text" autoComplete="name" required />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="email">{t("email")}</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="tucorreo@ejemplo.com"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="reason">{t("reason")}</Label>
+                  <Input id="reason" name="reason" type="text" />
+                </div>
+                {error && (
+                  <p className="text-sm text-destructive" role="alert">
+                    {error}
+                  </p>
+                )}
+                <Button type="submit" className="mt-2 w-full">
+                  {t("submit")}
+                </Button>
+              </form>
+            )}
             <p className="mt-4 text-center text-sm text-muted-foreground">
               {t("hasAccount")}{" "}
               <Link href="/login" className="font-medium text-primary hover:underline">

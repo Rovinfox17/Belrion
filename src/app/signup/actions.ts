@@ -4,34 +4,26 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 
-export async function signup(formData: FormData) {
+export async function requestAccess(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
-  const password = String(formData.get("password") ?? "");
+  const reason = String(formData.get("reason") ?? "").trim();
   const t = await getTranslations("auth.errors");
 
-  if (!name || !email || !password) {
+  if (!name || !email) {
     redirect(`/signup?error=${encodeURIComponent(t("signupMissingFields"))}`);
   }
 
-  if (password.length < 8) {
-    redirect(`/signup?error=${encodeURIComponent(t("signupPasswordTooShort"))}`);
-  }
-
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({
+  const { error } = await supabase.from("access_requests").insert({
+    name,
     email,
-    password,
-    options: { data: { full_name: name } },
+    reason: reason || null,
   });
 
   if (error) {
-    redirect(`/signup?error=${encodeURIComponent(error.message)}`);
+    redirect(`/signup?error=${encodeURIComponent(t("signupRequestFailed"))}`);
   }
 
-  if (data.session) {
-    redirect("/");
-  }
-
-  redirect(`/login?error=${encodeURIComponent(t("signupAccountCreated"))}`);
+  redirect("/signup?sent=true");
 }

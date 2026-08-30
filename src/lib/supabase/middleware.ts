@@ -38,7 +38,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/aviso-legal") ||
     request.nextUrl.pathname.startsWith("/cookies") ||
     request.nextUrl.pathname.startsWith("/privacidad") ||
-    request.nextUrl.pathname.startsWith("/auth/callback");
+    request.nextUrl.pathname.startsWith("/auth/callback") ||
+    request.nextUrl.pathname.startsWith("/auth/confirm");
 
   if (!user && !isAuthRoute && !isPublicRoute) {
     const url = request.nextUrl.clone();
@@ -48,7 +49,7 @@ export async function updateSession(request: NextRequest) {
 
   if (user && isAuthRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/inicio";
     return NextResponse.redirect(url);
   }
 
