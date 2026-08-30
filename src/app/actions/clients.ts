@@ -1,5 +1,6 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
@@ -30,19 +31,25 @@ export async function createClientWithContact(input: {
     return { error: tErrors("notAuthenticated") };
   }
 
-  const { data: client, error: clientError } = await supabase
+  // Se genera el id aquí en vez de pedirlo de vuelta con .select() porque un
+  // INSERT ... RETURNING bajo RLS también exige que la fila nueva pase la
+  // política de SELECT, y la de "clients" se apoya en una función que
+  // vuelve a consultar la propia tabla — para una fila creada en la misma
+  // sentencia, Postgres no la da por visible todavía y el insert se rechaza
+  // aunque el usuario sea el dueño legítimo.
+  const clientId = randomUUID();
+  const { error: clientError } = await supabase
     .from("clients")
-    .insert({ company_name: companyName, status: input.status, user_id: user.id })
-    .select("id")
-    .single();
+    .insert({ id: clientId, company_name: companyName, status: input.status, user_id: user.id });
 
-  if (clientError || !client) {
+  if (clientError) {
+    console.error("createClientWithContact failed", { userId: user.id, clientError });
     return { error: t("createFailed") };
   }
 
   const { error: contactError } = await supabase
     .from("contacts")
-    .insert({ client_id: client.id, name: contactName, is_primary: true });
+    .insert({ client_id: clientId, name: contactName, is_primary: true });
 
   if (contactError) {
     return { error: t("contactSaveFailed") };
@@ -52,7 +59,7 @@ export async function createClientWithContact(input: {
   if (teamIds.length > 0) {
     const { error: teamsError } = await supabase
       .from("client_teams")
-      .insert(teamIds.map((teamId) => ({ client_id: client.id, team_id: teamId })));
+      .insert(teamIds.map((teamId) => ({ client_id: clientId, team_id: teamId })));
 
     if (teamsError) {
       return { error: t("teamShareFailed") };
@@ -60,7 +67,7 @@ export async function createClientWithContact(input: {
   }
 
   revalidatePath("/");
-  return { success: true as const, id: client.id as string };
+  return { success: true as const, id: clientId };
 }
 
 export async function updateClient(input: {

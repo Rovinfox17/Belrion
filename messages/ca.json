@@ -295,6 +295,58 @@
       "statusPending": "Pendent",
       "statusCompleted": "Completada",
       "statusCancelled": "Cancel·lada"
+    },
+    "import": {
+      "trigger": "Importa des d'Excel",
+      "title": "Importa clients",
+      "steps": {
+        "upload": "Puja l'arxiu",
+        "mapping": "Assigna columnes",
+        "preview": "Previsualització",
+        "importing": "Importació"
+      },
+      "upload": {
+        "instructions": "Puja un fitxer Excel (.xlsx) o CSV amb els teus clients. La primera fila ha de contenir els noms de les columnes.",
+        "selectFile": "Selecciona un fitxer",
+        "parseError": "No s'ha pogut llegir el fitxer. Comprova que sigui un .xlsx o .csv vàlid.",
+        "emptyFile": "El fitxer no té files de dades."
+      },
+      "mapping": {
+        "title": "Assigna cada columna a un camp",
+        "instructions": "Hem intentat endevinar l'assignació. Corregeix-la si cal.",
+        "ignore": "Ignora aquesta columna",
+        "fieldCompanyName": "Nom de l'empresa",
+        "fieldContactName": "Persona de contacte",
+        "fieldPhone": "Telèfon",
+        "fieldEmail": "Email",
+        "fieldAddress": "Adreça",
+        "fieldProducts": "Productes contractats",
+        "fieldNotes": "Notes",
+        "fieldStatus": "Estat",
+        "required": "obligatori",
+        "companyNameMissing": "Assigna una columna a \"Nom de l'empresa\" per continuar.",
+        "next": "Continua",
+        "back": "Enrere"
+      },
+      "preview": {
+        "title": "Previsualització",
+        "rowsShown": "Mostrant {shown} de {total} files.",
+        "import": "Importa {count} clients",
+        "back": "Enrere"
+      },
+      "importing": {
+        "progress": "Important… {done} de {total}",
+        "summaryTitle": "Importació completada",
+        "summarySuccess": "{count, plural, one {# client importat correctament} other {# clients importats correctament}}",
+        "summaryFailed": "{count, plural, one {# fila no s'ha pogut importar} other {# files no s'han pogut importar}}",
+        "failedRow": "Fila {row} ({company}): {error}",
+        "close": "Tanca",
+        "duplicatesNote": "Aquesta versió no detecta clients duplicats: si n'importes el mateix dues vegades, es crearan dos registres.",
+        "missingCompanyName": "Falta el nom de l'empresa."
+      },
+      "errors": {
+        "createFailed": "No s'ha pogut crear el client."
+      }
     }
   },
   "calendar": {

@@ -5,6 +5,7 @@ import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
 import { AddExistingClientsDialog } from "@/components/clients/add-existing-clients-dialog";
+import { ImportClientsDialog } from "@/components/clients/import-clients-dialog";
 
 type RawClient = {
   id: string;
@@ -155,6 +156,7 @@ export default async function Home({
               clients={availableToShare}
             />
           )}
+          <ImportClientsDialog />
           <NewClientDialog teams={teams} defaultTeamId={activeTeam?.id ?? null} />
         </div>
       </div>

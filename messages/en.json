@@ -295,6 +295,58 @@
       "statusPending": "Pending",
       "statusCompleted": "Completed",
       "statusCancelled": "Cancelled"
+    },
+    "import": {
+      "trigger": "Import from Excel",
+      "title": "Import clients",
+      "steps": {
+        "upload": "Upload file",
+        "mapping": "Map columns",
+        "preview": "Preview",
+        "importing": "Import"
+      },
+      "upload": {
+        "instructions": "Upload an Excel (.xlsx) or CSV file with your clients. The first row must contain the column names.",
+        "selectFile": "Select file",
+        "parseError": "Could not read the file. Check that it's a valid .xlsx or .csv file.",
+        "emptyFile": "The file has no data rows."
+      },
+      "mapping": {
+        "title": "Assign each column to a field",
+        "instructions": "We tried to guess the mapping. Correct it if needed.",
+        "ignore": "Ignore this column",
+        "fieldCompanyName": "Company name",
+        "fieldContactName": "Contact person",
+        "fieldPhone": "Phone",
+        "fieldEmail": "Email",
+        "fieldAddress": "Address",
+        "fieldProducts": "Contracted products",
+        "fieldNotes": "Notes",
+        "fieldStatus": "Status",
+        "required": "required",
+        "companyNameMissing": "Assign a column to \"Company name\" to continue.",
+        "next": "Continue",
+        "back": "Back"
+      },
+      "preview": {
+        "title": "Preview",
+        "rowsShown": "Showing {shown} of {total} rows.",
+        "import": "Import {count} clients",
+        "back": "Back"
+      },
+      "importing": {
+        "progress": "Importing… {done} of {total}",
+        "summaryTitle": "Import complete",
+        "summarySuccess": "{count, plural, one {# client imported successfully} other {# clients imported successfully}}",
+        "summaryFailed": "{count, plural, one {# row could not be imported} other {# rows could not be imported}}",
+        "failedRow": "Row {row} ({company}): {error}",
+        "close": "Close",
+        "duplicatesNote": "This version doesn't detect duplicate clients: importing the same one twice will create two records.",
+        "missingCompanyName": "Missing company name."
+      },
+      "errors": {
+        "createFailed": "Could not create the client."
+      }
     }
   },
   "calendar": {

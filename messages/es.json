@@ -295,6 +295,58 @@
       "statusPending": "Pendiente",
       "statusCompleted": "Completada",
       "statusCancelled": "Cancelada"
+    },
+    "import": {
+      "trigger": "Importar desde Excel",
+      "title": "Importar clientes",
+      "steps": {
+        "upload": "Subir archivo",
+        "mapping": "Mapear columnas",
+        "preview": "Previsualización",
+        "importing": "Importación"
+      },
+      "upload": {
+        "instructions": "Sube un archivo Excel (.xlsx) o CSV con tus clientes. La primera fila debe contener los nombres de las columnas.",
+        "selectFile": "Seleccionar archivo",
+        "parseError": "No se pudo leer el archivo. Comprueba que sea un .xlsx o .csv válido.",
+        "emptyFile": "El archivo no tiene filas de datos."
+      },
+      "mapping": {
+        "title": "Asigna cada columna a un campo",
+        "instructions": "Hemos intentado adivinar la asignación. Corrígela si hace falta.",
+        "ignore": "Ignorar esta columna",
+        "fieldCompanyName": "Nombre de la empresa",
+        "fieldContactName": "Persona de contacto",
+        "fieldPhone": "Teléfono",
+        "fieldEmail": "Email",
+        "fieldAddress": "Dirección",
+        "fieldProducts": "Productos contratados",
+        "fieldNotes": "Notas",
+        "fieldStatus": "Estado",
+        "required": "obligatorio",
+        "companyNameMissing": "Asigna una columna a \"Nombre de la empresa\" para continuar.",
+        "next": "Continuar",
+        "back": "Atrás"
+      },
+      "preview": {
+        "title": "Previsualización",
+        "rowsShown": "Mostrando {shown} de {total} filas.",
+        "import": "Importar {count} clientes",
+        "back": "Atrás"
+      },
+      "importing": {
+        "progress": "Importando… {done} de {total}",
+        "summaryTitle": "Importación completada",
+        "summarySuccess": "{count, plural, one {# cliente importado correctamente} other {# clientes importados correctamente}}",
+        "summaryFailed": "{count, plural, one {# fila no se pudo importar} other {# filas no se pudieron importar}}",
+        "failedRow": "Fila {row} ({company}): {error}",
+        "close": "Cerrar",
+        "duplicatesNote": "Esta versión no detecta clientes duplicados: si importas el mismo dos veces, se crearán dos registros.",
+        "missingCompanyName": "Falta el nombre de la empresa."
+      },
+      "errors": {
+        "createFailed": "No se pudo crear el cliente."
+      }
     }
   },
   "calendar": {
