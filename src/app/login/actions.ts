@@ -20,5 +20,5 @@ export async function login(formData: FormData) {
     redirect(`/login?error=${encodeURIComponent(t("loginInvalidCredentials"))}`);
   }
 
-  redirect("/");
+  redirect("/inicio");
 }
