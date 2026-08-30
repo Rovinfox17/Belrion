@@ -94,6 +94,13 @@ export default async function Home({
   const product = params.product;
   const upcomingOnly = params.upcoming === "true";
   const sort = params.sort ?? "alfabetico";
+  const requestedDir = params.dir === "asc" || params.dir === "desc" ? params.dir : null;
+  // Fecha de alta y última visita muestran lo más reciente primero por
+  // defecto; el resto, orden ascendente — igual que antes de poder elegir
+  // la dirección a mano desde las cabeceras de columna.
+  const direction = requestedDir ?? (sort === "fecha_alta" || sort === "ultima_visita" ? "desc" : "asc");
+  const sign = direction === "asc" ? 1 : -1;
+  const STATUS_RANK: Record<RawClient["status"], number> = { activo: 0, potencial: 1, inactivo: 2 };
 
   const filtered = clients.filter((c) => {
     if (status && status !== "all" && c.status !== status) return false;
@@ -112,14 +119,14 @@ export default async function Home({
   const sorted = [...filtered].sort((a, b) => {
     switch (sort) {
       case "fecha_alta":
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        return sign * (new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
       case "proxima_visita": {
         const av = nextVisit(a, now);
         const bv = nextVisit(b, now);
         if (!av && !bv) return 0;
         if (!av) return 1;
         if (!bv) return -1;
-        return new Date(av).getTime() - new Date(bv).getTime();
+        return sign * (new Date(av).getTime() - new Date(bv).getTime());
       }
       case "ultima_visita": {
         const av = lastVisit(a);
@@ -127,10 +134,17 @@ export default async function Home({
         if (!av && !bv) return 0;
         if (!av) return 1;
         if (!bv) return -1;
-        return new Date(bv).getTime() - new Date(av).getTime();
+        return sign * (new Date(av).getTime() - new Date(bv).getTime());
       }
+      case "contacto": {
+        const an = a.contacts.find((c) => c.is_primary)?.name ?? a.contacts[0]?.name ?? "";
+        const bn = b.contacts.find((c) => c.is_primary)?.name ?? b.contacts[0]?.name ?? "";
+        return sign * an.localeCompare(bn);
+      }
+      case "estado":
+        return sign * (STATUS_RANK[a.status] - STATUS_RANK[b.status]);
       default:
-        return a.company_name.localeCompare(b.company_name);
+        return sign * a.company_name.localeCompare(b.company_name);
     }
   });
 

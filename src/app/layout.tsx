@@ -4,7 +4,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
-import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,10 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#BE5B2E" },
-    { media: "(prefers-color-scheme: dark)", color: "#201509" },
-  ],
+  themeColor: "#BE5B2E",
   width: "device-width",
   initialScale: 1,
 };
@@ -62,16 +58,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={locale}
-      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <Toaster position="top-center" richColors />
-            <ServiceWorkerRegister />
-          </ThemeProvider>
+          {children}
+          <Toaster position="bottom-right" richColors />
+          <ServiceWorkerRegister />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -86,7 +86,7 @@ export function TeamList({ teams }: { teams: TeamListItem[] }) {
               <li key={team.id}>
                 <Link
                   href={`/equipo/${team.id}`}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 hover:bg-accent"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm transition-colors duration-150 hover:bg-accent"
                 >
                   <span className="text-sm">
                     <span className="font-medium">{team.name}</span>{" "}
@@ -148,7 +148,7 @@ export function ManageTeam({ team }: { team: TeamData }) {
         {team.members.map((m) => (
           <li
             key={m.userId}
-            className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3"
+            className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm"
           >
             <div className="text-sm">
               <span className="font-medium">{m.email}</span>{" "}

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { ProfileSection } from "@/components/settings/profile-section";
-import { AppearanceSection } from "@/components/settings/appearance-section";
 import { LocaleSwitcherButtons } from "@/components/language/locale-switcher";
 import { NotificationsToggle } from "@/components/settings/notifications-toggle";
 import { ChatNotificationsToggle } from "@/components/settings/chat-notifications-toggle";
@@ -41,7 +40,7 @@ export default async function AjustesPage() {
       <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
 
       {user && (
-        <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+        <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
           <h2 className="font-medium">{t("profile.title")}</h2>
           <ProfileSection
             userId={user.id}
@@ -51,17 +50,12 @@ export default async function AjustesPage() {
         </section>
       )}
 
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
-        <h2 className="font-medium">{t("appearance.title")}</h2>
-        <AppearanceSection />
-      </section>
-
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
         <h2 className="font-medium">{t("language.title")}</h2>
         <LocaleSwitcherButtons />
       </section>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
         <div>
           <h2 className="font-medium">{t("notifications.title")}</h2>
           <p className="text-sm text-muted-foreground">{t("notifications.description")}</p>
@@ -70,12 +64,12 @@ export default async function AjustesPage() {
         <ChatNotificationsToggle initialEnabled={chatNotificationsEnabled} />
       </section>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
         <h2 className="font-medium">{t("password.title")}</h2>
         <ChangePasswordSection />
       </section>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
         <div>
           <h2 className="font-medium">{t("data.title")}</h2>
           <p className="text-sm text-muted-foreground">{t("data.description")}</p>
@@ -83,12 +77,12 @@ export default async function AjustesPage() {
         <ExportDataButton />
       </section>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-destructive/30 bg-card p-4">
+      <section className="flex flex-col gap-3 rounded-lg border border-destructive/30 bg-card p-4 shadow-sm">
         <h2 className="font-medium text-destructive">{t("deleteAccount.title")}</h2>
         <DeleteAccountSection />
       </section>
 
-      <section className="flex flex-col gap-2 rounded-lg border border-border bg-card p-4">
+      <section className="flex flex-col gap-2 rounded-lg border border-border bg-card p-4 shadow-sm">
         <h2 className="font-medium">{t("legal.title")}</h2>
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
           {legalLinks.map((link) => (

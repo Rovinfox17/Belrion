@@ -73,48 +73,16 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: #201509;
-  --foreground: #f4e8da;
-  --card: #2a1c10;
-  --card-foreground: #f4e8da;
-  --popover: #2a1c10;
-  --popover-foreground: #f4e8da;
-  --primary: #e0894f;
-  --primary-foreground: #241608;
-  --secondary: #362518;
-  --secondary-foreground: #f4e8da;
-  --muted: #362518;
-  --muted-foreground: #c3ab97;
-  --accent: #3c2a1a;
-  --accent-foreground: #f4e8da;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: #40301f;
-  --input: #40301f;
-  --ring: #e0894f;
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* El menú lateral es siempre oscuro (no sigue el tema claro/oscuro del
+     contenido), por eso estos valores se repiten idénticos en .dark. */
+  --sidebar: #1c1410;
+  --sidebar-foreground: #b8a596;
+  --sidebar-primary: #be5b2e;
+  --sidebar-primary-foreground: #faf1e4;
+  --sidebar-accent: #2a1f16;
+  --sidebar-accent-foreground: #faf1e4;
+  --sidebar-border: #33261a;
+  --sidebar-ring: #be5b2e;
 }
 
 @layer base {
@@ -127,4 +95,48 @@
   html {
     @apply font-sans;
   }
+  /* Respaldo global de foco visible: los componentes con su propio anillo
+     (Button, Input, Select…) ya llevan "outline-none" + focus-visible:ring-*
+     propio, así que esta regla de @layer base queda por debajo suyo en la
+     cascada y no se nota ahí. Donde no hay nada definido (enlaces del menú,
+     filas de tabla, pestañas…) es la que entra en juego. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* FullCalendar trae sus propios colores por defecto (pensados para fondo
+   blanco) que no siguen el tema de la app ni en claro ni en oscuro. Se
+   remapean sus variables CSS a las nuestras para que encaje siempre. */
+.fc {
+  --fc-border-color: var(--border);
+  --fc-page-bg-color: var(--card);
+  --fc-neutral-bg-color: var(--accent);
+  --fc-neutral-text-color: var(--muted-foreground);
+  --fc-today-bg-color: var(--accent);
+  --fc-button-text-color: var(--foreground);
+  --fc-button-bg-color: var(--card);
+  --fc-button-border-color: var(--border);
+  --fc-button-hover-bg-color: var(--accent);
+  --fc-button-hover-border-color: var(--border);
+  --fc-button-active-bg-color: var(--primary);
+  --fc-button-active-border-color: var(--primary);
+  --fc-list-event-hover-bg-color: var(--accent);
+  --fc-small-font-size: 0.8125rem;
+}
+.fc .fc-button {
+  text-transform: capitalize;
+  box-shadow: none !important;
+}
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  color: var(--primary-foreground);
+}
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+  color: var(--foreground);
+}
+.fc .fc-daygrid-day-number {
+  font-size: 0.8125rem;
 }

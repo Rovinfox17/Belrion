@@ -42,7 +42,7 @@ export async function VisitsHistory({ visits }: { visits: VisitWithComments[] })
       ) : (
         <ul className="flex flex-col gap-3">
           {visits.map((v) => (
-            <li key={v.id} className="rounded-lg border border-border bg-card p-3">
+            <li key={v.id} className="rounded-lg border border-border bg-card p-3 shadow-sm">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm font-medium">{formatDate(v.scheduledAt)}</span>
                 <Badge className={STATUS_CLASS[v.status]} variant="secondary">

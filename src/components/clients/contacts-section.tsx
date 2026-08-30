@@ -8,6 +8,7 @@ import { PhoneIcon, MailIcon, StarIcon, PencilIcon, TrashIcon, PlusIcon } from "
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ContactAvatar } from "@/components/clients/contact-avatar";
 import { createContact, deleteContact, updateContact } from "@/app/actions/contacts";
 
 export type Contact = {
@@ -149,9 +150,10 @@ function ContactRow({ clientId, contact }: { clientId: string; contact: Contact 
   }
 
   return (
-    <div className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3">
+    <div className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1.5 font-medium">
+          <ContactAvatar name={contact.name} size={22} />
           {contact.name}
           {contact.isPrimary && (
             <StarIcon className="size-3.5 fill-primary text-primary" />

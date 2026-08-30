@@ -16,7 +16,7 @@ type Status = "activo" | "potencial" | "inactivo";
 const STATUS_CLASS: Record<Status, string> = {
   activo: "bg-emerald-100 text-emerald-800 hover:bg-emerald-100",
   potencial: "bg-amber-100 text-amber-800 hover:bg-amber-100",
-  inactivo: "bg-zinc-100 text-zinc-600 hover:bg-zinc-100",
+  inactivo: "bg-rose-100 text-rose-700 hover:bg-rose-100",
 };
 
 type RawClientDetail = {
@@ -139,7 +139,7 @@ export default async function ClientDetailPage({
         {t("detail.back")}
       </Link>
 
-      <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="font-heading text-2xl font-semibold text-primary">

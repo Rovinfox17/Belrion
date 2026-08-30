@@ -5,7 +5,10 @@
     "team": "Equipo",
     "settings": "Ajustes",
     "logout": "Cerrar sesión",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "dashboard": "Inicio",
+    "feedback": "Feedback",
+    "admin": "Administración"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -22,14 +25,15 @@
       "forgot": "¿Olvidaste tu contraseña?",
       "submit": "Entrar",
       "noAccount": "¿No tienes cuenta?",
-      "signup": "Regístrate"
+      "signup": "Solicita acceso"
     },
     "signup": {
-      "subtitle": "Crea tu cuenta",
+      "subtitle": "Solicita acceso",
       "name": "Nombre",
       "email": "Email",
-      "password": "Contraseña",
-      "submit": "Crear cuenta",
+      "reason": "Motivo o empresa (opcional)",
+      "submit": "Solicitar acceso",
+      "sent": "Hemos recibido tu solicitud, te avisaremos por email si es aprobada.",
       "hasAccount": "¿Ya tienes cuenta?",
       "login": "Entra aquí"
     },
@@ -50,12 +54,16 @@
       "tooShort": "La contraseña debe tener al menos {min} caracteres.",
       "mismatch": "Las contraseñas no coinciden."
     },
+    "confirm": {
+      "subtitle": "Confirma para continuar",
+      "confirm": "Confirmar",
+      "invalidLink": "El enlace no es válido o ha caducado."
+    },
     "errors": {
       "loginMissingFields": "Introduce email y contraseña.",
       "loginInvalidCredentials": "Email o contraseña incorrectos.",
-      "signupMissingFields": "Rellena todos los campos.",
-      "signupPasswordTooShort": "La contraseña debe tener al menos 8 caracteres.",
-      "signupAccountCreated": "Cuenta creada. Revisa tu email para confirmarla antes de entrar.",
+      "signupMissingFields": "Rellena tu nombre y tu email.",
+      "signupRequestFailed": "No se pudo enviar tu solicitud. Inténtalo de nuevo.",
       "recoverMissingEmail": "Introduce tu email.",
       "invalidOrExpiredLink": "El enlace no es válido o ha caducado."
     }
@@ -71,12 +79,6 @@
       "success": "Perfil actualizado",
       "uploadError": "No se pudo subir la foto: {message}",
       "invalidImage": "Selecciona un archivo de imagen."
-    },
-    "appearance": {
-      "title": "Apariencia",
-      "light": "Claro",
-      "dark": "Oscuro",
-      "system": "Automático"
     },
     "language": {
       "title": "Idioma"
@@ -450,5 +452,65 @@
   },
   "errors": {
     "notAuthenticated": "No autenticado."
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "todayVisits": {
+      "title": "Visitas de hoy",
+      "empty": "No tienes visitas programadas para hoy."
+    },
+    "upcomingVisits": {
+      "title": "Próximas visitas",
+      "empty": "No hay más visitas programadas."
+    },
+    "staleClients": {
+      "title": "Clientes sin visitar hace tiempo",
+      "hint": "Más de 30 días sin visita",
+      "empty": "Todos tus clientes activos están al día."
+    }
+  },
+  "admin": {
+    "title": "Panel de administración",
+    "requests": {
+      "title": "Solicitudes de acceso pendientes",
+      "empty": "No hay solicitudes pendientes.",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "approved": "Solicitud aprobada, invitación enviada.",
+      "rejected": "Solicitud rechazada."
+    },
+    "feedback": {
+      "title": "Feedback recibido",
+      "empty": "Todavía no hay feedback."
+    },
+    "errors": {
+      "rejectFailed": "No se pudo rechazar la solicitud.",
+      "approveFailed": "No se pudo aprobar la solicitud."
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "formTitle": "Cuéntanos qué falla o qué mejorarías",
+    "formDescription": "Tu mensaje llega directamente al equipo de Belrion.",
+    "category": "Categoría",
+    "categoryError": "Error",
+    "categoryImprovement": "Propuesta de mejora",
+    "categoryOther": "Otro",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntanos con detalle…",
+    "submit": "Enviar feedback",
+    "sending": "Enviando…",
+    "success": "¡Gracias! Hemos recibido tu feedback.",
+    "errors": {
+      "empty": "Escribe un mensaje.",
+      "submitFailed": "No se pudo enviar el feedback."
+    }
+  },
+  "search": {
+    "trigger": "Buscar",
+    "title": "Buscar",
+    "placeholder": "Buscar cliente o contacto…",
+    "noResults": "Sin resultados",
+    "hint": "Escribe para buscar entre tus clientes"
   }
 }

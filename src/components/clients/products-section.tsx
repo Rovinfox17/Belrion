@@ -81,7 +81,7 @@ export function ProductsSection({
         {products.map((p) => (
           <li
             key={p.id}
-            className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3"
+            className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm"
           >
             <div>
               <p className="font-medium">{p.name}</p>

@@ -215,7 +215,7 @@ export function TeamChat({
 
       <div
         ref={listRef}
-        className="flex max-h-96 flex-col gap-3 overflow-y-auto rounded-lg border border-border bg-card p-3"
+        className="flex max-h-96 flex-col gap-3 overflow-y-auto rounded-lg border border-border bg-card p-3 shadow-sm"
       >
         {messages.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t("empty")}</p>

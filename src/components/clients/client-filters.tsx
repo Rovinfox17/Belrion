@@ -28,12 +28,15 @@ export function ClientFilters({ products }: { products: string[] }) {
     { value: "inactivo", label: t("statusInactive") },
   ];
 
+  // Empresa, Contacto, Estado y Próxima visita ya se ordenan haciendo clic
+  // en su cabecera de columna; aquí solo quedan los criterios que no tienen
+  // una columna propia en la tabla.
   const SORT_OPTIONS = [
-    { value: "alfabetico", label: t("sortAlphabetical") },
     { value: "fecha_alta", label: t("sortCreatedAt") },
-    { value: "proxima_visita", label: t("sortNextVisit") },
     { value: "ultima_visita", label: t("sortLastVisit") },
   ];
+  const currentSort = searchParams.get("sort") ?? "";
+  const dropdownSortValue = SORT_OPTIONS.some((o) => o.value === currentSort) ? currentSort : "";
 
   function updateParam(key: string, value: string | null) {
     const params = new URLSearchParams(searchParams.toString());
@@ -42,6 +45,21 @@ export function ClientFilters({ products }: { products: string[] }) {
     } else {
       params.delete(key);
     }
+    startTransition(() => {
+      router.push(params.toString() ? `${pathname}?${params.toString()}` : pathname);
+    });
+  }
+
+  function updateSort(value: string | null) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set("sort", value);
+    } else {
+      params.delete("sort");
+    }
+    // La dirección se resetea al valor por defecto del criterio elegido; si
+    // se quedara la de una columna anterior podría invertir el resultado.
+    params.delete("dir");
     startTransition(() => {
       router.push(params.toString() ? `${pathname}?${params.toString()}` : pathname);
     });
@@ -100,11 +118,7 @@ export function ClientFilters({ products }: { products: string[] }) {
           </SelectContent>
         </Select>
       )}
-      <Select
-        items={SORT_OPTIONS}
-        value={searchParams.get("sort") ?? "alfabetico"}
-        onValueChange={(v) => updateParam("sort", v)}
-      >
+      <Select items={SORT_OPTIONS} value={dropdownSortValue} onValueChange={updateSort}>
         <SelectTrigger className="sm:w-44">
           <SelectValue placeholder={t("sortPlaceholder")} />
         </SelectTrigger>

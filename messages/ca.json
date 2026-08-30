@@ -5,7 +5,10 @@
     "team": "Equip",
     "settings": "Ajustos",
     "logout": "Tanca la sessió",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "dashboard": "Inici",
+    "feedback": "Feedback",
+    "admin": "Administració"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -22,14 +25,15 @@
       "forgot": "Has oblidat la contrasenya?",
       "submit": "Entra",
       "noAccount": "No tens compte?",
-      "signup": "Registra't"
+      "signup": "Sol·licita accés"
     },
     "signup": {
-      "subtitle": "Crea el teu compte",
+      "subtitle": "Sol·licita accés",
       "name": "Nom",
       "email": "Email",
-      "password": "Contrasenya",
-      "submit": "Crea un compte",
+      "reason": "Motiu o empresa (opcional)",
+      "submit": "Sol·licitar accés",
+      "sent": "Hem rebut la teva sol·licitud, t'avisarem per correu si és aprovada.",
       "hasAccount": "Ja tens compte?",
       "login": "Entra aquí"
     },
@@ -50,12 +54,16 @@
       "tooShort": "La contrasenya ha de tenir almenys {min} caràcters.",
       "mismatch": "Les contrasenyes no coincideixen."
     },
+    "confirm": {
+      "subtitle": "Confirma per continuar",
+      "confirm": "Confirmar",
+      "invalidLink": "L'enllaç no és vàlid o ha caducat."
+    },
     "errors": {
       "loginMissingFields": "Introdueix correu electrònic i contrasenya.",
       "loginInvalidCredentials": "Correu electrònic o contrasenya incorrectes.",
-      "signupMissingFields": "Omple tots els camps.",
-      "signupPasswordTooShort": "La contrasenya ha de tenir com a mínim 8 caràcters.",
-      "signupAccountCreated": "Compte creat. Revisa el teu correu per confirmar-lo abans d'entrar.",
+      "signupMissingFields": "Omple el nom i el correu electrònic.",
+      "signupRequestFailed": "No s'ha pogut enviar la teva sol·licitud. Torna-ho a provar.",
       "recoverMissingEmail": "Introdueix el teu correu electrònic.",
       "invalidOrExpiredLink": "L'enllaç no és vàlid o ha caducat."
     }
@@ -71,12 +79,6 @@
       "success": "Perfil actualitzat",
       "uploadError": "No s'ha pogut pujar la foto: {message}",
       "invalidImage": "Selecciona un fitxer d'imatge."
-    },
-    "appearance": {
-      "title": "Aparença",
-      "light": "Clar",
-      "dark": "Fosc",
-      "system": "Automàtic"
     },
     "language": {
       "title": "Idioma"
@@ -450,5 +452,65 @@
   },
   "errors": {
     "notAuthenticated": "No autenticat."
+  },
+  "dashboard": {
+    "title": "Inici",
+    "todayVisits": {
+      "title": "Visites d'avui",
+      "empty": "No tens visites programades per avui."
+    },
+    "upcomingVisits": {
+      "title": "Properes visites",
+      "empty": "No hi ha més visites programades."
+    },
+    "staleClients": {
+      "title": "Clients sense visitar des de fa temps",
+      "hint": "Més de 30 dies sense visita",
+      "empty": "Tots els teus clients actius estan al dia."
+    }
+  },
+  "admin": {
+    "title": "Panell d'administració",
+    "requests": {
+      "title": "Sol·licituds d'accés pendents",
+      "empty": "No hi ha sol·licituds pendents.",
+      "approve": "Aprovar",
+      "reject": "Rebutjar",
+      "approved": "Sol·licitud aprovada, invitació enviada.",
+      "rejected": "Sol·licitud rebutjada."
+    },
+    "feedback": {
+      "title": "Feedback rebut",
+      "empty": "Encara no hi ha feedback."
+    },
+    "errors": {
+      "rejectFailed": "No s'ha pogut rebutjar la sol·licitud.",
+      "approveFailed": "No s'ha pogut aprovar la sol·licitud."
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "formTitle": "Explica'ns què falla o què milloraries",
+    "formDescription": "El teu missatge arriba directament a l'equip de Belrion.",
+    "category": "Categoria",
+    "categoryError": "Error",
+    "categoryImprovement": "Proposta de millora",
+    "categoryOther": "Altres",
+    "message": "Missatge",
+    "messagePlaceholder": "Explica-ho amb detall…",
+    "submit": "Enviar feedback",
+    "sending": "Enviant…",
+    "success": "Gràcies! Hem rebut el teu feedback.",
+    "errors": {
+      "empty": "Escriu un missatge.",
+      "submitFailed": "No s'ha pogut enviar el feedback."
+    }
+  },
+  "search": {
+    "trigger": "Cerca",
+    "title": "Cerca",
+    "placeholder": "Cerca client o contacte…",
+    "noResults": "Sense resultats",
+    "hint": "Escriu per cercar entre els teus clients"
   }
 }

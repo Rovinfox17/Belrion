@@ -5,7 +5,10 @@
     "team": "Team",
     "settings": "Settings",
     "logout": "Log out",
-    "profile": "Profile"
+    "profile": "Profile",
+    "dashboard": "Home",
+    "feedback": "Feedback",
+    "admin": "Admin"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -22,14 +25,15 @@
       "forgot": "Forgot your password?",
       "submit": "Sign in",
       "noAccount": "Don't have an account?",
-      "signup": "Sign up"
+      "signup": "Request access"
     },
     "signup": {
-      "subtitle": "Create your account",
+      "subtitle": "Request access",
       "name": "Name",
       "email": "Email",
-      "password": "Password",
-      "submit": "Create account",
+      "reason": "Reason or company (optional)",
+      "submit": "Request access",
+      "sent": "We've received your request, we'll let you know by email if it's approved.",
       "hasAccount": "Already have an account?",
       "login": "Sign in here"
     },
@@ -50,12 +54,16 @@
       "tooShort": "The password must be at least {min} characters long.",
       "mismatch": "The passwords don't match."
     },
+    "confirm": {
+      "subtitle": "Confirm to continue",
+      "confirm": "Confirm",
+      "invalidLink": "The link is invalid or has expired."
+    },
     "errors": {
       "loginMissingFields": "Enter your email and password.",
       "loginInvalidCredentials": "Incorrect email or password.",
-      "signupMissingFields": "Fill in all the fields.",
-      "signupPasswordTooShort": "The password must be at least 8 characters long.",
-      "signupAccountCreated": "Account created. Check your email to confirm it before signing in.",
+      "signupMissingFields": "Fill in your name and email.",
+      "signupRequestFailed": "Couldn't send your request. Try again.",
       "recoverMissingEmail": "Enter your email.",
       "invalidOrExpiredLink": "The link is invalid or has expired."
     }
@@ -71,12 +79,6 @@
       "success": "Profile updated",
       "uploadError": "Could not upload the photo: {message}",
       "invalidImage": "Select an image file."
-    },
-    "appearance": {
-      "title": "Appearance",
-      "light": "Light",
-      "dark": "Dark",
-      "system": "Automatic"
     },
     "language": {
       "title": "Language"
@@ -450,5 +452,65 @@
   },
   "errors": {
     "notAuthenticated": "Not authenticated."
+  },
+  "dashboard": {
+    "title": "Home",
+    "todayVisits": {
+      "title": "Today's visits",
+      "empty": "You have no visits scheduled for today."
+    },
+    "upcomingVisits": {
+      "title": "Upcoming visits",
+      "empty": "No more visits scheduled."
+    },
+    "staleClients": {
+      "title": "Clients not visited in a while",
+      "hint": "Over 30 days without a visit",
+      "empty": "All your active clients are up to date."
+    }
+  },
+  "admin": {
+    "title": "Admin panel",
+    "requests": {
+      "title": "Pending access requests",
+      "empty": "No pending requests.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approved": "Request approved, invitation sent.",
+      "rejected": "Request rejected."
+    },
+    "feedback": {
+      "title": "Feedback received",
+      "empty": "No feedback yet."
+    },
+    "errors": {
+      "rejectFailed": "Couldn't reject the request.",
+      "approveFailed": "Couldn't approve the request."
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "formTitle": "Tell us what's broken or what you'd improve",
+    "formDescription": "Your message goes straight to the Belrion team.",
+    "category": "Category",
+    "categoryError": "Bug",
+    "categoryImprovement": "Improvement suggestion",
+    "categoryOther": "Other",
+    "message": "Message",
+    "messagePlaceholder": "Tell us in detail…",
+    "submit": "Send feedback",
+    "sending": "Sending…",
+    "success": "Thanks! We've received your feedback.",
+    "errors": {
+      "empty": "Write a message.",
+      "submitFailed": "Couldn't send the feedback."
+    }
+  },
+  "search": {
+    "trigger": "Search",
+    "title": "Search",
+    "placeholder": "Search client or contact…",
+    "noResults": "No results",
+    "hint": "Type to search your clients"
   }
 }
