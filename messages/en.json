@@ -95,8 +95,11 @@
       "missingKey": "Push notification keys are missing.",
       "errors": {
         "subscriptionSaveFailed": "Could not save the notification subscription.",
-        "subscriptionDeleteFailed": "Could not delete the notification subscription."
-      }
+        "subscriptionDeleteFailed": "Could not delete the notification subscription.",
+        "preferenceSaveFailed": "Could not save the preference."
+      },
+      "chatNotifications": "Team chat messages",
+      "chatNotificationsHint": "Get an alert when a new message arrives in your teams' chat, even if the app is closed."
     },
     "password": {
       "title": "Change password",
@@ -375,6 +378,22 @@
       "alreadyMember": "That person is already a member of the team.",
       "addFailed": "Could not add to the team.",
       "removeFailed": "Could not remove that person from the team."
+    },
+    "chat": {
+      "title": "Team chat",
+      "placeholder": "Write a message…",
+      "send": "Send",
+      "attach": "Attach file",
+      "empty": "No messages yet. Be the first to write.",
+      "retentionNotice": "Messages are automatically deleted after 30 days.",
+      "fileTooLarge": "The file exceeds the 20 MB limit.",
+      "uploading": "Uploading…",
+      "download": "Download",
+      "errors": {
+        "empty": "Write a message or attach a file.",
+        "sendFailed": "Could not send the message.",
+        "uploadFailed": "Could not upload the file."
+      }
     }
   },
   "errors": {

@@ -95,8 +95,11 @@
       "missingKey": "Faltan las claves de notificaciones push.",
       "errors": {
         "subscriptionSaveFailed": "No se pudo guardar la suscripción a notificaciones.",
-        "subscriptionDeleteFailed": "No se pudo eliminar la suscripción a notificaciones."
-      }
+        "subscriptionDeleteFailed": "No se pudo eliminar la suscripción a notificaciones.",
+        "preferenceSaveFailed": "No se pudo guardar la preferencia."
+      },
+      "chatNotifications": "Mensajes del chat de equipo",
+      "chatNotificationsHint": "Recibe un aviso cuando llegue un mensaje nuevo al chat de tus equipos, aunque tengas la app cerrada."
     },
     "password": {
       "title": "Cambiar contraseña",
@@ -375,6 +378,22 @@
       "alreadyMember": "Esa persona ya es miembro del equipo.",
       "addFailed": "No se pudo añadir al equipo.",
       "removeFailed": "No se pudo eliminar a esa persona del equipo."
+    },
+    "chat": {
+      "title": "Chat del equipo",
+      "placeholder": "Escribe un mensaje…",
+      "send": "Enviar",
+      "attach": "Adjuntar archivo",
+      "empty": "Todavía no hay mensajes. Sé el primero en escribir.",
+      "retentionNotice": "Los mensajes se eliminan automáticamente pasados 30 días.",
+      "fileTooLarge": "El archivo supera el límite de 20 MB.",
+      "uploading": "Subiendo…",
+      "download": "Descargar",
+      "errors": {
+        "empty": "Escribe un mensaje o adjunta un archivo.",
+        "sendFailed": "No se pudo enviar el mensaje.",
+        "uploadFailed": "No se pudo subir el archivo."
+      }
     }
   },
   "errors": {

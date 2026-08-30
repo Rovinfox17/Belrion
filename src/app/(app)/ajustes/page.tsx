@@ -5,6 +5,7 @@ import { ProfileSection } from "@/components/settings/profile-section";
 import { AppearanceSection } from "@/components/settings/appearance-section";
 import { LocaleSwitcherButtons } from "@/components/language/locale-switcher";
 import { NotificationsToggle } from "@/components/settings/notifications-toggle";
+import { ChatNotificationsToggle } from "@/components/settings/chat-notifications-toggle";
 import { ChangePasswordSection } from "@/components/settings/change-password-section";
 import { ExportDataButton } from "@/components/settings/export-data-button";
 import { DeleteAccountSection } from "@/components/settings/delete-account-section";
@@ -18,6 +19,16 @@ export default async function AjustesPage() {
   const metadata = (user?.user_metadata ?? {}) as { full_name?: string; avatar_url?: string };
   const t = await getTranslations("settings");
   const tFooter = await getTranslations("footer");
+
+  let chatNotificationsEnabled = true;
+  if (user) {
+    const { data: preference } = await supabase
+      .from("user_notification_preferences")
+      .select("chat_notifications")
+      .eq("user_id", user.id)
+      .maybeSingle();
+    if (preference) chatNotificationsEnabled = preference.chat_notifications;
+  }
 
   const legalLinks = [
     { href: "/aviso-legal", label: tFooter("legal") },
@@ -56,6 +67,7 @@ export default async function AjustesPage() {
           <p className="text-sm text-muted-foreground">{t("notifications.description")}</p>
         </div>
         <NotificationsToggle />
+        <ChatNotificationsToggle initialEnabled={chatNotificationsEnabled} />
       </section>
 
       <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">

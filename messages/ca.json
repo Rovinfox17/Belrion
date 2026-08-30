@@ -95,8 +95,11 @@
       "missingKey": "Falten les claus de notificacions push.",
       "errors": {
         "subscriptionSaveFailed": "No s'ha pogut desar la subscripció a notificacions.",
-        "subscriptionDeleteFailed": "No s'ha pogut eliminar la subscripció a notificacions."
-      }
+        "subscriptionDeleteFailed": "No s'ha pogut eliminar la subscripció a notificacions.",
+        "preferenceSaveFailed": "No s'ha pogut desar la preferència."
+      },
+      "chatNotifications": "Missatges del xat de l'equip",
+      "chatNotificationsHint": "Rep un avís quan arribi un missatge nou al xat dels teus equips, encara que tinguis l'aplicació tancada."
     },
     "password": {
       "title": "Canvia la contrasenya",
@@ -375,6 +378,22 @@
       "alreadyMember": "Aquesta persona ja és membre de l'equip.",
       "addFailed": "No s'ha pogut afegir a l'equip.",
       "removeFailed": "No s'ha pogut eliminar aquesta persona de l'equip."
+    },
+    "chat": {
+      "title": "Xat de l'equip",
+      "placeholder": "Escriu un missatge…",
+      "send": "Envia",
+      "attach": "Adjunta un fitxer",
+      "empty": "Encara no hi ha missatges. Sigues el primer a escriure.",
+      "retentionNotice": "Els missatges s'eliminen automàticament passats 30 dies.",
+      "fileTooLarge": "El fitxer supera el límit de 20 MB.",
+      "uploading": "Pujant…",
+      "download": "Descarrega",
+      "errors": {
+        "empty": "Escriu un missatge o adjunta un fitxer.",
+        "sendFailed": "No s'ha pogut enviar el missatge.",
+        "uploadFailed": "No s'ha pogut pujar el fitxer."
+      }
     }
   },
   "errors": {

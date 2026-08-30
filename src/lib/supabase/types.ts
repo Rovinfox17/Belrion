@@ -155,6 +155,42 @@ export type Database = {
         Update: Partial<Database["public"]["Tables"]["push_subscriptions"]["Insert"]>;
         Relationships: [];
       };
+      team_messages: {
+        Row: {
+          id: string;
+          team_id: string;
+          user_id: string;
+          content: string | null;
+          message_type: "texto" | "imagen" | "documento" | "video";
+          file_url: string | null;
+          file_name: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          team_id: string;
+          user_id?: string;
+          content?: string | null;
+          message_type?: "texto" | "imagen" | "documento" | "video";
+          file_url?: string | null;
+          file_name?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["team_messages"]["Insert"]>;
+        Relationships: [];
+      };
+      user_notification_preferences: {
+        Row: {
+          user_id: string;
+          chat_notifications: boolean;
+        };
+        Insert: {
+          user_id: string;
+          chat_notifications?: boolean;
+        };
+        Update: Partial<Database["public"]["Tables"]["user_notification_preferences"]["Insert"]>;
+        Relationships: [];
+      };
       visit_comments: {
         Row: {
           id: string;
@@ -182,7 +218,13 @@ export type Database = {
       };
       get_team_members: {
         Args: { p_team_id: string };
-        Returns: { user_id: string; email: string; role: "owner" | "member" }[];
+        Returns: {
+          user_id: string;
+          email: string;
+          role: "owner" | "member";
+          name: string | null;
+          avatar_url: string | null;
+        }[];
       };
     };
     Enums: Record<string, never>;
