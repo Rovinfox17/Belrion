@@ -97,7 +97,11 @@ export function ClientTeamsSection({
         <>
           {adding ? (
             <form onSubmit={handleAdd} className="flex gap-2">
-              <Select value={selectedTeamId} onValueChange={(v) => setSelectedTeamId(v ?? "")}>
+              <Select
+                items={availableTeams.map((team) => ({ value: team.id, label: team.name }))}
+                value={selectedTeamId}
+                onValueChange={(v) => setSelectedTeamId(v ?? "")}
+              >
                 <SelectTrigger className="flex-1">
                   <SelectValue />
                 </SelectTrigger>

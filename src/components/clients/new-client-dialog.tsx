@@ -111,7 +111,15 @@ export function NewClientDialog({
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="status">{t("status")}</Label>
-            <Select value={status} onValueChange={(v) => setStatus(v as Status)}>
+            <Select
+              items={[
+                { value: "potencial", label: tFilters("statusPotential") },
+                { value: "activo", label: tFilters("statusActive") },
+                { value: "inactivo", label: tFilters("statusInactive") },
+              ]}
+              value={status}
+              onValueChange={(v) => setStatus(v as Status)}
+            >
               <SelectTrigger id="status">
                 <SelectValue />
               </SelectTrigger>

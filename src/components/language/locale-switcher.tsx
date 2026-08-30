@@ -29,7 +29,12 @@ export function LocaleSwitcher({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <Select value={locale} onValueChange={handleChange} disabled={isPending}>
+    <Select
+      items={LOCALE_OPTIONS.map((o) => ({ value: o.code, label: o.label }))}
+      value={locale}
+      onValueChange={handleChange}
+      disabled={isPending}
+    >
       <SelectTrigger className={compact ? "h-8 w-auto gap-1.5 border-none bg-transparent px-2 shadow-none" : "w-44"}>
         {compact && <LanguagesIcon className="size-3.5" />}
         <SelectValue />

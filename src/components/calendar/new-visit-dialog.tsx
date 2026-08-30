@@ -169,7 +169,7 @@ export function NewVisitDialog({
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="reminder">{t("reminder")}</Label>
-            <Select value={reminder} onValueChange={(v) => setReminder(v ?? "30")}>
+            <Select items={REMINDER_OPTIONS} value={reminder} onValueChange={(v) => setReminder(v ?? "30")}>
               <SelectTrigger id="reminder">
                 <SelectValue />
               </SelectTrigger>

@@ -66,6 +66,7 @@ export function ClientFilters({ products }: { products: string[] }) {
         className="sm:max-w-xs"
       />
       <Select
+        items={STATUS_OPTIONS}
         value={searchParams.get("status") ?? "all"}
         onValueChange={(v) => updateParam("status", v)}
       >
@@ -82,6 +83,7 @@ export function ClientFilters({ products }: { products: string[] }) {
       </Select>
       {products.length > 0 && (
         <Select
+          items={[{ value: "all", label: t("productAll") }, ...products.map((p) => ({ value: p, label: p }))]}
           value={searchParams.get("product") ?? "all"}
           onValueChange={(v) => updateParam("product", v)}
         >
@@ -99,6 +101,7 @@ export function ClientFilters({ products }: { products: string[] }) {
         </Select>
       )}
       <Select
+        items={SORT_OPTIONS}
         value={searchParams.get("sort") ?? "alfabetico"}
         onValueChange={(v) => updateParam("sort", v)}
       >
