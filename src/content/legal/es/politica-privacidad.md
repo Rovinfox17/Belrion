@@ -5,7 +5,7 @@
 - **Responsable:** Xavier Rosselló Díaz
 - **NIF:** 79282716Z
 - **Domicilio:** Masía Can Rosselló-Can Ballesta, s/n, 08186 Lliçà d'Amunt, Barcelona
-- **Correo electrónico de contacto:** rovinshop17@gmail.com
+- **Correo electrónico de contacto:** soportebelrion@gmail.com
 
 ## 2. A qué datos se aplica esta política
 
@@ -46,11 +46,11 @@ Estos proveedores pueden almacenar datos en servidores fuera del Espacio Económ
 
 ## 6. Plazo de conservación
 
-Los datos se conservarán mientras mantengas tu cuenta activa en Belrion. Si eliminas un cliente, contacto o visita desde la propia aplicación, se elimina de la base de datos de forma permanente. Si decides cerrar tu cuenta, puedes solicitar la eliminación completa de tus datos escribiendo a rovinshop17@gmail.com.
+Los datos se conservarán mientras mantengas tu cuenta activa en Belrion. Si eliminas un cliente, contacto o visita desde la propia aplicación, se elimina de la base de datos de forma permanente. Si decides cerrar tu cuenta, puedes solicitar la eliminación completa de tus datos escribiendo a soportebelrion@gmail.com.
 
 ## 7. Tus derechos
 
-Como titular de tus propios datos (tu cuenta), tienes derecho a acceder, rectificar, suprimir, limitar el tratamiento, oponerte y solicitar la portabilidad de tus datos, escribiendo a **rovinshop17@gmail.com**. También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) si consideras que tus derechos no han sido atendidos correctamente ([www.aepd.es](https://www.aepd.es)).
+Como titular de tus propios datos (tu cuenta), tienes derecho a acceder, rectificar, suprimir, limitar el tratamiento, oponerte y solicitar la portabilidad de tus datos, escribiendo a **soportebelrion@gmail.com**. También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) si consideras que tus derechos no han sido atendidos correctamente ([www.aepd.es](https://www.aepd.es)).
 
 Si eres una persona cuyos datos han sido introducidos por un usuario de Belrion (por ejemplo, eres el contacto de una empresa cliente registrada en la app de un comercial), debes dirigir tu solicitud directamente a esa persona o empresa, ya que es quien actúa como responsable de tus datos.
 

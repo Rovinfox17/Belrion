@@ -5,7 +5,7 @@
 - **Controller:** Xavier Rosselló Díaz
 - **Tax ID (NIF):** 79282716Z
 - **Address:** Masía Can Rosselló-Can Ballesta, s/n, 08186 Lliçà d'Amunt, Barcelona
-- **Contact email:** rovinshop17@gmail.com
+- **Contact email:** soportebelrion@gmail.com
 
 ## 2. What data this policy applies to
 
@@ -46,11 +46,11 @@ These providers may store data on servers outside the European Economic Area, de
 
 ## 6. Retention period
 
-Data will be kept for as long as you maintain an active Belrion account. If you delete a client, contact, or visit from within the application, it is permanently removed from the database. If you decide to close your account, you can request complete deletion of your data by writing to rovinshop17@gmail.com.
+Data will be kept for as long as you maintain an active Belrion account. If you delete a client, contact, or visit from within the application, it is permanently removed from the database. If you decide to close your account, you can request complete deletion of your data by writing to soportebelrion@gmail.com.
 
 ## 7. Your rights
 
-As the owner of your own data (your account), you have the right to access, rectify, erase, restrict processing, object, and request portability of your data by writing to **rovinshop17@gmail.com**. You also have the right to file a complaint with the Spanish Data Protection Agency (AEPD) if you believe your rights have not been properly addressed ([www.aepd.es](https://www.aepd.es)).
+As the owner of your own data (your account), you have the right to access, rectify, erase, restrict processing, object, and request portability of your data by writing to **soportebelrion@gmail.com**. You also have the right to file a complaint with the Spanish Data Protection Agency (AEPD) if you believe your rights have not been properly addressed ([www.aepd.es](https://www.aepd.es)).
 
 If you are a person whose data has been entered by a Belrion user (for example, you are the contact for a client company registered in a salesperson's app), you should direct your request directly to that person or company, as they act as the controller of your data.
 

@@ -7,7 +7,7 @@ In compliance with Article 10 of Law 34/2002, on Information Society Services an
 - **Owner:** Xavier Rosselló Díaz
 - **Tax ID (NIF/CIF):** 79282716Z
 - **Address:** Masía Can Rosselló-Can Ballesta, s/n, 08186 Lliçà d'Amunt, Barcelona
-- **Contact email:** rovinshop17@gmail.com
+- **Contact email:** soportebelrion@gmail.com
 - **Service name:** Belrion (hereinafter, "the application" or "the service")
 
 ## 2. Purpose

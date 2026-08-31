@@ -7,7 +7,7 @@ En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad 
 - **Titular:** Xavier Rosselló Díaz
 - **NIF/CIF:** 79282716Z
 - **Domicilio:** Masía Can Rosselló-Can Ballesta, s/n, 08186 Lliçà d'Amunt, Barcelona
-- **Correo electrónico de contacto:** rovinshop17@gmail.com
+- **Correo electrónico de contacto:** soportebelrion@gmail.com
 - **Nombre del servicio:** Belrion (en adelante, "la aplicación" o "el servicio")
 
 ## 2. Objeto

@@ -5,7 +5,7 @@
 - **Responsable:** Xavier Rosselló Díaz
 - **NIF:** 79282716Z
 - **Domicili:** Masia Can Rosselló-Can Ballesta, s/n, 08186 Lliçà d'Amunt, Barcelona
-- **Correu electrònic de contacte:** rovinshop17@gmail.com
+- **Correu electrònic de contacte:** soportebelrion@gmail.com
 
 ## 2. A quines dades s'aplica aquesta política
 
@@ -46,11 +46,11 @@ Aquests proveïdors poden emmagatzemar dades en servidors fora de l'Espai Econò
 
 ## 6. Termini de conservació
 
-Les dades es conservaran mentre mantinguis el teu compte actiu a Belrion. Si elimines un client, contacte o visita des de la mateixa aplicació, s'elimina de la base de dades de forma permanent. Si decideixes tancar el teu compte, pots sol·licitar l'eliminació completa de les teves dades escrivint a rovinshop17@gmail.com.
+Les dades es conservaran mentre mantinguis el teu compte actiu a Belrion. Si elimines un client, contacte o visita des de la mateixa aplicació, s'elimina de la base de dades de forma permanent. Si decideixes tancar el teu compte, pots sol·licitar l'eliminació completa de les teves dades escrivint a soportebelrion@gmail.com.
 
 ## 7. Els teus drets
 
-Com a titular de les teves pròpies dades (el teu compte), tens dret a accedir, rectificar, suprimir, limitar el tractament, oposar-te i sol·licitar la portabilitat de les teves dades, escrivint a **rovinshop17@gmail.com**. També tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD) si consideres que els teus drets no han estat atesos correctament ([www.aepd.es](https://www.aepd.es)).
+Com a titular de les teves pròpies dades (el teu compte), tens dret a accedir, rectificar, suprimir, limitar el tractament, oposar-te i sol·licitar la portabilitat de les teves dades, escrivint a **soportebelrion@gmail.com**. També tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD) si consideres que els teus drets no han estat atesos correctament ([www.aepd.es](https://www.aepd.es)).
 
 Si ets una persona les dades de la qual han estat introduïdes per un usuari de Belrion (per exemple, ets el contacte d'una empresa client registrada a l'aplicació d'un comercial), has de dirigir la teva sol·licitud directament a aquesta persona o empresa, ja que és qui actua com a responsable de les teves dades.
 
