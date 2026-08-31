@@ -8,7 +8,8 @@
     "profile": "Profile",
     "dashboard": "Home",
     "feedback": "Feedback",
-    "admin": "Admin"
+    "admin": "Admin",
+    "help": "Help"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -140,6 +141,10 @@
       "title": "Custom fields",
       "description": "Create your own fields to adapt the client record to what you need.",
       "empty": "You haven't created any custom fields yet.",
+      "emptyTitle": "You don't have any custom fields yet",
+      "emptyExplanation": "Every salesperson needs to track different data depending on their sector. For example, someone in the energy sector could create a text field called \"CUPS\" to store each client's supply code.",
+      "createFirst": "Create my first field",
+      "visibilityHelp": "Private: only you see and fill it in. Shared: your whole team sees it and can fill it in on the clients you share.",
       "add": "Add field",
       "edit": "Edit field",
       "name": "Field name",
@@ -208,8 +213,10 @@
       "upcomingOnly": "With upcoming visit",
       "columns": "Columns",
       "columnsHint": "Choose which custom fields to show as a column",
+      "columnsHelp": "Add columns from your custom fields to the client table.",
       "addFilter": "+ Add filter",
       "addFilterPlaceholder": "Choose field…",
+      "addFilterHelp": "Filter by fixed data (status, product…) as well as your custom fields.",
       "removeFilter": "Remove filter",
       "filterContains": "contains",
       "filterEquals": "equals",
@@ -589,5 +596,26 @@
     "placeholder": "Search client or contact…",
     "noResults": "No results",
     "hint": "Type to search your clients"
+  },
+  "help": {
+    "title": "Help",
+    "intro": "Here's a simple, jargon-free guide to getting the most out of Belrion.",
+    "customFields": {
+      "title": "Custom fields: adapt the app to your sector",
+      "intro": "Belrion is used by salespeople across very different sectors — energy, hospitality, automotive and many more. A client's fixed data (company, contact, phone, email, address, notes, status) works for any sector, but your day-to-day probably needs to track something more specific. That's what custom fields are for: you create them, tailored to you, and decide who can see them.",
+      "step1Title": "1. Create your field from Settings",
+      "step1Text": "Go to Settings → Custom fields → press \"Add field\". Give it a name that's clear to you — it doesn't need to sound technical.",
+      "step1Example": "Example: someone in the energy sector creates a field called \"CUPS\" to store each client's electricity supply code.",
+      "step2Title": "2. Choose the type and who can see it",
+      "step2Text": "Every field has a type, based on what you'll store in it: Free text (for codes or short notes), Number, Date, Dropdown list (when the value is always one of a few you define), or Yes/No. You also choose whether the field is private (only you see and fill it in) or shared with your team (everyone on the team sees it and can fill it in on the clients you share).",
+      "step2Example": "Example: someone in hospitality creates a Date field called \"Last health inspection\", and keeps it private since it's only for their own tracking.",
+      "step3Title": "3. Fill it in on each client's record",
+      "step3Text": "Open any client's record and scroll down to the \"Custom fields\" section: every field you've created (yours plus anything your team shares) is there, ready to fill in.",
+      "step3Example": "Example: someone in automotive opens a dealership's record and enters 45 in the \"Vehicles in stock\" field.",
+      "step4Title": "4. Show it as a column in the list",
+      "step4Text": "In the client list, press the \"Columns\" button and check the custom fields you want to see at a glance in the table, without opening each record.",
+      "step5Title": "5. Filter and sort by it",
+      "step5Text": "With \"+ Add filter\" you can search clients by a custom field's value, just like you already do with status or product. And if it's shown as a column, you can click its header to sort the list by that field."
+    }
   }
 }

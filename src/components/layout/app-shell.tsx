@@ -16,6 +16,7 @@ import {
   SearchIcon,
   MessageSquareIcon,
   ShieldIcon,
+  BookOpenIcon,
 } from "lucide-react";
 import { logout } from "@/app/logout/actions";
 import { Footer } from "@/components/layout/footer";
@@ -27,6 +28,7 @@ const BASE_NAV_ITEMS = [
   { href: "/calendario", key: "calendar" as const, icon: CalendarDaysIcon },
   { href: "/equipo", key: "team" as const, icon: Building2Icon },
   { href: "/feedback", key: "feedback" as const, icon: MessageSquareIcon },
+  { href: "/ayuda", key: "help" as const, icon: BookOpenIcon },
   { href: "/ajustes", key: "settings" as const, icon: SettingsIcon },
 ];
 

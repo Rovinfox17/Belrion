@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { CustomFieldMeta } from "@/components/clients/client-list";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 
 export function ClientFilters({
   products,
@@ -169,18 +170,21 @@ export function ClientFilters({
           {t("upcomingOnly")}
         </Button>
         {addableFields.length > 0 && (
-          <Select items={addableFields.map((f) => ({ value: f.id, label: f.name }))} value="" onValueChange={(v) => v && addCustomFilter(v)}>
-            <SelectTrigger className="sm:w-44">
-              <SelectValue placeholder={t("addFilter")} />
-            </SelectTrigger>
-            <SelectContent>
-              {addableFields.map((f) => (
-                <SelectItem key={f.id} value={f.id}>
-                  {f.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="flex items-center gap-1.5">
+            <Select items={addableFields.map((f) => ({ value: f.id, label: f.name }))} value="" onValueChange={(v) => v && addCustomFilter(v)}>
+              <SelectTrigger className="sm:w-44">
+                <SelectValue placeholder={t("addFilter")} />
+              </SelectTrigger>
+              <SelectContent>
+                {addableFields.map((f) => (
+                  <SelectItem key={f.id} value={f.id}>
+                    {f.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <HelpTooltip text={t("addFilterHelp")} />
+          </div>
         )}
       </div>
 

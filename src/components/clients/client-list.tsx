@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ContactAvatar } from "@/components/clients/contact-avatar";
 import { SortableColumnHeader } from "@/components/clients/sortable-column-header";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 
 export type CustomFieldMeta = {
   id: string;
@@ -64,11 +65,12 @@ function ColumnPicker({
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center gap-1.5">
       <Button type="button" variant="outline" size="sm" onClick={() => setOpen((o) => !o)}>
         <SlidersHorizontalIcon />
         {t("columns")}
       </Button>
+      <HelpTooltip text={t("columnsHelp")} />
       {open && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />

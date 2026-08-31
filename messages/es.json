@@ -8,7 +8,8 @@
     "profile": "Perfil",
     "dashboard": "Inicio",
     "feedback": "Feedback",
-    "admin": "Administración"
+    "admin": "Administración",
+    "help": "Ayuda"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -140,6 +141,10 @@
       "title": "Campos personalizados",
       "description": "Crea tus propios campos para adaptar la ficha de cliente a lo que necesites.",
       "empty": "Todavía no has creado ningún campo personalizado.",
+      "emptyTitle": "Aún no tienes campos personalizados",
+      "emptyExplanation": "Cada comercial necesita guardar datos distintos según su sector. Por ejemplo, un comercial de energía podría crear un campo de texto llamado \"CUPS\" para guardar el código de suministro de cada cliente.",
+      "createFirst": "Crear mi primer campo",
+      "visibilityHelp": "Privado: solo tú lo ves y lo rellenas. Compartido: todo tu equipo lo ve y puede rellenarlo en los clientes que compartáis.",
       "add": "Añadir campo",
       "edit": "Editar campo",
       "name": "Nombre del campo",
@@ -208,8 +213,10 @@
       "upcomingOnly": "Con visita próxima",
       "columns": "Columnas",
       "columnsHint": "Elige qué campos personalizados mostrar como columna",
+      "columnsHelp": "Añade columnas de tus campos personalizados a la tabla de clientes.",
       "addFilter": "+ Añadir filtro",
       "addFilterPlaceholder": "Elegir campo…",
+      "addFilterHelp": "Filtra tanto por los datos fijos (estado, producto…) como por tus campos personalizados.",
       "removeFilter": "Quitar filtro",
       "filterContains": "contiene",
       "filterEquals": "igual a",
@@ -589,5 +596,26 @@
     "placeholder": "Buscar cliente o contacto…",
     "noResults": "Sin resultados",
     "hint": "Escribe para buscar entre tus clientes"
+  },
+  "help": {
+    "title": "Ayuda",
+    "intro": "Aquí tienes una guía sencilla, sin tecnicismos, para sacarle el máximo partido a Belrion.",
+    "customFields": {
+      "title": "Campos personalizados: adapta la app a tu sector",
+      "intro": "Belrion la usan comerciales de sectores muy distintos — energía, hostelería, automoción y muchos más. Los datos fijos de un cliente (empresa, contacto, teléfono, email, dirección, notas, estado) sirven para cualquier sector, pero seguro que en tu día a día necesitas anotar algo más concreto. Para eso existen los campos personalizados: los creas tú, a tu medida, y decides quién los puede ver.",
+      "step1Title": "1. Crea tu campo desde Ajustes",
+      "step1Text": "Ve a Ajustes → Campos personalizados → pulsa \"Añadir campo\". Ponle un nombre que te resulte claro a ti — no hace falta que sea técnico.",
+      "step1Example": "Ejemplo: un comercial del sector energético crea un campo llamado \"CUPS\" para guardar el código de suministro eléctrico de cada cliente.",
+      "step2Title": "2. Elige el tipo y quién lo puede ver",
+      "step2Text": "Cada campo tiene un tipo, según lo que vayas a guardar en él: Texto libre (para códigos o anotaciones cortas), Número, Fecha, Lista desplegable (cuando el valor siempre es uno de varios que tú defines) o Sí/No. También eliges si el campo es privado (solo tú lo ves y lo rellenas) o compartido con tu equipo (todos los miembros lo ven y pueden rellenarlo en los clientes que compartáis).",
+      "step2Example": "Ejemplo: un comercial de hostelería crea un campo de tipo Fecha llamado \"Última inspección sanitaria\", y lo deja privado porque es solo para su propio control.",
+      "step3Title": "3. Rellénalo en la ficha de cada cliente",
+      "step3Text": "Entra en la ficha de cualquier cliente y baja hasta la sección \"Campos personalizados\": ahí aparecen todos los que has creado (los tuyos y los que tu equipo comparta), listos para rellenar.",
+      "step3Example": "Ejemplo: un comercial de automoción abre la ficha de un concesionario y en el campo \"Número de vehículos en stock\" anota: 45.",
+      "step4Title": "4. Muéstralo como columna en el listado",
+      "step4Text": "En el listado de clientes, pulsa el botón \"Columnas\" y marca los campos personalizados que quieras ver de un vistazo en la tabla, sin tener que entrar en cada ficha.",
+      "step5Title": "5. Filtra y ordena por él",
+      "step5Text": "Con \"+ Añadir filtro\" puedes buscar clientes según el valor de un campo personalizado, igual que ya haces con el estado o el producto. Y si lo tienes mostrado como columna, puedes pulsar en su cabecera para ordenar el listado por ese campo."
+    }
   }
 }

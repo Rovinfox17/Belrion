@@ -8,7 +8,8 @@
     "profile": "Perfil",
     "dashboard": "Inici",
     "feedback": "Feedback",
-    "admin": "Administració"
+    "admin": "Administració",
+    "help": "Ajuda"
   },
   "footer": {
     "copyright": "© {year} Belrion",
@@ -140,6 +141,10 @@
       "title": "Camps personalitzats",
       "description": "Crea els teus propis camps per adaptar la fitxa de client al que necessitis.",
       "empty": "Encara no has creat cap camp personalitzat.",
+      "emptyTitle": "Encara no tens camps personalitzats",
+      "emptyExplanation": "Cada comercial necessita desar dades diferents segons el seu sector. Per exemple, un comercial d'energia podria crear un camp de text anomenat \"CUPS\" per desar el codi de subministrament de cada client.",
+      "createFirst": "Crear el meu primer camp",
+      "visibilityHelp": "Privat: només tu el veus i l'omples. Compartit: tot el teu equip el veu i el pot omplir als clients que compartiu.",
       "add": "Afegir camp",
       "edit": "Editar camp",
       "name": "Nom del camp",
@@ -208,8 +213,10 @@
       "upcomingOnly": "Amb visita propera",
       "columns": "Columnes",
       "columnsHint": "Tria quins camps personalitzats mostrar com a columna",
+      "columnsHelp": "Afegeix columnes dels teus camps personalitzats a la taula de clients.",
       "addFilter": "+ Afegir filtre",
       "addFilterPlaceholder": "Triar camp…",
+      "addFilterHelp": "Filtra tant per les dades fixes (estat, producte…) com pels teus camps personalitzats.",
       "removeFilter": "Treure filtre",
       "filterContains": "conté",
       "filterEquals": "igual a",
@@ -589,5 +596,26 @@
     "placeholder": "Cerca client o contacte…",
     "noResults": "Sense resultats",
     "hint": "Escriu per cercar entre els teus clients"
+  },
+  "help": {
+    "title": "Ajuda",
+    "intro": "Aquí tens una guia senzilla, sense tecnicismes, per treure el màxim profit a Belrion.",
+    "customFields": {
+      "title": "Camps personalitzats: adapta l'app al teu sector",
+      "intro": "Belrion l'utilitzen comercials de sectors molt diferents — energia, hostaleria, automoció i molts més. Les dades fixes d'un client (empresa, contacte, telèfon, email, adreça, notes, estat) serveixen per a qualsevol sector, però segur que en el teu dia a dia necessites anotar alguna cosa més concreta. Per això existeixen els camps personalitzats: els crees tu, a mida, i decideixes qui els pot veure.",
+      "step1Title": "1. Crea el teu camp des d'Ajustos",
+      "step1Text": "Ves a Ajustos → Camps personalitzats → prem \"Afegir camp\". Posa-li un nom que et resulti clar a tu — no cal que sigui tècnic.",
+      "step1Example": "Exemple: un comercial del sector energètic crea un camp anomenat \"CUPS\" per desar el codi de subministrament elèctric de cada client.",
+      "step2Title": "2. Tria el tipus i qui el pot veure",
+      "step2Text": "Cada camp té un tipus, segons el que hi vagis a desar: Text lliure (per a codis o anotacions curtes), Número, Data, Llista desplegable (quan el valor sempre és un de diversos que tu defineixes) o Sí/No. També tries si el camp és privat (només tu el veus i l'omples) o compartit amb el teu equip (tots els membres el veuen i el poden omplir als clients que compartiu).",
+      "step2Example": "Exemple: un comercial d'hostaleria crea un camp de tipus Data anomenat \"Última inspecció sanitària\", i el deixa privat perquè és només per al seu propi control.",
+      "step3Title": "3. Omple'l a la fitxa de cada client",
+      "step3Text": "Entra a la fitxa de qualsevol client i baixa fins a la secció \"Camps personalitzats\": hi apareixen tots els que has creat (els teus i els que el teu equip comparteixi), a punt per omplir.",
+      "step3Example": "Exemple: un comercial d'automoció obre la fitxa d'un concessionari i al camp \"Nombre de vehicles en estoc\" anota: 45.",
+      "step4Title": "4. Mostra'l com a columna al llistat",
+      "step4Text": "Al llistat de clients, prem el botó \"Columnes\" i marca els camps personalitzats que vulguis veure d'un cop d'ull a la taula, sense haver d'entrar a cada fitxa.",
+      "step5Title": "5. Filtra i ordena per ell",
+      "step5Text": "Amb \"+ Afegir filtre\" pots buscar clients segons el valor d'un camp personalitzat, igual que ja fas amb l'estat o el producte. I si el tens mostrat com a columna, pots prémer la seva capçalera per ordenar el llistat per aquest camp."
+    }
   }
 }

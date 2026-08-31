@@ -4,11 +4,12 @@ import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { ArrowUpIcon, ArrowDownIcon, PencilIcon, TrashIcon, XIcon } from "lucide-react";
+import { ArrowUpIcon, ArrowDownIcon, PencilIcon, SparklesIcon, TrashIcon, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 import {
   Dialog,
   DialogContent,
@@ -210,7 +211,10 @@ function CustomFieldDialog({
 
           {teams.length > 0 && (
             <div className="flex flex-col gap-2">
-              <Label htmlFor="field_visibility">{t("visibility")}</Label>
+              <Label htmlFor="field_visibility" className="flex items-center gap-1.5">
+                {t("visibility")}
+                <HelpTooltip text={t("visibilityHelp")} />
+              </Label>
               <Select
                 items={VISIBILITY_OPTIONS}
                 value={teamId}
@@ -296,13 +300,33 @@ export function CustomFieldsSection({
     });
   }
 
+  if (fields.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-accent/40 p-6 text-center">
+        <div className="flex size-10 items-center justify-center rounded-full bg-accent text-primary">
+          <SparklesIcon className="size-5" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <p className="font-medium">{t("emptyTitle")}</p>
+          <p className="max-w-md text-sm text-muted-foreground">{t("emptyExplanation")}</p>
+        </div>
+        <Button type="button" onClick={openCreate}>
+          {t("createFirst")}
+        </Button>
+        <CustomFieldDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+          field={editingField}
+          teams={teams}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-3">
-      {fields.length === 0 ? (
-        <p className="text-sm text-muted-foreground">{t("empty")}</p>
-      ) : (
-        <ul className="flex flex-col gap-2">
-          {fields.map((field, index) => (
+      <ul className="flex flex-col gap-2">
+        {fields.map((field, index) => (
             <li
               key={field.id}
               className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm"
@@ -351,8 +375,7 @@ export function CustomFieldsSection({
               </div>
             </li>
           ))}
-        </ul>
-      )}
+      </ul>
 
       <Button type="button" variant="outline" className="w-fit" onClick={openCreate}>
         {t("add")}
