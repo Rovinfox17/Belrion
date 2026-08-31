@@ -41,6 +41,7 @@ To provide the service, Belrion relies on the following providers, which act as 
 |---|---|---|
 | Supabase Inc. | Database, authentication, and storage | [supabase.com/privacy](https://supabase.com/privacy) |
 | Vercel Inc. | Application hosting and deployment | [vercel.com/legal/privacy-policy](https://vercel.com/legal/privacy-policy) |
+| Google LLC (Google Analytics) | App usage analytics, only if you accept analytics cookies | [policies.google.com/privacy](https://policies.google.com/privacy) |
 
 These providers may store data on servers outside the European Economic Area, depending on the region you configure. In Belrion's case, the Supabase database is hosted in **eu-west-1 (Ireland)**, i.e., within the European Union, so there is no international transfer of data outside the EEA for information stored in Supabase. If you change region or provider in the future, review whether this section needs updating and, if applicable, incorporate the appropriate safeguards under the GDPR (such as the European Commission's Standard Contractual Clauses).
 

@@ -55,7 +55,13 @@ const markdownComponents: Components = {
   ),
 };
 
-export async function LegalPage({ markdown }: { markdown: string }) {
+export async function LegalPage({
+  markdown,
+  extra,
+}: {
+  markdown: string;
+  extra?: React.ReactNode;
+}) {
   const t = await getTranslations("legal");
 
   return (
@@ -71,6 +77,7 @@ export async function LegalPage({ markdown }: { markdown: string }) {
         >
           {t("back")}
         </Link>
+        {extra}
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
           {markdown}
         </ReactMarkdown>

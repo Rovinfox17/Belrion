@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
+import { CookieConsent } from "@/components/cookies/cookie-consent";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           {children}
           <Toaster position="bottom-right" richColors />
           <ServiceWorkerRegister />
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>

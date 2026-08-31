@@ -6,17 +6,29 @@ Les cookies són petits fitxers de text que un lloc web emmagatzema al dispositi
 
 ## 2. Cookies que utilitza Belrion
 
-Belrion utilitza **exclusivament cookies tècniques o necessàries**, imprescindibles per al funcionament del servei:
+### Cookies tècniques o necessàries
+
+Imprescindibles per al funcionament del servei, no requereixen el teu consentiment:
 
 | Cookie | Finalitat | Durada | Titular |
 |---|---|---|---|
 | Cookie de sessió de Supabase Auth | Mantenir la teva sessió iniciada de forma segura mentre uses l'aplicació | Fins al tancament de sessió o expiració del token | Pròpia (gestionada via Supabase) |
 
-**No utilitzem cookies d'analítica, publicitat ni de seguiment de tercers.**
+### Cookies d'analítica (opcionals)
+
+Només s'instal·len si ens dones el teu consentiment explícit a través del bàner de cookies:
+
+| Cookie | Finalitat | Durada | Titular |
+|---|---|---|---|
+| `_ga`, `_ga_*` (Google Analytics) | Mesurar l'ús de l'aplicació de forma anònima i agregada (pàgines visitades, temps d'ús) | Fins a 2 anys | Google LLC (tercer) |
+
+Pots canviar la teva decisió en qualsevol moment des del botó "Gestionar les meves preferències de cookies" al final d'aquesta pàgina.
 
 ## 3. Base legal
 
-D'acord amb l'article 22.2 de la Llei 34/2002 (LSSI-CE), les cookies estrictament necessàries per prestar el servei expressament sol·licitat per l'usuari (com mantenir la sessió d'inici de sessió) estan exemptes del deure de sol·licitar consentiment previ. Per això Belrion no mostra un bàner d'acceptació de cookies: només t'informem del seu ús a través d'aquesta pàgina.
+D'acord amb l'article 22.2 de la Llei 34/2002 (LSSI-CE), les cookies estrictament necessàries per prestar el servei expressament sol·licitat per l'usuari (com mantenir la sessió d'inici de sessió) estan exemptes del deure de sol·licitar consentiment previ, per la qual cosa s'instal·len sempre.
+
+Les cookies d'analítica no són necessàries per al funcionament del servei, així que Belrion et demana el teu consentiment explícit mitjançant un bàner abans d'instal·lar-les. Pots acceptar-les, rebutjar-les, o canviar d'opinió més endavant sense cap penalització.
 
 ## 4. Com gestionar o eliminar les cookies
 
@@ -30,7 +42,7 @@ Tingues en compte que eliminar la cookie de sessió tancarà la teva sessió a B
 
 ## 5. Canvis en aquesta política
 
-Si en el futur Belrion incorpora noves funcionalitats que requereixin un altre tipus de cookies (per exemple, analítica d'ús), aquesta política s'actualitzarà i, si calgués, s'implementarà un sistema de consentiment previ conforme a la normativa vigent.
+Si en el futur Belrion incorpora noves cookies no contemplades aquí, aquesta política s'actualitzarà i, si calgués, es tornarà a demanar el teu consentiment.
 
 ---
-*Darrera actualització: 29 d'agost de 2026*
+*Darrera actualització: 31 d'agost de 2026*

@@ -141,7 +141,14 @@
     "back": "← Torna a Belrion",
     "titleLegalNotice": "Avís Legal · Belrion",
     "titlePrivacy": "Política de Privacitat · Belrion",
-    "titleCookies": "Política de Cookies · Belrion"
+    "titleCookies": "Política de Cookies · Belrion",
+    "manageCookies": "Gestionar les meves preferències de cookies"
+  },
+  "cookieBanner": {
+    "message": "Fem servir cookies tècniques necessàries pel funcionament de Belrion, i, si ens ho permets, cookies d'analítica per entendre com es fa servir l'aplicació.",
+    "learnMore": "Més informació",
+    "accept": "Acceptar",
+    "reject": "Rebutjar"
   },
   "clients": {
     "title": "Clients",
