@@ -397,6 +397,7 @@
         "fieldStatus": "Estat",
         "required": "obligatori",
         "companyNameMissing": "Assigna una columna a \"Nom de l'empresa\" per continuar.",
+        "customFieldsGroup": "Camps personalitzats",
         "next": "Continua",
         "back": "Enrere"
       },
@@ -412,6 +413,12 @@
         "summarySuccess": "{count, plural, one {# client importat correctament} other {# clients importats correctament}}",
         "summaryFailed": "{count, plural, one {# fila no s'ha pogut importar} other {# files no s'han pogut importar}}",
         "failedRow": "Fila {row} ({company}): {error}",
+        "summaryWarnings": "{count, plural, one {# client importat amb un avís} other {# clients importats amb avisos}}",
+        "warningRow": "Fila {row} ({company}): {field} — {reason}",
+        "warningInvalidNumber": "\"{value}\" no és un número vàlid",
+        "warningInvalidDate": "\"{value}\" no és una data vàlida",
+        "warningNoMatch": "\"{value}\" no coincideix amb cap opció",
+        "warningInvalidBoolean": "\"{value}\" no es reconeix com Sí/No",
         "close": "Tanca",
         "duplicatesNote": "Aquesta versió no detecta clients duplicats: si n'importes el mateix dues vegades, es crearan dos registres.",
         "missingCompanyName": "Falta el nom de l'empresa."

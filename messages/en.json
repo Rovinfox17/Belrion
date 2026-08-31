@@ -397,6 +397,7 @@
         "fieldStatus": "Status",
         "required": "required",
         "companyNameMissing": "Assign a column to \"Company name\" to continue.",
+        "customFieldsGroup": "Custom fields",
         "next": "Continue",
         "back": "Back"
       },
@@ -412,6 +413,12 @@
         "summarySuccess": "{count, plural, one {# client imported successfully} other {# clients imported successfully}}",
         "summaryFailed": "{count, plural, one {# row could not be imported} other {# rows could not be imported}}",
         "failedRow": "Row {row} ({company}): {error}",
+        "summaryWarnings": "{count, plural, one {# client imported with a warning} other {# clients imported with warnings}}",
+        "warningRow": "Row {row} ({company}): {field} — {reason}",
+        "warningInvalidNumber": "\"{value}\" is not a valid number",
+        "warningInvalidDate": "\"{value}\" is not a valid date",
+        "warningNoMatch": "\"{value}\" doesn't match any option",
+        "warningInvalidBoolean": "\"{value}\" isn't recognized as Yes/No",
         "close": "Close",
         "duplicatesNote": "This version doesn't detect duplicate clients: importing the same one twice will create two records.",
         "missingCompanyName": "Missing company name."

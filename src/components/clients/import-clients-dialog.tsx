@@ -16,11 +16,18 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { importClientsBatch, type ImportClientRow, type ImportRowResult } from "@/app/actions/import-clients";
+import {
+  importClientsBatch,
+  type ImportClientRow,
+  type ImportRowResult,
+} from "@/app/actions/import-clients";
+import type { CustomFieldMeta } from "@/components/clients/client-list";
 
 type Step = "upload" | "mapping" | "preview" | "importing";
 
@@ -34,6 +41,11 @@ type FieldKey =
   | "notes"
   | "status"
   | "ignore";
+
+// El mapeo de cada columna puede apuntar a uno de los campos fijos o, si el
+// usuario tiene campos personalizados, a uno de ellos (codificado como
+// "custom:<id>" para poder representarlo con un simple string en el <Select>).
+type ColumnTarget = FieldKey | `custom:${string}`;
 
 const BATCH_SIZE = 20;
 const PREVIEW_ROWS = 10;
@@ -71,7 +83,12 @@ const STATUS_SYNONYMS: Record<"activo" | "potencial" | "inactivo", string[]> = {
   inactivo: ["inactivo", "inactive", "inactiu"],
 };
 
-function guessField(header: string): FieldKey {
+const BOOLEAN_SYNONYMS: Record<"true" | "false", string[]> = {
+  true: ["si", "yes", "true", "1", "verdadero"],
+  false: ["no", "false", "0", "falso"],
+};
+
+function guessField(header: string, customFields: CustomFieldMeta[]): ColumnTarget {
   const norm = normalize(header);
   if (!norm) return "ignore";
   for (const [field, synonyms] of Object.entries(FIELD_SYNONYMS) as [
@@ -80,6 +97,12 @@ function guessField(header: string): FieldKey {
   ][]) {
     if (synonyms.some((s) => norm === s || norm.includes(s) || s.includes(norm))) {
       return field;
+    }
+  }
+  for (const field of customFields) {
+    const fieldNorm = normalize(field.name);
+    if (fieldNorm && (norm === fieldNorm || norm.includes(fieldNorm) || fieldNorm.includes(norm))) {
+      return `custom:${field.id}`;
     }
   }
   return "ignore";
@@ -100,7 +123,87 @@ function cellToString(cell: unknown): string {
   return String(cell ?? "").trim();
 }
 
-export function ImportClientsDialog() {
+/** Excel cuenta los días como número de serie desde el 30/12/1899 (con el
+ * conocido "bug" del año bisiesto 1900 ya integrado en ese punto de
+ * partida) — así llega la celda cuando Excel la formatea como fecha nativa
+ * en vez de como texto. */
+function parseExcelSerialDate(serial: number): Date {
+  const epoch = Date.UTC(1899, 11, 30);
+  return new Date(epoch + serial * 86400000);
+}
+
+/** Interpreta el texto de una celda como fecha sin la ambigüedad de
+ * `new Date(texto)`: ese constructor asume formato americano MM/DD/AAAA
+ * para cadenas con barras, así que "10/01/2027" (10 de enero para
+ * cualquier hispanohablante) se leía como 1 de octubre, y solo fallaba de
+ * forma visible cuando el día no podía ser un mes válido (>12) — el resto
+ * de fechas se guardaban con el día y el mes intercambiados en silencio. */
+function parseDateValue(raw: string): Date | null {
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+
+  if (/^\d+(\.\d+)?$/.test(trimmed)) {
+    const serial = Number(trimmed);
+    if (serial > 0 && serial < 100000) {
+      const date = parseExcelSerialDate(serial);
+      if (!Number.isNaN(date.getTime())) return date;
+    }
+  }
+
+  const match = trimmed.match(/^(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})$/);
+  if (match) {
+    const day = Number(match[1]);
+    const month = Number(match[2]) - 1;
+    let year = Number(match[3]);
+    if (year < 100) year += 2000;
+    const date = new Date(Date.UTC(year, month, day));
+    const valid =
+      date.getUTCFullYear() === year && date.getUTCMonth() === month && date.getUTCDate() === day;
+    return valid ? date : null;
+  }
+
+  // Cualquier otro formato (ISO "AAAA-MM-DD", cadenas ya inequívocas...).
+  const fallback = new Date(trimmed);
+  return Number.isNaN(fallback.getTime()) ? null : fallback;
+}
+
+/** Convierte y valida el valor de una celda para un campo personalizado
+ * según su tipo. Si no es válido, devuelve un aviso en vez de un valor. */
+function resolveCustomValue(
+  raw: string,
+  field: CustomFieldMeta
+): { value: string } | { warning: "invalidNumber" | "invalidDate" | "noMatch" | "invalidBoolean" } | null {
+  if (!raw) return null;
+
+  switch (field.fieldType) {
+    case "numero": {
+      const num = Number(raw.replace(",", "."));
+      if (!Number.isFinite(num)) return { warning: "invalidNumber" };
+      return { value: String(num) };
+    }
+    case "fecha": {
+      const date = parseDateValue(raw);
+      if (!date) return { warning: "invalidDate" };
+      return { value: date.toISOString().slice(0, 10) };
+    }
+    case "lista": {
+      const norm = normalize(raw);
+      const match = (field.options ?? []).find((o) => normalize(o) === norm);
+      if (!match) return { warning: "noMatch" };
+      return { value: match };
+    }
+    case "booleano": {
+      const norm = normalize(raw);
+      if (BOOLEAN_SYNONYMS.true.includes(norm)) return { value: "true" };
+      if (BOOLEAN_SYNONYMS.false.includes(norm)) return { value: "false" };
+      return { warning: "invalidBoolean" };
+    }
+    default:
+      return { value: raw };
+  }
+}
+
+export function ImportClientsDialog({ customFields }: { customFields: CustomFieldMeta[] }) {
   const t = useTranslations("clients.import");
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -111,7 +214,7 @@ export function ImportClientsDialog() {
 
   const [headers, setHeaders] = useState<string[]>([]);
   const [dataRows, setDataRows] = useState<unknown[][]>([]);
-  const [mapping, setMapping] = useState<Record<number, FieldKey>>({});
+  const [mapping, setMapping] = useState<Record<number, ColumnTarget>>({});
 
   const [progressDone, setProgressDone] = useState(0);
   const [results, setResults] = useState<ImportRowResult[]>([]);
@@ -154,9 +257,9 @@ export function ImportClientsDialog() {
         return;
       }
 
-      const initialMapping: Record<number, FieldKey> = {};
+      const initialMapping: Record<number, ColumnTarget> = {};
       fileHeaders.forEach((header, index) => {
-        initialMapping[index] = guessField(header);
+        initialMapping[index] = guessField(header, customFields);
       });
 
       setHeaders(fileHeaders);
@@ -169,44 +272,78 @@ export function ImportClientsDialog() {
     }
   }
 
-  function setColumnField(columnIndex: number, field: FieldKey) {
+  function setColumnField(columnIndex: number, field: ColumnTarget) {
     setMapping((prev) => ({ ...prev, [columnIndex]: field }));
   }
 
-  function fieldColumnIndex(field: FieldKey): number | null {
+  function fieldColumnIndex(field: ColumnTarget): number | null {
     const entry = Object.entries(mapping).find(([, f]) => f === field);
     return entry ? Number(entry[0]) : null;
   }
 
   const companyColumnIndex = fieldColumnIndex("companyName");
 
-  function buildRow(rowIndex: number, cells: unknown[]): ImportClientRow | null {
-    function value(field: FieldKey): string {
+  const mappedCustomFields = customFields.filter(
+    (f) => fieldColumnIndex(`custom:${f.id}`) !== null
+  );
+
+  function buildRow(
+    rowIndex: number,
+    cells: unknown[]
+  ): { row: ImportClientRow | null; warnings: { field: string; reason: string }[] } {
+    function value(field: ColumnTarget): string {
       const colIndex = fieldColumnIndex(field);
       return colIndex === null ? "" : cellToString(cells[colIndex]);
     }
 
     const companyName = value("companyName");
-    if (!companyName) return null;
+    if (!companyName) return { row: null, warnings: [] };
 
     const productsRaw = value("products");
 
+    const customFieldValues: { fieldId: string; value: string }[] = [];
+    const warnings: { field: string; reason: string }[] = [];
+    for (const field of mappedCustomFields) {
+      const raw = value(`custom:${field.id}`);
+      const resolved = resolveCustomValue(raw, field);
+      if (!resolved) continue;
+      if ("value" in resolved) {
+        customFieldValues.push({ fieldId: field.id, value: resolved.value });
+      } else {
+        warnings.push({
+          field: field.name,
+          reason: t(`importing.warning${capitalize(resolved.warning)}`, { value: raw }),
+        });
+      }
+    }
+
     return {
-      rowIndex,
-      companyName,
-      contactName: value("contactName") || null,
-      phone: value("phone") || null,
-      email: value("email") || null,
-      address: value("address") || null,
-      notes: value("notes") || null,
-      products: productsRaw
-        ? productsRaw.split(/[,;]+/).map((p) => p.trim()).filter(Boolean)
-        : [],
-      status: normalizeStatusValue(value("status")),
+      row: {
+        rowIndex,
+        companyName,
+        contactName: value("contactName") || null,
+        phone: value("phone") || null,
+        email: value("email") || null,
+        address: value("address") || null,
+        notes: value("notes") || null,
+        products: productsRaw
+          ? productsRaw.split(/[,;]+/).map((p) => p.trim()).filter(Boolean)
+          : [],
+        status: normalizeStatusValue(value("status")),
+        customFieldValues,
+      },
+      warnings,
     };
   }
 
-  const allRows = dataRows.map((cells, i) => ({ rowIndex: i + 2, row: buildRow(i + 2, cells) }));
+  function capitalize(s: string) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  const allRows = dataRows.map((cells, i) => {
+    const { row, warnings } = buildRow(i + 2, cells);
+    return { rowIndex: i + 2, row, warnings };
+  });
   const previewRows = allRows.slice(0, PREVIEW_ROWS);
 
   async function handleImport() {
@@ -223,6 +360,8 @@ export function ImportClientsDialog() {
         error: t("importing.missingCompanyName"),
       }));
 
+    const warningsByRow = new Map(allRows.map((r) => [r.rowIndex, r.warnings]));
+
     const validRows = allRows
       .map((r) => r.row)
       .filter((r): r is ImportClientRow => r !== null);
@@ -234,7 +373,11 @@ export function ImportClientsDialog() {
     for (let i = 0; i < validRows.length; i += BATCH_SIZE) {
       const batch = validRows.slice(i, i + BATCH_SIZE);
       const { results: batchResults } = await importClientsBatch(batch);
-      allResults.push(...batchResults);
+      const withWarnings = batchResults.map((r) => ({
+        ...r,
+        warnings: warningsByRow.get(r.rowIndex) ?? [],
+      }));
+      allResults.push(...withWarnings);
       setResults([...allResults]);
       setProgressDone((prev) => prev + batch.length);
     }
@@ -245,9 +388,10 @@ export function ImportClientsDialog() {
   const totalRows = allRows.length;
   const successCount = results.filter((r) => r.success).length;
   const failedResults = results.filter((r) => !r.success);
+  const warnedResults = results.filter((r) => r.success && r.warnings && r.warnings.length > 0);
   const isImporting = step === "importing" && progressDone < totalRows;
 
-  const FIELD_OPTIONS: { value: FieldKey; label: string }[] = [
+  const FIELD_OPTIONS: { value: ColumnTarget; label: string }[] = [
     { value: "ignore", label: t("mapping.ignore") },
     { value: "companyName", label: `${t("mapping.fieldCompanyName")} (${t("mapping.required")})` },
     { value: "contactName", label: t("mapping.fieldContactName") },
@@ -257,6 +401,7 @@ export function ImportClientsDialog() {
     { value: "products", label: t("mapping.fieldProducts") },
     { value: "notes", label: t("mapping.fieldNotes") },
     { value: "status", label: t("mapping.fieldStatus") },
+    ...customFields.map((f) => ({ value: `custom:${f.id}` as ColumnTarget, label: f.name })),
   ];
 
   return (
@@ -311,17 +456,27 @@ export function ImportClientsDialog() {
                   <Select
                     items={FIELD_OPTIONS}
                     value={mapping[index] ?? "ignore"}
-                    onValueChange={(v) => setColumnField(index, (v ?? "ignore") as FieldKey)}
+                    onValueChange={(v) => setColumnField(index, (v ?? "ignore") as ColumnTarget)}
                   >
                     <SelectTrigger className="flex-1">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {FIELD_OPTIONS.map((option) => (
+                      {FIELD_OPTIONS.filter((o) => !o.value.startsWith("custom:")).map((option) => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}
                         </SelectItem>
                       ))}
+                      {customFields.length > 0 && (
+                        <SelectGroup>
+                          <SelectLabel>{t("mapping.customFieldsGroup")}</SelectLabel>
+                          {customFields.map((f) => (
+                            <SelectItem key={f.id} value={`custom:${f.id}`}>
+                              {f.name}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
@@ -363,6 +518,11 @@ export function ImportClientsDialog() {
                     <th className="px-3 py-2 font-medium">{t("mapping.fieldContactName")}</th>
                     <th className="px-3 py-2 font-medium">{t("mapping.fieldStatus")}</th>
                     <th className="px-3 py-2 font-medium">{t("mapping.fieldProducts")}</th>
+                    {mappedCustomFields.map((f) => (
+                      <th key={f.id} className="px-3 py-2 font-medium">
+                        {f.name}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -372,6 +532,11 @@ export function ImportClientsDialog() {
                       <td className="px-3 py-2">{row?.contactName ?? "—"}</td>
                       <td className="px-3 py-2">{row?.status ?? "—"}</td>
                       <td className="px-3 py-2">{row?.products.join(", ") || "—"}</td>
+                      {mappedCustomFields.map((f) => (
+                        <td key={f.id} className="px-3 py-2">
+                          {row?.customFieldValues.find((v) => v.fieldId === f.id)?.value ?? "—"}
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
@@ -399,6 +564,27 @@ export function ImportClientsDialog() {
               <div className="flex flex-col gap-3">
                 <p className="font-medium">{t("importing.summaryTitle")}</p>
                 <p className="text-sm">{t("importing.summarySuccess", { count: successCount })}</p>
+                {warnedResults.length > 0 && (
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-sm text-amber-700">
+                      {t("importing.summaryWarnings", { count: warnedResults.length })}
+                    </p>
+                    <ul className="flex max-h-40 flex-col gap-1 overflow-y-auto rounded-lg border border-border p-2 text-xs text-muted-foreground">
+                      {warnedResults.map((r) =>
+                        (r.warnings ?? []).map((w, i) => (
+                          <li key={`${r.rowIndex}-${i}`}>
+                            {t("importing.warningRow", {
+                              row: r.rowIndex,
+                              company: r.companyName || "—",
+                              field: w.field,
+                              reason: w.reason,
+                            })}
+                          </li>
+                        ))
+                      )}
+                    </ul>
+                  </div>
+                )}
                 {failedResults.length > 0 && (
                   <div className="flex flex-col gap-1.5">
                     <p className="text-sm text-destructive">

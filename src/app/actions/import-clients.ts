@@ -17,6 +17,7 @@ export type ImportClientRow = {
   notes: string | null;
   products: string[];
   status: ClientStatus;
+  customFieldValues: { fieldId: string; value: string }[];
 };
 
 export type ImportRowResult = {
@@ -24,6 +25,7 @@ export type ImportRowResult = {
   companyName: string;
   success: boolean;
   error?: string;
+  warnings?: { field: string; reason: string }[];
 };
 
 export async function importClientsBatch(
@@ -92,6 +94,19 @@ export async function importClientsBatch(
         .from("products")
         .insert(row.products.map((name) => ({ client_id: clientId, name })));
       if (productsError) console.error("import row products failed", row.rowIndex, productsError);
+    }
+
+    if (row.customFieldValues.length > 0) {
+      const { error: customFieldsError } = await supabase.from("custom_field_values").insert(
+        row.customFieldValues.map((v) => ({
+          client_id: clientId,
+          field_id: v.fieldId,
+          value: v.value,
+        }))
+      );
+      if (customFieldsError) {
+        console.error("import row custom fields failed", row.rowIndex, customFieldsError);
+      }
     }
 
     results.push({ rowIndex: row.rowIndex, companyName: row.companyName, success: true });

@@ -250,7 +250,7 @@ export default async function Home({
               clients={availableToShare}
             />
           )}
-          <ImportClientsDialog />
+          <ImportClientsDialog customFields={customFields} />
           <NewClientDialog teams={teams} defaultTeamId={activeTeam?.id ?? null} />
         </div>
       </div>

@@ -397,6 +397,7 @@
         "fieldStatus": "Estado",
         "required": "obligatorio",
         "companyNameMissing": "Asigna una columna a \"Nombre de la empresa\" para continuar.",
+        "customFieldsGroup": "Campos personalizados",
         "next": "Continuar",
         "back": "Atrás"
       },
@@ -412,6 +413,12 @@
         "summarySuccess": "{count, plural, one {# cliente importado correctamente} other {# clientes importados correctamente}}",
         "summaryFailed": "{count, plural, one {# fila no se pudo importar} other {# filas no se pudieron importar}}",
         "failedRow": "Fila {row} ({company}): {error}",
+        "summaryWarnings": "{count, plural, one {# cliente importado con un aviso} other {# clientes importados con avisos}}",
+        "warningRow": "Fila {row} ({company}): {field} — {reason}",
+        "warningInvalidNumber": "\"{value}\" no es un número válido",
+        "warningInvalidDate": "\"{value}\" no es una fecha válida",
+        "warningNoMatch": "\"{value}\" no coincide con ninguna opción",
+        "warningInvalidBoolean": "\"{value}\" no se reconoce como Sí/No",
         "close": "Cerrar",
         "duplicatesNote": "Esta versión no detecta clientes duplicados: si importas el mismo dos veces, se crearán dos registros.",
         "missingCompanyName": "Falta el nombre de la empresa."
