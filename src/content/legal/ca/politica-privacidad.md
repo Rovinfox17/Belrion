@@ -41,6 +41,7 @@ Per prestar el servei, Belrion es recolza en els següents proveïdors, que actu
 |---|---|---|
 | Supabase Inc. | Base de dades, autenticació i emmagatzematge | [supabase.com/privacy](https://supabase.com/privacy) |
 | Vercel Inc. | Hosting i desplegament de l'aplicació | [vercel.com/legal/privacy-policy](https://vercel.com/legal/privacy-policy) |
+| Resend, Inc. | Enviament d'emails transaccionals (sol·licituds d'accés, invitacions, recuperació de contrasenya) | [resend.com/legal/privacy-policy](https://resend.com/legal/privacy-policy) |
 | Google LLC (Google Analytics) | Analítica d'ús de l'aplicació, només si acceptes les cookies d'analítica | [policies.google.com/privacy](https://policies.google.com/privacy) |
 
 Aquests proveïdors poden emmagatzemar dades en servidors fora de l'Espai Econòmic Europeu, segons la regió que configuris. En el cas de Belrion, la base de dades de Supabase està allotjada a **eu-west-1 (Irlanda)**, és a dir, dins de la Unió Europea, per la qual cosa no hi ha transferència internacional de dades fora de l'EEE per a la informació emmagatzemada a Supabase. Si en el futur canvies de regió o de proveïdor, revisa si cal actualitzar aquest apartat i, si escau, incorporar les garanties adequades conforme al RGPD (com les Clàusules Contractuals Tipus de la Comissió Europea).
@@ -68,4 +69,4 @@ Belrion aplica mesures tècniques i organitzatives raonables per protegir les da
 Aquesta política es podrà actualitzar per adaptar-se a canvis legislatius o del mateix servei. Es recomana revisar aquesta pàgina periòdicament.
 
 ---
-*Darrera actualització: 29 d'agost de 2026*
+*Darrera actualització: 31 d'agost de 2026*
