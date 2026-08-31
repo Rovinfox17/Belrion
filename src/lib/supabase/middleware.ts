@@ -39,7 +39,12 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/cookies") ||
     request.nextUrl.pathname.startsWith("/privacidad") ||
     request.nextUrl.pathname.startsWith("/auth/callback") ||
-    request.nextUrl.pathname.startsWith("/auth/confirm");
+    request.nextUrl.pathname.startsWith("/auth/confirm") ||
+    // Ruta interna del tunnelRoute de Sentry (next.config.ts): si se deja
+    // fuera de esta lista, una persona sin sesión iniciada (p. ej. en
+    // /login) vería sus reportes de error redirigidos a /login en vez de
+    // reenviados a Sentry.
+    request.nextUrl.pathname.startsWith("/monitoring");
 
   if (!user && !isAuthRoute && !isPublicRoute) {
     const url = request.nextUrl.clone();
