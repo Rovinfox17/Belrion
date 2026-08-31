@@ -135,6 +135,44 @@
     },
     "legal": {
       "title": "Legal"
+    },
+    "customFields": {
+      "title": "Campos personalizados",
+      "description": "Crea tus propios campos para adaptar la ficha de cliente a lo que necesites.",
+      "empty": "Todavía no has creado ningún campo personalizado.",
+      "add": "Añadir campo",
+      "edit": "Editar campo",
+      "name": "Nombre del campo",
+      "namePlaceholder": "Ej. Tamaño de flota",
+      "type": "Tipo de campo",
+      "typeText": "Texto libre",
+      "typeNumber": "Número",
+      "typeDate": "Fecha",
+      "typeList": "Lista desplegable",
+      "typeBoolean": "Sí / No",
+      "options": "Opciones",
+      "optionsPlaceholder": "Nueva opción",
+      "addOption": "Añadir opción",
+      "visibility": "Visibilidad",
+      "visibilityPrivate": "Privado (solo tú)",
+      "visibilityTeam": "Compartido con {team}",
+      "save": "Guardar",
+      "saving": "Guardando…",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "deleteConfirm": "¿Eliminar este campo? Se perderán los valores guardados en todos los clientes.",
+      "createSuccess": "Campo creado",
+      "updateSuccess": "Campo actualizado",
+      "deleteSuccess": "Campo eliminado",
+      "private": "Privado",
+      "errors": {
+        "nameRequired": "Escribe un nombre para el campo.",
+        "optionsRequired": "Añade al menos una opción.",
+        "createFailed": "No se pudo crear el campo.",
+        "updateFailed": "No se pudo actualizar el campo.",
+        "deleteFailed": "No se pudo eliminar el campo.",
+        "moveFailed": "No se pudo reordenar el campo."
+      }
     }
   },
   "legal": {
@@ -167,7 +205,19 @@
       "sortNextVisit": "Próxima visita",
       "sortLastVisit": "Última visita",
       "sortPlaceholder": "Ordenar",
-      "upcomingOnly": "Con visita próxima"
+      "upcomingOnly": "Con visita próxima",
+      "columns": "Columnas",
+      "columnsHint": "Elige qué campos personalizados mostrar como columna",
+      "addFilter": "+ Añadir filtro",
+      "addFilterPlaceholder": "Elegir campo…",
+      "removeFilter": "Quitar filtro",
+      "filterContains": "contiene",
+      "filterEquals": "igual a",
+      "filterGreaterThan": "mayor que",
+      "filterLessThan": "menor que",
+      "filterYes": "Sí",
+      "filterNo": "No",
+      "filterAll": "Todos"
     },
     "list": {
       "company": "Empresa",
@@ -306,6 +356,17 @@
       "statusPending": "Pendiente",
       "statusCompleted": "Completada",
       "statusCancelled": "Cancelada"
+    },
+    "customFields": {
+      "title": "Campos personalizados",
+      "empty": "No tienes campos personalizados creados.",
+      "emptyLink": "Créalos desde Ajustes",
+      "save": "Guardar",
+      "saving": "Guardando…",
+      "success": "Campos guardados",
+      "errors": {
+        "saveFailed": "No se pudieron guardar los campos."
+      }
     },
     "import": {
       "trigger": "Importar desde Excel",

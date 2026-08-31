@@ -135,6 +135,44 @@
     },
     "legal": {
       "title": "Legal"
+    },
+    "customFields": {
+      "title": "Custom fields",
+      "description": "Create your own fields to adapt the client record to what you need.",
+      "empty": "You haven't created any custom fields yet.",
+      "add": "Add field",
+      "edit": "Edit field",
+      "name": "Field name",
+      "namePlaceholder": "E.g. Fleet size",
+      "type": "Field type",
+      "typeText": "Free text",
+      "typeNumber": "Number",
+      "typeDate": "Date",
+      "typeList": "Dropdown list",
+      "typeBoolean": "Yes / No",
+      "options": "Options",
+      "optionsPlaceholder": "New option",
+      "addOption": "Add option",
+      "visibility": "Visibility",
+      "visibilityPrivate": "Private (only you)",
+      "visibilityTeam": "Shared with {team}",
+      "save": "Save",
+      "saving": "Saving…",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this field? Saved values on all clients will be lost.",
+      "createSuccess": "Field created",
+      "updateSuccess": "Field updated",
+      "deleteSuccess": "Field deleted",
+      "private": "Private",
+      "errors": {
+        "nameRequired": "Write a name for the field.",
+        "optionsRequired": "Add at least one option.",
+        "createFailed": "Couldn't create the field.",
+        "updateFailed": "Couldn't update the field.",
+        "deleteFailed": "Couldn't delete the field.",
+        "moveFailed": "Couldn't reorder the field."
+      }
     }
   },
   "legal": {
@@ -167,7 +205,19 @@
       "sortNextVisit": "Next visit",
       "sortLastVisit": "Last visit",
       "sortPlaceholder": "Sort",
-      "upcomingOnly": "With upcoming visit"
+      "upcomingOnly": "With upcoming visit",
+      "columns": "Columns",
+      "columnsHint": "Choose which custom fields to show as a column",
+      "addFilter": "+ Add filter",
+      "addFilterPlaceholder": "Choose field…",
+      "removeFilter": "Remove filter",
+      "filterContains": "contains",
+      "filterEquals": "equals",
+      "filterGreaterThan": "greater than",
+      "filterLessThan": "less than",
+      "filterYes": "Yes",
+      "filterNo": "No",
+      "filterAll": "All"
     },
     "list": {
       "company": "Company",
@@ -306,6 +356,17 @@
       "statusPending": "Pending",
       "statusCompleted": "Completed",
       "statusCancelled": "Cancelled"
+    },
+    "customFields": {
+      "title": "Custom fields",
+      "empty": "You don't have any custom fields created.",
+      "emptyLink": "Create them from Settings",
+      "save": "Save",
+      "saving": "Saving…",
+      "success": "Fields saved",
+      "errors": {
+        "saveFailed": "Couldn't save the fields."
+      }
     },
     "import": {
       "trigger": "Import from Excel",

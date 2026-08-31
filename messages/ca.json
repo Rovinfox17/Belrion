@@ -135,6 +135,44 @@
     },
     "legal": {
       "title": "Legal"
+    },
+    "customFields": {
+      "title": "Camps personalitzats",
+      "description": "Crea els teus propis camps per adaptar la fitxa de client al que necessitis.",
+      "empty": "Encara no has creat cap camp personalitzat.",
+      "add": "Afegir camp",
+      "edit": "Editar camp",
+      "name": "Nom del camp",
+      "namePlaceholder": "Ex. Mida de la flota",
+      "type": "Tipus de camp",
+      "typeText": "Text lliure",
+      "typeNumber": "Número",
+      "typeDate": "Data",
+      "typeList": "Llista desplegable",
+      "typeBoolean": "Sí / No",
+      "options": "Opcions",
+      "optionsPlaceholder": "Nova opció",
+      "addOption": "Afegir opció",
+      "visibility": "Visibilitat",
+      "visibilityPrivate": "Privat (només tu)",
+      "visibilityTeam": "Compartit amb {team}",
+      "save": "Desar",
+      "saving": "Desant…",
+      "cancel": "Cancel·lar",
+      "delete": "Eliminar",
+      "deleteConfirm": "Vols eliminar aquest camp? Es perdran els valors desats a tots els clients.",
+      "createSuccess": "Camp creat",
+      "updateSuccess": "Camp actualitzat",
+      "deleteSuccess": "Camp eliminat",
+      "private": "Privat",
+      "errors": {
+        "nameRequired": "Escriu un nom pel camp.",
+        "optionsRequired": "Afegeix almenys una opció.",
+        "createFailed": "No s'ha pogut crear el camp.",
+        "updateFailed": "No s'ha pogut actualitzar el camp.",
+        "deleteFailed": "No s'ha pogut eliminar el camp.",
+        "moveFailed": "No s'ha pogut reordenar el camp."
+      }
     }
   },
   "legal": {
@@ -167,7 +205,19 @@
       "sortNextVisit": "Propera visita",
       "sortLastVisit": "Darrera visita",
       "sortPlaceholder": "Ordenar",
-      "upcomingOnly": "Amb visita propera"
+      "upcomingOnly": "Amb visita propera",
+      "columns": "Columnes",
+      "columnsHint": "Tria quins camps personalitzats mostrar com a columna",
+      "addFilter": "+ Afegir filtre",
+      "addFilterPlaceholder": "Triar camp…",
+      "removeFilter": "Treure filtre",
+      "filterContains": "conté",
+      "filterEquals": "igual a",
+      "filterGreaterThan": "més gran que",
+      "filterLessThan": "més petit que",
+      "filterYes": "Sí",
+      "filterNo": "No",
+      "filterAll": "Tots"
     },
     "list": {
       "company": "Empresa",
@@ -306,6 +356,17 @@
       "statusPending": "Pendent",
       "statusCompleted": "Completada",
       "statusCancelled": "Cancel·lada"
+    },
+    "customFields": {
+      "title": "Camps personalitzats",
+      "empty": "No tens camps personalitzats creats.",
+      "emptyLink": "Crea'ls des d'Ajustos",
+      "save": "Desar",
+      "saving": "Desant…",
+      "success": "Camps desats",
+      "errors": {
+        "saveFailed": "No s'han pogut desar els camps."
+      }
     },
     "import": {
       "trigger": "Importa des d'Excel",

@@ -261,6 +261,52 @@ export type Database = {
         Update: Partial<Database["public"]["Tables"]["feedback_submissions"]["Insert"]>;
         Relationships: [];
       };
+      custom_field_definitions: {
+        Row: {
+          id: string;
+          owner_id: string;
+          name: string;
+          field_type: "texto" | "numero" | "fecha" | "lista" | "booleano";
+          options: string[] | null;
+          team_id: string | null;
+          sort_order: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          owner_id?: string;
+          name: string;
+          field_type: "texto" | "numero" | "fecha" | "lista" | "booleano";
+          options?: string[] | null;
+          team_id?: string | null;
+          sort_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["custom_field_definitions"]["Insert"]>;
+        Relationships: [];
+      };
+      custom_field_values: {
+        Row: {
+          id: string;
+          client_id: string;
+          field_id: string;
+          value: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          client_id: string;
+          field_id: string;
+          value?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["custom_field_values"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -292,6 +338,10 @@ export type Database = {
           message: string;
           created_at: string;
         }[];
+      };
+      can_access_custom_field: {
+        Args: { p_field_id: string };
+        Returns: boolean;
       };
     };
     Enums: Record<string, never>;

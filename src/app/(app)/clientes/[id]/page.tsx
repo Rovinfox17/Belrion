@@ -10,6 +10,10 @@ import { ContactsSection, type Contact } from "@/components/clients/contacts-sec
 import { ProductsSection, type Product } from "@/components/clients/products-section";
 import { VisitsHistory, type VisitWithComments } from "@/components/clients/visits-history";
 import { ClientTeamsSection } from "@/components/clients/client-teams-section";
+import {
+  CustomFieldsSection,
+  type CustomFieldWithValue,
+} from "@/components/clients/custom-fields-section";
 
 type Status = "activo" | "potencial" | "inactivo";
 
@@ -119,6 +123,23 @@ export default async function ClientDetailPage({
     details: p.details,
   }));
 
+  const [{ data: fieldDefinitions }, { data: fieldValues }] = await Promise.all([
+    supabase
+      .from("custom_field_definitions")
+      .select("id, name, field_type, options")
+      .order("sort_order", { ascending: true }),
+    supabase.from("custom_field_values").select("field_id, value").eq("client_id", id),
+  ]);
+
+  const valueByField = new Map((fieldValues ?? []).map((v) => [v.field_id, v.value]));
+  const customFields: CustomFieldWithValue[] = (fieldDefinitions ?? []).map((f) => ({
+    id: f.id,
+    name: f.name,
+    fieldType: f.field_type,
+    options: f.options,
+    value: valueByField.get(f.id) ?? null,
+  }));
+
   const visits: VisitWithComments[] = (client.visits ?? [])
     .map((v) => ({
       id: v.id,
@@ -183,6 +204,7 @@ export default async function ClientDetailPage({
         sharedWith={sharedWith}
         availableTeams={availableTeams}
       />
+      <CustomFieldsSection clientId={client.id} fields={customFields} />
       <VisitsHistory visits={visits} />
     </div>
   );

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
-import { ClientList, type ClientRow } from "@/components/clients/client-list";
+import { ClientList, type ClientRow, type CustomFieldMeta } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
 import { AddExistingClientsDialog } from "@/components/clients/add-existing-clients-dialog";
 import { ImportClientsDialog } from "@/components/clients/import-clients-dialog";
@@ -15,7 +15,29 @@ type RawClient = {
   contacts: { id: string; name: string; is_primary: boolean }[];
   products: { id: string; name: string }[];
   visits: { id: string; scheduled_at: string; status: string }[];
+  custom_field_values: { field_id: string; value: string | null }[];
 };
+
+function compareCustomValues(
+  a: string | null | undefined,
+  b: string | null | undefined,
+  fieldType: CustomFieldMeta["fieldType"],
+  sign: number
+) {
+  if (!a && !b) return 0;
+  if (!a) return 1;
+  if (!b) return -1;
+  switch (fieldType) {
+    case "numero":
+      return sign * (parseFloat(a) - parseFloat(b));
+    case "fecha":
+      return sign * (new Date(a).getTime() - new Date(b).getTime());
+    case "booleano":
+      return sign * (Number(a === "true") - Number(b === "true"));
+    default:
+      return sign * a.localeCompare(b);
+  }
+}
 
 function nextVisit(c: RawClient, now: number) {
   const upcoming = c.visits
@@ -59,8 +81,21 @@ export default async function Home({
 
   const activeTeam = teams.find((t) => t.id === params.team) ?? null;
 
+  const { data: customFieldDefinitions } = await supabase
+    .from("custom_field_definitions")
+    .select("id, name, field_type, options")
+    .order("sort_order", { ascending: true });
+
+  const customFields: CustomFieldMeta[] = (customFieldDefinitions ?? []).map((f) => ({
+    id: f.id,
+    name: f.name,
+    fieldType: f.field_type,
+    options: f.options,
+  }));
+  const customFieldById = new Map(customFields.map((f) => [f.id, f]));
+
   const selectColumns =
-    "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status)";
+    "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status), custom_field_values(field_id, value)";
 
   const { data, error } = activeTeam
     ? await supabase
@@ -102,6 +137,14 @@ export default async function Home({
   const sign = direction === "asc" ? 1 : -1;
   const STATUS_RANK: Record<RawClient["status"], number> = { activo: 0, potencial: 1, inactivo: 2 };
 
+  function customValue(c: RawClient, fieldId: string) {
+    return c.custom_field_values.find((v) => v.field_id === fieldId)?.value ?? null;
+  }
+
+  const activeCustomFilters = customFields
+    .map((f) => ({ field: f, raw: params[`custom_${f.id}`] }))
+    .filter((f): f is { field: CustomFieldMeta; raw: string } => Boolean(f.raw));
+
   const filtered = clients.filter((c) => {
     if (status && status !== "all" && c.status !== status) return false;
     if (product && product !== "all" && !c.products.some((p) => p.name === product)) {
@@ -112,6 +155,31 @@ export default async function Home({
       const matchesCompany = c.company_name.toLowerCase().includes(q);
       const matchesContact = c.contacts.some((ct) => ct.name.toLowerCase().includes(q));
       if (!matchesCompany && !matchesContact) return false;
+    }
+    for (const { field, raw } of activeCustomFilters) {
+      const value = customValue(c, field.id);
+      const op = params[`custom_${field.id}_op`] ?? "eq";
+      if (field.fieldType === "texto") {
+        if (!value || !value.toLowerCase().includes(raw.toLowerCase())) return false;
+      } else if (field.fieldType === "numero") {
+        const num = value !== null ? parseFloat(value) : null;
+        const target = parseFloat(raw);
+        if (num === null || Number.isNaN(num)) return false;
+        if (op === "gt" && !(num > target)) return false;
+        if (op === "lt" && !(num < target)) return false;
+        if (op === "eq" && num !== target) return false;
+      } else if (field.fieldType === "fecha") {
+        const time = value ? new Date(value).getTime() : null;
+        const target = new Date(raw).getTime();
+        if (time === null || Number.isNaN(time)) return false;
+        if (op === "gt" && !(time > target)) return false;
+        if (op === "lt" && !(time < target)) return false;
+        if (op === "eq" && time !== target) return false;
+      } else if (field.fieldType === "lista") {
+        if (value !== raw) return false;
+      } else if (field.fieldType === "booleano") {
+        if ((value === "true") !== (raw === "true")) return false;
+      }
     }
     return true;
   });
@@ -144,6 +212,17 @@ export default async function Home({
       case "estado":
         return sign * (STATUS_RANK[a.status] - STATUS_RANK[b.status]);
       default:
+        if (sort.startsWith("custom:")) {
+          const field = customFieldById.get(sort.slice("custom:".length));
+          if (field) {
+            return compareCustomValues(
+              customValue(a, field.id),
+              customValue(b, field.id),
+              field.fieldType,
+              sign
+            );
+          }
+        }
         return sign * a.company_name.localeCompare(b.company_name);
     }
   });
@@ -154,9 +233,10 @@ export default async function Home({
     status: c.status,
     primaryContactName: c.contacts.find((ct) => ct.is_primary)?.name ?? c.contacts[0]?.name ?? null,
     nextVisitAt: nextVisit(c, now),
+    customFieldValues: Object.fromEntries(c.custom_field_values.map((v) => [v.field_id, v.value])),
   }));
 
-  const isFiltered = Boolean(q || status || product || upcomingOnly);
+  const isFiltered = Boolean(q || status || product || upcomingOnly || activeCustomFilters.length > 0);
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
@@ -199,13 +279,13 @@ export default async function Home({
         </div>
       )}
 
-      <ClientFilters products={allProducts} />
+      <ClientFilters products={allProducts} customFields={customFields} />
 
       {error && (
         <p className="text-sm text-destructive">{t("list.loadError")}</p>
       )}
 
-      <ClientList clients={rows} isFiltered={isFiltered} />
+      <ClientList clients={rows} isFiltered={isFiltered} customFields={customFields} />
     </div>
   );
 }

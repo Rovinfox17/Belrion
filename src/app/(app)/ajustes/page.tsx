@@ -8,6 +8,7 @@ import { ChatNotificationsToggle } from "@/components/settings/chat-notification
 import { ChangePasswordSection } from "@/components/settings/change-password-section";
 import { ExportDataButton } from "@/components/settings/export-data-button";
 import { DeleteAccountSection } from "@/components/settings/delete-account-section";
+import { CustomFieldsSection, type CustomFieldDefinition } from "@/components/settings/custom-fields-section";
 
 export default async function AjustesPage() {
   const supabase = await createClient();
@@ -20,13 +21,38 @@ export default async function AjustesPage() {
   const tFooter = await getTranslations("footer");
 
   let chatNotificationsEnabled = true;
+  let teams: { id: string; name: string }[] = [];
+  let customFields: CustomFieldDefinition[] = [];
   if (user) {
-    const { data: preference } = await supabase
-      .from("user_notification_preferences")
-      .select("chat_notifications")
-      .eq("user_id", user.id)
-      .maybeSingle();
+    const [{ data: preference }, { data: memberships }, { data: fields }] = await Promise.all([
+      supabase
+        .from("user_notification_preferences")
+        .select("chat_notifications")
+        .eq("user_id", user.id)
+        .maybeSingle(),
+      supabase.from("team_members").select("team_id, teams(name)").eq("user_id", user.id),
+      supabase
+        .from("custom_field_definitions")
+        .select("id, name, field_type, options, team_id, teams(name)")
+        .eq("owner_id", user.id)
+        .order("sort_order", { ascending: true }),
+    ]);
+
     if (preference) chatNotificationsEnabled = preference.chat_notifications;
+
+    teams = (memberships ?? []).map((m) => ({
+      id: m.team_id,
+      name: (m.teams as unknown as { name: string } | null)?.name ?? "",
+    }));
+
+    customFields = (fields ?? []).map((f) => ({
+      id: f.id,
+      name: f.name,
+      fieldType: f.field_type,
+      options: f.options,
+      teamId: f.team_id,
+      teamName: (f.teams as unknown as { name: string } | null)?.name ?? null,
+    }));
   }
 
   const legalLinks = [
@@ -67,6 +93,14 @@ export default async function AjustesPage() {
       <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
         <h2 className="font-medium">{t("password.title")}</h2>
         <ChangePasswordSection />
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
+        <div>
+          <h2 className="font-medium">{t("customFields.title")}</h2>
+          <p className="text-sm text-muted-foreground">{t("customFields.description")}</p>
+        </div>
+        <CustomFieldsSection fields={customFields} teams={teams} />
       </section>
 
       <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
