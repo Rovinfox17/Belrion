@@ -20,6 +20,7 @@
     "tagline": "Client portfolio management",
     "login": {
       "subtitle": "Client portfolio management",
+      "testNotice": "Belrion is in a testing phase. Access is granted by invitation, after each request is reviewed manually.",
       "email": "Email",
       "password": "Password",
       "forgot": "Forgot your password?",
@@ -29,6 +30,7 @@
     },
     "signup": {
       "subtitle": "Request access",
+      "testNotice": "Belrion is in a testing phase. Access is granted by invitation, after each request is reviewed manually.",
       "name": "Name",
       "email": "Email",
       "reason": "Reason or company (optional)",

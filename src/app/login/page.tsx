@@ -43,6 +43,9 @@ export default async function LoginPage({
             <CardDescription>{t("subtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
+            <p className="mb-4 rounded-md border border-border bg-accent/50 px-3 py-2 text-xs text-muted-foreground">
+              {t("testNotice")}
+            </p>
             {message && (
               <p className="mb-4 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
                 {message}

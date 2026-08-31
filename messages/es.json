@@ -20,6 +20,7 @@
     "tagline": "Gestión de cartera de clientes",
     "login": {
       "subtitle": "Gestión de cartera de clientes",
+      "testNotice": "Belrion está en fase de pruebas. El acceso se concede por invitación, tras revisar cada solicitud manualmente.",
       "email": "Email",
       "password": "Contraseña",
       "forgot": "¿Olvidaste tu contraseña?",
@@ -29,6 +30,7 @@
     },
     "signup": {
       "subtitle": "Solicita acceso",
+      "testNotice": "Belrion está en fase de pruebas. El acceso se concede por invitación, tras revisar cada solicitud manualmente.",
       "name": "Nombre",
       "email": "Email",
       "reason": "Motivo o empresa (opcional)",
