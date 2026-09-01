@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
+import { geocodeAddress } from "@/lib/geocoding";
 
 type ClientStatus = "activo" | "potencial" | "inactivo";
 
@@ -99,17 +100,32 @@ export async function updateClient(input: {
     return { error: t("nameRequired") };
   }
 
+  const address = input.address.trim() || null;
+  const locality = input.locality.trim() || null;
+  const region = input.region.trim() || null;
+  const province = input.province.trim() || null;
+
+  // Geocodifica con Nominatim al guardar (una sola llamada, aceptable de
+  // forma síncrona) — a diferencia de la importación masiva, que nunca
+  // geocodifica en el momento (ver geocode-pending-clients). Sin dirección
+  // no hay nada que geocodificar, y las coordenadas de una dirección
+  // anterior se limpian para no dejar un punto obsoleto en el mapa.
+  const geocodeQuery = [address, locality, province].filter(Boolean).join(", ");
+  const geocoded = geocodeQuery ? await geocodeAddress(geocodeQuery) : null;
+
   const supabase = await createClient();
   const { error } = await supabase
     .from("clients")
     .update({
       company_name: companyName,
       status: input.status,
-      address: input.address.trim() || null,
-      locality: input.locality.trim() || null,
-      region: input.region.trim() || null,
-      province: input.province.trim() || null,
+      address,
+      locality,
+      region,
+      province,
       notes: input.notes.trim() || null,
+      latitude: geocoded?.latitude ?? null,
+      longitude: geocoded?.longitude ?? null,
     })
     .eq("id", input.id);
 
@@ -118,6 +134,7 @@ export async function updateClient(input: {
   }
 
   revalidatePath("/");
+  revalidatePath("/mapa");
   revalidatePath(`/clientes/${input.id}`);
   return { success: true as const };
 }
@@ -132,6 +149,7 @@ export async function deleteClient(id: string) {
   }
 
   revalidatePath("/");
+  revalidatePath("/mapa");
   return { success: true as const };
 }
 
@@ -154,5 +172,6 @@ export async function deleteClients(ids: string[]) {
   }
 
   revalidatePath("/");
+  revalidatePath("/mapa");
   return { success: true as const, count: ids.length };
 }

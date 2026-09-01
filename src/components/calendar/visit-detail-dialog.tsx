@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { deleteVisit, setVisitStatus, updateVisit } from "@/app/actions/visits";
 import { addVisitComment } from "@/app/actions/visit-comments";
+import { useCompleteVisit } from "@/components/calendar/use-complete-visit";
 
 export type CalendarVisit = {
   id: string;
@@ -74,8 +75,13 @@ export function VisitDetailDialog({
   const [comment, setComment] = useState("");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const { complete, isPending: isCompleting } = useCompleteVisit();
 
   function handleStatus(status: CalendarVisit["status"]) {
+    if (status === "completada") {
+      complete(visit.id, visit.clientId);
+      return;
+    }
     startTransition(async () => {
       const result = await setVisitStatus({ id: visit.id, clientId: visit.clientId, status });
       if (result?.error) {
@@ -193,7 +199,7 @@ export function VisitDetailDialog({
                 size="sm"
                 variant="outline"
                 onClick={() => handleStatus("completada")}
-                disabled={isPending}
+                disabled={isPending || isCompleting}
               >
                 {t("markCompleted")}
               </Button>

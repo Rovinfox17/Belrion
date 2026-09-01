@@ -622,6 +622,9 @@ export function ImportClientsDialog({ customFields }: { customFields: CustomFiel
                   </div>
                 )}
                 <p className="text-xs text-muted-foreground">{t("importing.duplicatesNote")}</p>
+                {allRows.some((r) => r.row?.address) && (
+                  <p className="text-xs text-muted-foreground">{t("importing.geocodingNote")}</p>
+                )}
                 <DialogFooter>
                   <Button type="button" onClick={() => handleOpenChange(false)}>
                     {t("importing.close")}

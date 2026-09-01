@@ -1,25 +1,19 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { MapIcon } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFilters } from "@/components/clients/client-filters";
 import { ClientList, type ClientRow, type CustomFieldMeta } from "@/components/clients/client-list";
 import { NewClientDialog } from "@/components/clients/new-client-dialog";
 import { AddExistingClientsDialog } from "@/components/clients/add-existing-clients-dialog";
 import { ImportClientsDialog } from "@/components/clients/import-clients-dialog";
-
-type RawClient = {
-  id: string;
-  company_name: string;
-  status: "activo" | "potencial" | "inactivo";
-  created_at: string;
-  locality: string | null;
-  region: string | null;
-  province: string | null;
-  contacts: { id: string; name: string; is_primary: boolean }[];
-  products: { id: string; name: string }[];
-  visits: { id: string; scheduled_at: string; status: string }[];
-  custom_field_values: { field_id: string; value: string | null }[];
-};
+import { Button } from "@/components/ui/button";
+import {
+  CLIENT_SELECT_COLUMNS,
+  filterClientsByParams,
+  nextVisit,
+  type RawClient,
+} from "@/lib/client-query";
 
 function compareCustomValues(
   a: string | null | undefined,
@@ -40,13 +34,6 @@ function compareCustomValues(
     default:
       return sign * a.localeCompare(b);
   }
-}
-
-function nextVisit(c: RawClient, now: number) {
-  const upcoming = c.visits
-    .filter((v) => v.status === "pendiente" && new Date(v.scheduled_at).getTime() >= now)
-    .sort((a, b) => new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime());
-  return upcoming[0]?.scheduled_at ?? null;
 }
 
 function lastVisit(c: RawClient) {
@@ -97,15 +84,12 @@ export default async function Home({
   }));
   const customFieldById = new Map(customFields.map((f) => [f.id, f]));
 
-  const selectColumns =
-    "id, company_name, status, created_at, locality, region, province, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status), custom_field_values(field_id, value)";
-
   const { data, error } = activeTeam
     ? await supabase
         .from("clients")
-        .select(`${selectColumns}, client_teams!inner(team_id)`)
+        .select(`${CLIENT_SELECT_COLUMNS}, client_teams!inner(team_id)`)
         .eq("client_teams.team_id", activeTeam.id)
-    : await supabase.from("clients").select(selectColumns).eq("user_id", user?.id ?? "");
+    : await supabase.from("clients").select(CLIENT_SELECT_COLUMNS).eq("user_id", user?.id ?? "");
 
   let availableToShare: { id: string; companyName: string }[] = [];
   if (activeTeam && user) {
@@ -161,47 +145,7 @@ export default async function Home({
     .map((f) => ({ field: f, raw: params[`custom_${f.id}`] }))
     .filter((f): f is { field: CustomFieldMeta; raw: string } => Boolean(f.raw));
 
-  const filtered = clients.filter((c) => {
-    if (status && status !== "all" && c.status !== status) return false;
-    if (product && product !== "all" && !c.products.some((p) => p.name === product)) {
-      return false;
-    }
-    if (locality && locality !== "all" && c.locality !== locality) return false;
-    if (region && region !== "all" && c.region !== region) return false;
-    if (province && province !== "all" && c.province !== province) return false;
-    if (upcomingOnly && !nextVisit(c, now)) return false;
-    if (q) {
-      const matchesCompany = c.company_name.toLowerCase().includes(q);
-      const matchesContact = c.contacts.some((ct) => ct.name.toLowerCase().includes(q));
-      if (!matchesCompany && !matchesContact) return false;
-    }
-    for (const { field, raw } of activeCustomFilters) {
-      const value = customValue(c, field.id);
-      const op = params[`custom_${field.id}_op`] ?? "eq";
-      if (field.fieldType === "texto") {
-        if (!value || !value.toLowerCase().includes(raw.toLowerCase())) return false;
-      } else if (field.fieldType === "numero") {
-        const num = value !== null ? parseFloat(value) : null;
-        const target = parseFloat(raw);
-        if (num === null || Number.isNaN(num)) return false;
-        if (op === "gt" && !(num > target)) return false;
-        if (op === "lt" && !(num < target)) return false;
-        if (op === "eq" && num !== target) return false;
-      } else if (field.fieldType === "fecha") {
-        const time = value ? new Date(value).getTime() : null;
-        const target = new Date(raw).getTime();
-        if (time === null || Number.isNaN(time)) return false;
-        if (op === "gt" && !(time > target)) return false;
-        if (op === "lt" && !(time < target)) return false;
-        if (op === "eq" && time !== target) return false;
-      } else if (field.fieldType === "lista") {
-        if (value !== raw) return false;
-      } else if (field.fieldType === "booleano") {
-        if ((value === "true") !== (raw === "true")) return false;
-      }
-    }
-    return true;
-  });
+  const filtered = filterClientsByParams(clients, params, customFields);
 
   const sorted = [...filtered].sort((a, b) => {
     switch (sort) {
@@ -268,11 +212,19 @@ export default async function Home({
     q || status || product || locality || region || province || upcomingOnly || activeCustomFilters.length > 0
   );
 
+  const currentQuery = new URLSearchParams(
+    Object.entries(params).filter((entry): entry is [string, string] => entry[1] !== undefined)
+  ).toString();
+
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
         <div className="flex flex-wrap gap-2">
+          <Button variant="outline" render={<Link href={`/mapa${currentQuery ? `?${currentQuery}` : ""}`} />}>
+            <MapIcon />
+            {t("map.trigger")}
+          </Button>
           {activeTeam && (
             <AddExistingClientsDialog
               teamId={activeTeam.id}

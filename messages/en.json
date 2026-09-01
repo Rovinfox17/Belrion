@@ -341,6 +341,17 @@
     "addressMap": {
       "cta": "Get directions"
     },
+    "map": {
+      "trigger": "View on map",
+      "title": "Client map",
+      "backToList": "← Back to list",
+      "noVisit": "No visit scheduled",
+      "viewClient": "View profile →",
+      "ungeocodedCount": "{count, plural, one {# client not geolocated} other {# clients not geolocated}}",
+      "ungeocodedReview": "Review addresses",
+      "emptyTitle": "No clients on the map",
+      "emptyHint": "Clients show up here as soon as their address gets geolocated — it can take a few minutes after creating or editing it."
+    },
     "contacts": {
       "title": "Contacts",
       "add": "Add contact",
@@ -404,7 +415,12 @@
       "empty": "No visits recorded yet. You'll be able to schedule them from the calendar.",
       "statusPending": "Pending",
       "statusCompleted": "Completed",
-      "statusCancelled": "Cancelled"
+      "statusCancelled": "Cancelled",
+      "markCompleted": "Mark completed",
+      "statusUpdated": "Visit updated",
+      "checkinNear": "Check-in {distance} away from the client",
+      "checkinFar": "Check-in {distance} away from the client — check the address or the location",
+      "checkinRecorded": "Check-in recorded"
     },
     "customFields": {
       "title": "Custom fields",
@@ -474,6 +490,7 @@
         "warningInvalidBoolean": "\"{value}\" isn't recognized as Yes/No",
         "close": "Close",
         "duplicatesNote": "This version doesn't detect duplicate clients: importing the same one twice will create two records.",
+        "geocodingNote": "Your clients will be geolocated in the background over the next few minutes, so they show up on the map.",
         "missingCompanyName": "Missing company name."
       },
       "errors": {

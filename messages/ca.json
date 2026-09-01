@@ -341,6 +341,17 @@
     "addressMap": {
       "cta": "Com arribar-hi"
     },
+    "map": {
+      "trigger": "Veure al mapa",
+      "title": "Mapa de clients",
+      "backToList": "← Torna al llistat",
+      "noVisit": "Sense visita programada",
+      "viewClient": "Veure fitxa →",
+      "ungeocodedCount": "{count, plural, one {# client sense geolocalitzar} other {# clients sense geolocalitzar}}",
+      "ungeocodedReview": "Revisar adreces",
+      "emptyTitle": "Cap client al mapa",
+      "emptyHint": "Els clients apareixen aquí en el moment que la seva adreça queda geolocalitzada — pot trigar uns minuts després de crear-la o editar-la."
+    },
     "contacts": {
       "title": "Contactes",
       "add": "Afegeix contacte",
@@ -404,7 +415,12 @@
       "empty": "Sense visites registrades encara. Les podràs programar des del calendari.",
       "statusPending": "Pendent",
       "statusCompleted": "Completada",
-      "statusCancelled": "Cancel·lada"
+      "statusCancelled": "Cancel·lada",
+      "markCompleted": "Marca com a completada",
+      "statusUpdated": "Visita actualitzada",
+      "checkinNear": "Check-in a {distance} del client",
+      "checkinFar": "Check-in a {distance} del client — revisa l'adreça o la ubicació",
+      "checkinRecorded": "Check-in registrat"
     },
     "customFields": {
       "title": "Camps personalitzats",
@@ -474,6 +490,7 @@
         "warningInvalidBoolean": "\"{value}\" no es reconeix com Sí/No",
         "close": "Tanca",
         "duplicatesNote": "Aquesta versió no detecta clients duplicats: si n'importes el mateix dues vegades, es crearan dos registres.",
+        "geocodingNote": "Els teus clients es geolocalitzaran en segon pla en els propers minuts, perquè apareguin al mapa.",
         "missingCompanyName": "Falta el nom de l'empresa."
       },
       "errors": {

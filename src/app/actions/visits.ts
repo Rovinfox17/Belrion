@@ -3,8 +3,10 @@
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
+import { haversineDistanceMeters } from "@/lib/geo-distance";
 
 type VisitStatus = "pendiente" | "completada" | "cancelada";
+type CheckinCoords = { latitude: number; longitude: number; accuracy: number };
 
 export async function createVisit(input: {
   clientId: string;
@@ -82,11 +84,19 @@ export async function setVisitStatus(input: {
   id: string;
   clientId: string;
   status: VisitStatus;
+  checkin?: CheckinCoords | null;
 }) {
   const supabase = await createClient();
+
+  const hasCheckin = input.status === "completada" && Boolean(input.checkin);
   const { error } = await supabase
     .from("visits")
-    .update({ status: input.status })
+    .update({
+      status: input.status,
+      checkin_latitude: hasCheckin ? input.checkin!.latitude : undefined,
+      checkin_longitude: hasCheckin ? input.checkin!.longitude : undefined,
+      checkin_accuracy: hasCheckin ? input.checkin!.accuracy : undefined,
+    })
     .eq("id", input.id);
 
   if (error) {
@@ -94,10 +104,27 @@ export async function setVisitStatus(input: {
     return { error: t("statusUpdateFailed") };
   }
 
+  let distanceMeters: number | null = null;
+  if (input.status === "completada" && input.checkin) {
+    const { data: client } = await supabase
+      .from("clients")
+      .select("latitude, longitude")
+      .eq("id", input.clientId)
+      .maybeSingle();
+    if (client?.latitude != null && client?.longitude != null) {
+      distanceMeters = haversineDistanceMeters(
+        input.checkin.latitude,
+        input.checkin.longitude,
+        client.latitude,
+        client.longitude
+      );
+    }
+  }
+
   revalidatePath("/calendario");
   revalidatePath("/");
   revalidatePath(`/clientes/${input.clientId}`);
-  return { success: true as const };
+  return { success: true as const, distanceMeters };
 }
 
 export async function deleteVisit(input: { id: string; clientId: string }) {

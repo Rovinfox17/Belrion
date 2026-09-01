@@ -128,6 +128,9 @@ export type Database = {
           reminder_minutes_before: number | null;
           created_at: string;
           notified_at: string | null;
+          checkin_latitude: number | null;
+          checkin_longitude: number | null;
+          checkin_accuracy: number | null;
         };
         Insert: {
           id?: string;
@@ -137,6 +140,9 @@ export type Database = {
           reminder_minutes_before?: number | null;
           created_at?: string;
           notified_at?: string | null;
+          checkin_latitude?: number | null;
+          checkin_longitude?: number | null;
+          checkin_accuracy?: number | null;
         };
         Update: Partial<Database["public"]["Tables"]["visits"]["Insert"]>;
         Relationships: [];

@@ -32,6 +32,8 @@ type RawClientDetail = {
   locality: string | null;
   region: string | null;
   province: string | null;
+  latitude: number | null;
+  longitude: number | null;
   notes: string | null;
   contacts: {
     id: string;
@@ -46,6 +48,8 @@ type RawClientDetail = {
     id: string;
     scheduled_at: string;
     status: "pendiente" | "completada" | "cancelada";
+    checkin_latitude: number | null;
+    checkin_longitude: number | null;
     visit_comments: { id: string; comment: string; created_at: string }[];
   }[];
 };
@@ -72,7 +76,7 @@ export default async function ClientDetailPage({
   const { data } = await supabase
     .from("clients")
     .select(
-      "id, user_id, company_name, status, address, locality, region, province, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, visit_comments(id, comment, created_at))"
+      "id, user_id, company_name, status, address, locality, region, province, latitude, longitude, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, checkin_latitude, checkin_longitude, visit_comments(id, comment, created_at))"
     )
     .eq("id", id)
     .single();
@@ -148,6 +152,8 @@ export default async function ClientDetailPage({
       id: v.id,
       scheduledAt: v.scheduled_at,
       status: v.status,
+      checkinLatitude: v.checkin_latitude,
+      checkinLongitude: v.checkin_longitude,
       comments: (v.visit_comments ?? [])
         .map((c) => ({ id: c.id, comment: c.comment, createdAt: c.created_at }))
         .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()),
@@ -216,7 +222,12 @@ export default async function ClientDetailPage({
         availableTeams={availableTeams}
       />
       <CustomFieldsSection clientId={client.id} fields={customFields} />
-      <VisitsHistory visits={visits} />
+      <VisitsHistory
+        clientId={client.id}
+        clientLatitude={client.latitude}
+        clientLongitude={client.longitude}
+        visits={visits}
+      />
     </div>
   );
 }

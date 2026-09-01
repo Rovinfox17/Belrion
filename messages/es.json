@@ -341,6 +341,17 @@
     "addressMap": {
       "cta": "Cómo llegar"
     },
+    "map": {
+      "trigger": "Ver en mapa",
+      "title": "Mapa de clientes",
+      "backToList": "← Volver al listado",
+      "noVisit": "Sin visita programada",
+      "viewClient": "Ver ficha →",
+      "ungeocodedCount": "{count, plural, one {# cliente sin geolocalizar} other {# clientes sin geolocalizar}}",
+      "ungeocodedReview": "Revisar direcciones",
+      "emptyTitle": "Ningún cliente en el mapa",
+      "emptyHint": "Los clientes aparecen aquí en cuanto su dirección queda geolocalizada — puede tardar unos minutos tras crearla o editarla."
+    },
     "contacts": {
       "title": "Contactos",
       "add": "Añadir contacto",
@@ -404,7 +415,12 @@
       "empty": "Sin visitas registradas todavía. Podrás programarlas desde el calendario.",
       "statusPending": "Pendiente",
       "statusCompleted": "Completada",
-      "statusCancelled": "Cancelada"
+      "statusCancelled": "Cancelada",
+      "markCompleted": "Marcar completada",
+      "statusUpdated": "Visita actualizada",
+      "checkinNear": "Check-in a {distance} del cliente",
+      "checkinFar": "Check-in a {distance} del cliente — revisa la dirección o la ubicación",
+      "checkinRecorded": "Check-in registrado"
     },
     "customFields": {
       "title": "Campos personalizados",
@@ -474,6 +490,7 @@
         "warningInvalidBoolean": "\"{value}\" no se reconoce como Sí/No",
         "close": "Cerrar",
         "duplicatesNote": "Esta versión no detecta clientes duplicados: si importas el mismo dos veces, se crearán dos registros.",
+        "geocodingNote": "Tus clientes se geolocalizarán en segundo plano en los próximos minutos, para que aparezcan en el mapa.",
         "missingCompanyName": "Falta el nombre de la empresa."
       },
       "errors": {
