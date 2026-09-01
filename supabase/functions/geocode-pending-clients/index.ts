@@ -34,7 +34,7 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function geocode(query: string): Promise<{ latitude: number; longitude: number } | null> {
+async function geocodeQuery(query: string): Promise<{ latitude: number; longitude: number } | null> {
   const url = new URL("https://nominatim.openstreetmap.org/search");
   url.searchParams.set("q", query);
   url.searchParams.set("format", "jsonv2");
@@ -62,6 +62,30 @@ async function geocode(query: string): Promise<{ latitude: number; longitude: nu
   }
 }
 
+// Plan B si Nominatim no reconoce la dirección completa: en pruebas reales,
+// direcciones válidas fallan por palabras que su parser no interpreta bien
+// (p.ej. "Nave", habitual en polígonos industriales) — se reintenta solo
+// con población+provincia, que casi siempre sí se reconoce, para al menos
+// dar una ubicación aproximada en vez de ninguna. Mismo criterio que
+// geocodeClientAddress() en src/lib/geocoding.ts (Next.js).
+async function geocode(client: ClientRow): Promise<{ latitude: number; longitude: number } | null> {
+  const full = [client.address, client.locality, client.province].filter(Boolean).join(", ");
+  if (full) {
+    const result = await geocodeQuery(full);
+    if (result) return result;
+  }
+
+  const approximate = [client.locality, client.province].filter(Boolean).join(", ");
+  if (approximate && approximate !== full) {
+    // Respeta el límite de ~1 petición/segundo también entre el intento
+    // completo y el de plan B del mismo cliente, no solo entre clientes.
+    await sleep(DELAY_MS);
+    return geocodeQuery(approximate);
+  }
+
+  return null;
+}
+
 Deno.serve(async () => {
   const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
@@ -82,8 +106,7 @@ Deno.serve(async () => {
 
   for (let i = 0; i < clients.length; i++) {
     const client = clients[i];
-    const query = [client.address, client.locality, client.province].filter(Boolean).join(", ");
-    const result = await geocode(query);
+    const result = await geocode(client);
 
     if (result) {
       await supabase

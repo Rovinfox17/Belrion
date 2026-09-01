@@ -42,3 +42,32 @@ export async function geocodeAddress(query: string): Promise<GeocodeResult | nul
     return null;
   }
 }
+
+/** Geocodifica la dirección completa de un cliente, con un plan B si
+ * Nominatim no la reconoce. En pruebas reales, direcciones perfectamente
+ * válidas fallan por palabras que su parser no sabe interpretar bien
+ * (p.ej. "Nave", habitual en polígonos industriales) — en vez de dejar al
+ * cliente sin ubicación para siempre, se reintenta solo con
+ * población+provincia, que casi siempre sí se reconoce y da al menos una
+ * ubicación aproximada en vez de ninguna. */
+export async function geocodeClientAddress(parts: {
+  address: string | null;
+  locality: string | null;
+  province: string | null;
+}): Promise<GeocodeResult | null> {
+  const full = [parts.address, parts.locality, parts.province].filter(Boolean).join(", ");
+  if (full) {
+    const result = await geocodeAddress(full);
+    if (result) return result;
+  }
+
+  const approximate = [parts.locality, parts.province].filter(Boolean).join(", ");
+  if (approximate && approximate !== full) {
+    // Respeta el límite de ~1 petición/segundo también entre el intento
+    // completo y el de plan B, aunque aquí solo se llame una vez por guardado.
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+    return geocodeAddress(approximate);
+  }
+
+  return null;
+}

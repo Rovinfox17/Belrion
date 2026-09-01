@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
-import { geocodeAddress } from "@/lib/geocoding";
+import { geocodeClientAddress } from "@/lib/geocoding";
 
 type ClientStatus = "activo" | "potencial" | "inactivo";
 
@@ -110,8 +110,7 @@ export async function updateClient(input: {
   // geocodifica en el momento (ver geocode-pending-clients). Sin dirección
   // no hay nada que geocodificar, y las coordenadas de una dirección
   // anterior se limpian para no dejar un punto obsoleto en el mapa.
-  const geocodeQuery = [address, locality, province].filter(Boolean).join(", ");
-  const geocoded = geocodeQuery ? await geocodeAddress(geocodeQuery) : null;
+  const geocoded = address ? await geocodeClientAddress({ address, locality, province }) : null;
 
   const supabase = await createClient();
   const { error } = await supabase
