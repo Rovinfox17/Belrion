@@ -5,6 +5,7 @@ import { ProfileSection } from "@/components/settings/profile-section";
 import { LocaleSwitcherButtons } from "@/components/language/locale-switcher";
 import { NotificationsToggle } from "@/components/settings/notifications-toggle";
 import { ChatNotificationsToggle } from "@/components/settings/chat-notifications-toggle";
+import { RevisitCycleSelect } from "@/components/settings/revisit-cycle-select";
 import { ChangePasswordSection } from "@/components/settings/change-password-section";
 import { ExportDataButton } from "@/components/settings/export-data-button";
 import { DeleteAccountSection } from "@/components/settings/delete-account-section";
@@ -21,13 +22,14 @@ export default async function AjustesPage() {
   const tFooter = await getTranslations("footer");
 
   let chatNotificationsEnabled = true;
+  let revisitCycleMonths = 3;
   let teams: { id: string; name: string }[] = [];
   let customFields: CustomFieldDefinition[] = [];
   if (user) {
     const [{ data: preference }, { data: memberships }, { data: fields }] = await Promise.all([
       supabase
         .from("user_notification_preferences")
-        .select("chat_notifications")
+        .select("chat_notifications, revisit_cycle_months")
         .eq("user_id", user.id)
         .maybeSingle(),
       supabase.from("team_members").select("team_id, teams(name)").eq("user_id", user.id),
@@ -38,7 +40,10 @@ export default async function AjustesPage() {
         .order("sort_order", { ascending: true }),
     ]);
 
-    if (preference) chatNotificationsEnabled = preference.chat_notifications;
+    if (preference) {
+      chatNotificationsEnabled = preference.chat_notifications;
+      revisitCycleMonths = preference.revisit_cycle_months;
+    }
 
     teams = (memberships ?? []).map((m) => ({
       id: m.team_id,
@@ -88,6 +93,10 @@ export default async function AjustesPage() {
         </div>
         <NotificationsToggle />
         <ChatNotificationsToggle initialEnabled={chatNotificationsEnabled} />
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
+        <RevisitCycleSelect initialMonths={revisitCycleMonths} />
       </section>
 
       <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">

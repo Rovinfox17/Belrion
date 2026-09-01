@@ -1,0 +1,3798 @@
+[
+  {
+    "locality": "Abella de la Conca",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Abrera",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Àger",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Agramunt",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Aguilar de Segarra",
+    "region": "Bages"
+  },
+  {
+    "locality": "Agullana",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Aiguafreda",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Aiguamúrcia",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Aiguaviva",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Aitona",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alàs i Cerc",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Albanyà",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Albatàrrec",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Albesa",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Albinyana",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Albons",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Alcanar",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Alcanó",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alcarràs",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alcoletge",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alcover",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Aldover",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Alella",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Alfara de Carles",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Alfarràs",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alfés",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alforja",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Algerri",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Alguaire",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alins",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Alió",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Almacelles",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Almatret",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Almenar",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Almoster",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Alòs de Balaguer",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Alp",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Alpens",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Alpicat",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Alt Àneu",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Altafulla",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Altres/Diversos",
+    "region": "Altres/Diversos"
+  },
+  {
+    "locality": "Amer",
+    "region": "Selva"
+  },
+  {
+    "locality": "Amposta",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Anglès",
+    "region": "Selva"
+  },
+  {
+    "locality": "Anglesola",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Arbeca",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Arbolí",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Arbúcies",
+    "region": "Selva"
+  },
+  {
+    "locality": "Arenys de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Arenys de Munt",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Argelaguer",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Argençola",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Argentona",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Arnes",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Arres",
+    "region": "Aran"
+  },
+  {
+    "locality": "Arsèguel",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Artés",
+    "region": "Bages"
+  },
+  {
+    "locality": "Artesa de Lleida",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Artesa de Segre",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Ascó",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Aspa",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Avià",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Avinyó",
+    "region": "Bages"
+  },
+  {
+    "locality": "Avinyonet de Puigventós",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Avinyonet del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Badalona",
+    "region": "Barcelonès"
+  },
+  {
+    "locality": "Badia del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Bagà",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Baix Pallars",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Balaguer",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Balenyà",
+    "region": "Osona"
+  },
+  {
+    "locality": "Balsareny",
+    "region": "Bages"
+  },
+  {
+    "locality": "Banyeres del Penedès",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Banyoles",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Barbens",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Barberà de la Conca",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Barberà del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Barcelona",
+    "region": "Barcelonès"
+  },
+  {
+    "locality": "Bàscara",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Bassella",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Batea",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Bausen",
+    "region": "Aran"
+  },
+  {
+    "locality": "Begues",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Begur",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Belianes",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Bell-lloc d'Urgell",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Bellaguarda",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Bellcaire d'Empordà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Bellcaire d'Urgell",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Bellmunt d'Urgell",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Bellmunt del Priorat",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Bellprat",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Bellpuig",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Bellvei",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Bellver de Cerdanya",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Bellvís",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Benavent de Segrià",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Benifallet",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Benissanet",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Berga",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Besalú",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Bescanó",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Beuda",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Bigues i Riells del Fai",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Biosca",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Biure",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Blancafort",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Blanes",
+    "region": "Selva"
+  },
+  {
+    "locality": "Boadella i les Escaules",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Bolvir",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Bonastre",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Bòrdes, Es",
+    "region": "Aran"
+  },
+  {
+    "locality": "Bordils",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Borrassà",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Borredà",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Bossòst",
+    "region": "Aran"
+  },
+  {
+    "locality": "Bot",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Botarell",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Bovera",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Bràfim",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Breda",
+    "region": "Selva"
+  },
+  {
+    "locality": "Brunyola i Sant Martí Sapresa",
+    "region": "Selva"
+  },
+  {
+    "locality": "Cabacés",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Cabanabona",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Cabanelles",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Cabanes",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Cabó",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Cabra del Camp",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Cabrera d'Anoia",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Cabrera de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Cabrils",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Cadaqués",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Calaf",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Calafell",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Calders",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Caldes d'Estrac",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Caldes de Malavella",
+    "region": "Selva"
+  },
+  {
+    "locality": "Caldes de Montbui",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Calella",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Calldetenes",
+    "region": "Osona"
+  },
+  {
+    "locality": "Callús",
+    "region": "Bages"
+  },
+  {
+    "locality": "Calonge de Segarra",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Calonge i Sant Antoni",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Camarasa",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Camarles",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Cambrils",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Camós",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Campdevànol",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Campelles",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Campins",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Campllong",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Camprodon",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Canejan",
+    "region": "Aran"
+  },
+  {
+    "locality": "Canet d'Adri",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Canet de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Canovelles",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Cànoves i Samalús",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Cantallops",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Canyelles",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Capafonts",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Capçanes",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Capellades",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Capmany",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Capolat",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Cardedeu",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Cardona",
+    "region": "Bages"
+  },
+  {
+    "locality": "Carme",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Caseres",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Cassà de la Selva",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Casserres",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Castell d'Aro, Platja d'Aro i s'Agaró",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Castell de l'Areny",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Castell de Mur",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Castellar de la Ribera",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Castellar de n'Hug",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Castellar del Riu",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Castellar del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Castellbell i el Vilar",
+    "region": "Bages"
+  },
+  {
+    "locality": "Castellbisbal",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Castellcir",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Castelldans",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Castelldefels",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Castellet i la Gornal",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Castellfollit de la Roca",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Castellfollit de Riubregós",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Castellfollit del Boix",
+    "region": "Bages"
+  },
+  {
+    "locality": "Castellgalí",
+    "region": "Bages"
+  },
+  {
+    "locality": "Castellnou de Bages",
+    "region": "Bages"
+  },
+  {
+    "locality": "Castellnou de Seana",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Castelló d'Empúries",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Castelló de Farfanya",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Castellolí",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Castellserà",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Castellterçol",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Castellvell del Camp",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Castellví de la Marca",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Castellví de Rosanes",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Cava",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Celrà",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Centelles",
+    "region": "Osona"
+  },
+  {
+    "locality": "Cercs",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Cerdanyola del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Cervelló",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Cervera",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Cervià de les Garrigues",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Cervià de Ter",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Cistella",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Ciutadilla",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Clariana de Cardener",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Colera",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Coll de Nargó",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Collbató",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Colldejou",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Collsuspina",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Colomers",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Conca de Dalt",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Conesa",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Constantí",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Copons",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Corbera d'Ebre",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Corbera de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Corbins",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Corçà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Cornellà de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Cornellà del Terri",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Cornudella de Montsant",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Creixell",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Crespià",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Cruïlles, Monells i Sant Sadurní de l'Heura",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Cubelles",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Cubells",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Cunit",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Darnius",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Das",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Deltebre",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Dosrius",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Duesaigües",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "el Bruc",
+    "region": "Anoia"
+  },
+  {
+    "locality": "el Brull",
+    "region": "Osona"
+  },
+  {
+    "locality": "el Catllar",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "el Cogul",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "el Far d'Empordà",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "el Lloar",
+    "region": "Priorat"
+  },
+  {
+    "locality": "el Masnou",
+    "region": "Maresme"
+  },
+  {
+    "locality": "el Masroig",
+    "region": "Priorat"
+  },
+  {
+    "locality": "el Milà",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "el Molar",
+    "region": "Priorat"
+  },
+  {
+    "locality": "el Montmell",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "el Morell",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "el Palau d'Anglesola",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "el Papiol",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "el Perelló",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "el Pinell de Brai",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "el Pla de Santa Maria",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "el Pla del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "el Poal",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "el Pont d'Armentera",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "el Pont de Bar",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "el Pont de Suert",
+    "region": "Alta Ribagorça"
+  },
+  {
+    "locality": "el Pont de Vilomara i Rocafort",
+    "region": "Bages"
+  },
+  {
+    "locality": "el Port de la Selva",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "el Prat de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "el Rourell",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "el Soleràs",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "el Vendrell",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "el Vilosell",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "els Alamús",
+    "region": "Segrià"
+  },
+  {
+    "locality": "els Garidells",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "els Guiamets",
+    "region": "Priorat"
+  },
+  {
+    "locality": "els Hostalets de Pierola",
+    "region": "Anoia"
+  },
+  {
+    "locality": "els Omellons",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "els Omells de na Gaia",
+    "region": "Urgell"
+  },
+  {
+    "locality": "els Pallaresos",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "els Plans de Sió",
+    "region": "Segarra"
+  },
+  {
+    "locality": "els Prats de Rei",
+    "region": "Anoia"
+  },
+  {
+    "locality": "els Torms",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Esparreguera",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Espinelves",
+    "region": "Osona"
+  },
+  {
+    "locality": "Esplugues de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Espolla",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Esponellà",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Espot",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Estamariu",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Estaràs",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Esterri d'Àneu",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Esterri de Cardós",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Falset",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Farrera",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Figaró-Montmany",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Fígols",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Fígols i Alinyà",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Figueres",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Figuerola del Camp",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Flaçà",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Flix",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Fogars de la Selva",
+    "region": "Selva"
+  },
+  {
+    "locality": "Fogars de Montclús",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Foixà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Folgueroles",
+    "region": "Osona"
+  },
+  {
+    "locality": "Fondarella",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Fonollosa",
+    "region": "Bages"
+  },
+  {
+    "locality": "Font-rubí",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Fontanals de Cerdanya",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Fontanilles",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Fontcoberta",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Foradada",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Forallac",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Forès",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Fornells de la Selva",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Fortià",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Freginals",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Fulleda",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Gaià",
+    "region": "Bages"
+  },
+  {
+    "locality": "Gallifa",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Gandesa",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Garcia",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Garrigàs",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Garrigoles",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Garriguella",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Gavà",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Gavet de la Conca",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Gelida",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Ger",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Gimenells i el Pla de la Font",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Ginestar",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Girona",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Gironella",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Gisclareny",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Godall",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Golmés",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Gombrèn",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Gósol",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Granera",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Granollers",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Granyanella",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Granyena de les Garrigues",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Granyena de Segarra",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Gratallops",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Gualba",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Gualta",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Guardiola de Berguedà",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Guils de Cerdanya",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Guimerà",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Guissona",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Guixers",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Gurb",
+    "region": "Osona"
+  },
+  {
+    "locality": "Horta de Sant Joan",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Hostalric",
+    "region": "Selva"
+  },
+  {
+    "locality": "Igualada",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Isona i Conca Dellà",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Isòvol",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Ivars d'Urgell",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Ivars de Noguera",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Ivorra",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Jafre",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Jorba",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Josa i Tuixén",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Juià",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Juncosa",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Juneda",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "l'Albagés",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "l'Albi",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "l'Albiol",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "l'Aldea",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "l'Aleixar",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "l'Ametlla de Mar",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "l'Ametlla del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "l'Ampolla",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "l'Arboç",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "l'Argentera",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "l'Armentera",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "l'Escala",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "l'Espluga Calba",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "l'Espluga de Francolí",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "l'Espunyola",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "l'Esquirol",
+    "region": "Osona"
+  },
+  {
+    "locality": "l'Estany",
+    "region": "Moianès"
+  },
+  {
+    "locality": "l'Hospitalet de Llobregat",
+    "region": "Barcelonès"
+  },
+  {
+    "locality": "la Baronia de Rialb",
+    "region": "Noguera"
+  },
+  {
+    "locality": "la Bisbal d'Empordà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "la Bisbal de Falset",
+    "region": "Priorat"
+  },
+  {
+    "locality": "la Bisbal del Penedès",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "la Canonja",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Cellera de Ter",
+    "region": "Selva"
+  },
+  {
+    "locality": "la Coma i la Pedra",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "la Fatarella",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "la Febró",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "la Figuera",
+    "region": "Priorat"
+  },
+  {
+    "locality": "la Floresta",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "la Fuliola",
+    "region": "Urgell"
+  },
+  {
+    "locality": "la Galera",
+    "region": "Montsià"
+  },
+  {
+    "locality": "la Garriga",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "la Granada",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "la Granadella",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "la Granja d'Escarp",
+    "region": "Segrià"
+  },
+  {
+    "locality": "la Guingueta d'Àneu",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "la Jonquera",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "la Llacuna",
+    "region": "Anoia"
+  },
+  {
+    "locality": "la Llagosta",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "la Masó",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "la Molsosa",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "la Morera de Montsant",
+    "region": "Priorat"
+  },
+  {
+    "locality": "la Nou de Berguedà",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "la Nou de Gaià",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Palma d'Ebre",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "la Palma de Cervelló",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "la Pera",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "la Pobla de Cérvoles",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "la Pobla de Claramunt",
+    "region": "Anoia"
+  },
+  {
+    "locality": "la Pobla de Lillet",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "la Pobla de Mafumet",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Pobla de Massaluca",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "la Pobla de Montornès",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Pobla de Segur",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "la Portella",
+    "region": "Segrià"
+  },
+  {
+    "locality": "la Quar",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "la Ràpita",
+    "region": "Montsià"
+  },
+  {
+    "locality": "la Riba",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "la Riera de Gaià",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Roca del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "la Secuita",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "la Selva de Mar",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "la Selva del Camp",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "la Sénia",
+    "region": "Montsià"
+  },
+  {
+    "locality": "la Sentiu de Sió",
+    "region": "Noguera"
+  },
+  {
+    "locality": "la Seu d'Urgell",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "la Tallada d'Empordà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "la Torre de Cabdella",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "la Torre de Claramunt",
+    "region": "Anoia"
+  },
+  {
+    "locality": "la Torre de Fontaubella",
+    "region": "Priorat"
+  },
+  {
+    "locality": "la Torre de l'Espanyol",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "la Vajol",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "la Vall d'en Bas",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "la Vall de Bianya",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "la Vall de Boí",
+    "region": "Alta Ribagorça"
+  },
+  {
+    "locality": "la Vansa i Fórnols",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "la Vilella Alta",
+    "region": "Priorat"
+  },
+  {
+    "locality": "la Vilella Baixa",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Les",
+    "region": "Aran"
+  },
+  {
+    "locality": "les Avellanes i Santa Linya",
+    "region": "Noguera"
+  },
+  {
+    "locality": "les Borges Blanques",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "les Borges del Camp",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "les Cabanyes",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "les Franqueses del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "les Llosses",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "les Masies de Roda",
+    "region": "Osona"
+  },
+  {
+    "locality": "les Masies de Voltregà",
+    "region": "Osona"
+  },
+  {
+    "locality": "les Oluges",
+    "region": "Segarra"
+  },
+  {
+    "locality": "les Piles",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "les Planes d'Hostoles",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "les Preses",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "les Valls d'Aguilar",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "les Valls de Valira",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Linyola",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Lladó",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Lladorre",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Lladurs",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Llagostera",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Llambilles",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Llanars",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Llançà",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Llardecans",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Llavorsí",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Lleida",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Llers",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Lles de Cerdanya",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Lliçà d'Amunt",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Lliçà de Vall",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Llimiana",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Llinars del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Llívia",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Llobera",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Llorac",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Llorenç del Penedès",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Lloret de Mar",
+    "region": "Selva"
+  },
+  {
+    "locality": "Lluçà",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Maçanet de Cabrenys",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Maçanet de la Selva",
+    "region": "Selva"
+  },
+  {
+    "locality": "Madremanya",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Maià de Montcal",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Maials",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Maldà",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Malgrat de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Malla",
+    "region": "Osona"
+  },
+  {
+    "locality": "Manlleu",
+    "region": "Osona"
+  },
+  {
+    "locality": "Manresa",
+    "region": "Bages"
+  },
+  {
+    "locality": "Marçà",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Margalef",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Marganell",
+    "region": "Bages"
+  },
+  {
+    "locality": "Martorell",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Martorelles",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Mas de Barberans",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Masarac",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Masdenverge",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Masllorenç",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Maspujols",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Masquefa",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Massalcoreig",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Massanes",
+    "region": "Selva"
+  },
+  {
+    "locality": "Massoteres",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Matadepera",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Mataró",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Mediona",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Menàrguens",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Meranges",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Mieres",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Miralcamp",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Miravet",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Moià",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Molins de Rei",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Mollerussa",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Mollet de Peralada",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Mollet del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Molló",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Monistrol de Calders",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Monistrol de Montserrat",
+    "region": "Bages"
+  },
+  {
+    "locality": "Mont-ral",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Mont-ras",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Mont-roig del Camp",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Montagut i Oix",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Montblanc",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Montbrió del Camp",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Montcada i Reixac",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Montclar",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Montellà i Martinet",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Montesquiu",
+    "region": "Osona"
+  },
+  {
+    "locality": "Montferrer i Castellbò",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Montferri",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Montgai",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Montgat",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Montmajor",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Montmaneu",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Montmeló",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Montoliu de Lleida",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Montoliu de Segarra",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Montornès de Segarra",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Montornès del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Montseny",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Móra d'Ebre",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Móra la Nova",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Muntanyola",
+    "region": "Osona"
+  },
+  {
+    "locality": "Mura",
+    "region": "Bages"
+  },
+  {
+    "locality": "Nalec",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Naut Aran",
+    "region": "Aran"
+  },
+  {
+    "locality": "Navarcles",
+    "region": "Bages"
+  },
+  {
+    "locality": "Navàs",
+    "region": "Bages"
+  },
+  {
+    "locality": "Navata",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Navès",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "No consta",
+    "region": "No consta"
+  },
+  {
+    "locality": "Nulles",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Odèn",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Òdena",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Ogassa",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Olèrdola",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Olesa de Bonesvalls",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Olesa de Montserrat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Oliana",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Oliola",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Olius",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Olivella",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Olost",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Olot",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Olvan",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Ordis",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Organyà",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Orís",
+    "region": "Osona"
+  },
+  {
+    "locality": "Oristà",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Orpí",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Òrrius",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Os de Balaguer",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Osor",
+    "region": "Selva"
+  },
+  {
+    "locality": "Ossó de Sió",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Pacs del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Palafolls",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Palafrugell",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Palamós",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Palau de Santa Eulàlia",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Palau-sator",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Palau-saverdera",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Palau-solità i Plegamans",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Pallejà",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Palol de Revardit",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Pals",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Pardines",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Parets del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Parlavà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Passanant i Belltall",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Pau",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Paüls",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Pedret i Marzà",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Penelles",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Perafita",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Perafort",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Peralada",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Peramola",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Piera",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Pineda de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Pinell de Solsonès",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Pinós",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Pira",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Planoles",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Poboleda",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Polinyà",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Pont de Molins",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Pontils",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Pontons",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Pontós",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Ponts",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Porqueres",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Porrera",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Portbou",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Pradell de la Teixeta",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Prades",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Prat de Comte",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Pratdip",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Prats de Lluçanès",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Prats i Sansor",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Preixana",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Preixens",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Premià de Dalt",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Premià de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Prullans",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Puig-reig",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Puigcerdà",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Puigdàlber",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Puiggròs",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Puigpelat",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Puigverd d'Agramunt",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Puigverd de Lleida",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Pujalt",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Quart",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Queralbs",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Querol",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Rabós",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Rajadell",
+    "region": "Bages"
+  },
+  {
+    "locality": "Rasquera",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Regencós",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Rellinars",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Renau",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Reus",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Rialp",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Riba-roja d'Ebre",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Ribera d'Ondara",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Ribera d'Urgellet",
+    "region": "Alt Urgell"
+  },
+  {
+    "locality": "Ribes de Freser",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Riells i Viabrea",
+    "region": "Selva"
+  },
+  {
+    "locality": "Riner",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Ripoll",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Ripollet",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Riu de Cerdanya",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Riudarenes",
+    "region": "Selva"
+  },
+  {
+    "locality": "Riudaura",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Riudecanyes",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Riudecols",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Riudellots de la Selva",
+    "region": "Selva"
+  },
+  {
+    "locality": "Riudoms",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Riumors",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Rocafort de Queralt",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Roda de Berà",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Roda de Ter",
+    "region": "Osona"
+  },
+  {
+    "locality": "Rodonyà",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Roquetes",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Roses",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Rosselló",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Rubí",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Rubió",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Rupià",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Rupit i Pruit",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sabadell",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Sagàs",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Salàs de Pallars",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Saldes",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Sales de Llierca",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sallent",
+    "region": "Bages"
+  },
+  {
+    "locality": "Salomó",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Salou",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Salt",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sanaüja",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Sant Adrià de Besòs",
+    "region": "Barcelonès"
+  },
+  {
+    "locality": "Sant Agustí de Lluçanès",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Andreu de la Barca",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Andreu de Llavaneres",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Sant Andreu Salou",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Aniol de Finestres",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sant Antoni de Vilamajor",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Bartomeu del Grau",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Boi de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Boi de Lluçanès",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Cebrià de Vallalta",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Sant Celoni",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Climent de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Climent Sescebes",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sant Cugat del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Sant Cugat Sesgarrigues",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Esteve de la Sarga",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Sant Esteve de Palautordera",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Esteve Sesrovires",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Feliu de Buixalleu",
+    "region": "Selva"
+  },
+  {
+    "locality": "Sant Feliu de Codines",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Feliu de Guíxols",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Sant Feliu de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Feliu de Pallerols",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sant Feliu Sasserra",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Ferriol",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sant Fost de Campsentelles",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Fruitós de Bages",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Gregori",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Guim de Freixenet",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Sant Guim de la Plana",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Sant Hilari Sacalm",
+    "region": "Selva"
+  },
+  {
+    "locality": "Sant Hipòlit de Voltregà",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Iscle de Vallalta",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Sant Jaume d'Enveja",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Sant Jaume de Frontanyà",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Sant Jaume de Llierca",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sant Jaume dels Domenys",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Sant Joan de les Abadesses",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Sant Joan de Mollet",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Joan de Vilatorrada",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Joan Despí",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Joan les Fonts",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Sant Jordi Desvalls",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Julià de Cerdanyola",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Sant Julià de Ramis",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Julià de Vilatorta",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Julià del Llor i Bonmatí",
+    "region": "Selva"
+  },
+  {
+    "locality": "Sant Just Desvern",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Sant Llorenç d'Hortons",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Llorenç de la Muga",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sant Llorenç de Morunys",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Sant Llorenç Savall",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Sant Martí d'Albars",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Sant Martí de Centelles",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Martí de Llémena",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Martí de Riucorb",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Sant Martí de Tous",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Sant Martí Sarroca",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Martí Sesgueioles",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Sant Martí Vell",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sant Mateu de Bages",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Miquel de Campmajor",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Sant Miquel de Fluvià",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sant Mori",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sant Pau de Segúries",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Sant Pere de Ribes",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Sant Pere de Riudebitlles",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Pere de Torelló",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Pere de Vilamajor",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Sant Pere Pescador",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sant Pere Sallavinera",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Sant Pol de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Sant Quintí de Mediona",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Quirze de Besora",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Quirze del Vallès",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Sant Quirze Safaja",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Sant Ramon",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Sant Sadurní d'Anoia",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sant Sadurní d'Osormort",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Salvador de Guardiola",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Vicenç de Castellet",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sant Vicenç de Montalt",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Sant Vicenç de Torelló",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sant Vicenç dels Horts",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Santa Bàrbara",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Santa Cecília de Voltregà",
+    "region": "Osona"
+  },
+  {
+    "locality": "Santa Coloma de Cervelló",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Santa Coloma de Farners",
+    "region": "Selva"
+  },
+  {
+    "locality": "Santa Coloma de Gramenet",
+    "region": "Barcelonès"
+  },
+  {
+    "locality": "Santa Coloma de Queralt",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Santa Cristina d'Aro",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Santa Eugènia de Berga",
+    "region": "Osona"
+  },
+  {
+    "locality": "Santa Eulàlia de Riuprimer",
+    "region": "Osona"
+  },
+  {
+    "locality": "Santa Eulàlia de Ronçana",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Santa Fe del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Santa Llogaia d'Àlguema",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Santa Margarida de Montbui",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Santa Margarida i els Monjos",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Santa Maria d'Oló",
+    "region": "Moianès"
+  },
+  {
+    "locality": "Santa Maria de Besora",
+    "region": "Osona"
+  },
+  {
+    "locality": "Santa Maria de Martorelles",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Santa Maria de Merlès",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Santa Maria de Miralles",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Santa Maria de Palautordera",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Santa Oliva",
+    "region": "Baix Penedès"
+  },
+  {
+    "locality": "Santa Pau",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Santa Perpètua de Mogoda",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Santa Susanna",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Santpedor",
+    "region": "Bages"
+  },
+  {
+    "locality": "Sarral",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Sarrià de Ter",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Sarroca de Bellera",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Sarroca de Lleida",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Saus, Camallera i Llampaies",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Savallà del Comtat",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Senan",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Senterada",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Sentmenat",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Serinyà",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Seròs",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Serra de Daró",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Setcases",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Seva",
+    "region": "Osona"
+  },
+  {
+    "locality": "Sidamon",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Sils",
+    "region": "Selva"
+  },
+  {
+    "locality": "Sitges",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Siurana",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Sobremunt",
+    "region": "Lluçanès"
+  },
+  {
+    "locality": "Solivella",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Solsona",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Sora",
+    "region": "Osona"
+  },
+  {
+    "locality": "Soriguera",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Sort",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Soses",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Subirats",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Sudanell",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Sunyer",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Súria",
+    "region": "Bages"
+  },
+  {
+    "locality": "Susqueda",
+    "region": "Selva"
+  },
+  {
+    "locality": "Tagamanent",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Talamanca",
+    "region": "Bages"
+  },
+  {
+    "locality": "Talarn",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Talavera",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Taradell",
+    "region": "Osona"
+  },
+  {
+    "locality": "Tarragona",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Tàrrega",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Tarrés",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Tarroja de Segarra",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Tavèrnoles",
+    "region": "Osona"
+  },
+  {
+    "locality": "Tavertet",
+    "region": "Osona"
+  },
+  {
+    "locality": "Teià",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Térmens",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Terrades",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Terrassa",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Tiana",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Tírvia",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Tiurana",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Tivenys",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Tivissa",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Tona",
+    "region": "Osona"
+  },
+  {
+    "locality": "Torà",
+    "region": "Solsonès"
+  },
+  {
+    "locality": "Tordera",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Torelló",
+    "region": "Osona"
+  },
+  {
+    "locality": "Tornabous",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Torre-serona",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Torrebesses",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Torredembarra",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Torrefarrera",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Torrefeta i Florejacs",
+    "region": "Segarra"
+  },
+  {
+    "locality": "Torregrossa",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Torrelameu",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Torrelavit",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Torrelles de Foix",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Torrelles de Llobregat",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Torrent",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Torres de Segre",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Torroella de Fluvià",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Torroella de Montgrí",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Torroja del Priorat",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Tortellà",
+    "region": "Garrotxa"
+  },
+  {
+    "locality": "Tortosa",
+    "region": "Baix Ebre"
+  },
+  {
+    "locality": "Toses",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Tossa de Mar",
+    "region": "Selva"
+  },
+  {
+    "locality": "Tremp",
+    "region": "Pallars Jussà"
+  },
+  {
+    "locality": "Ullà",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Ullastrell",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Ullastret",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Ulldecona",
+    "region": "Montsià"
+  },
+  {
+    "locality": "Ulldemolins",
+    "region": "Priorat"
+  },
+  {
+    "locality": "Ultramort",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Urús",
+    "region": "Cerdanya"
+  },
+  {
+    "locality": "Vacarisses",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Vall de Cardós",
+    "region": "Pallars Sobirà"
+  },
+  {
+    "locality": "Vall-llobrega",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Vallbona d'Anoia",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Vallbona de les Monges",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Vallcebre",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Vallclara",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Vallfogona de Balaguer",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Vallfogona de Ripollès",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Vallfogona de Riucorb",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Vallgorguina",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Vallirana",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Vallmoll",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Vallromanes",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Valls",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Vandellòs i l'Hospitalet de l'Infant",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Veciana",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Ventalló",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Verdú",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Verges",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Vespella de Gaià",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Vic",
+    "region": "Osona"
+  },
+  {
+    "locality": "Vidrà",
+    "region": "Osona"
+  },
+  {
+    "locality": "Vidreres",
+    "region": "Selva"
+  },
+  {
+    "locality": "Vielha e Mijaran",
+    "region": "Aran"
+  },
+  {
+    "locality": "Vila-rodona",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Vila-sacra",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vila-sana",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Vila-seca",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Vilabella",
+    "region": "Alt Camp"
+  },
+  {
+    "locality": "Vilabertran",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilablareix",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Vilada",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Viladamat",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Viladasens",
+    "region": "Gironès"
+  },
+  {
+    "locality": "Viladecans",
+    "region": "Baix Llobregat"
+  },
+  {
+    "locality": "Viladecavalls",
+    "region": "Vallès Occidental"
+  },
+  {
+    "locality": "Vilademuls",
+    "region": "Pla de l'Estany"
+  },
+  {
+    "locality": "Viladrau",
+    "region": "Osona"
+  },
+  {
+    "locality": "Vilafant",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilafranca del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Vilagrassa",
+    "region": "Urgell"
+  },
+  {
+    "locality": "Vilajuïga",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilalba dels Arcs",
+    "region": "Terra Alta"
+  },
+  {
+    "locality": "Vilalba Sasserra",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Vilaller",
+    "region": "Alta Ribagorça"
+  },
+  {
+    "locality": "Vilallonga de Ter",
+    "region": "Ripollès"
+  },
+  {
+    "locality": "Vilallonga del Camp",
+    "region": "Tarragonès"
+  },
+  {
+    "locality": "Vilamacolum",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilamalla",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilamaniscle",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilamòs",
+    "region": "Aran"
+  },
+  {
+    "locality": "Vilanant",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilanova d'Escornalbou",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Vilanova de Bellpuig",
+    "region": "Pla d'Urgell"
+  },
+  {
+    "locality": "Vilanova de l'Aguda",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Vilanova de la Barca",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Vilanova de Meià",
+    "region": "Noguera"
+  },
+  {
+    "locality": "Vilanova de Prades",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Vilanova de Sau",
+    "region": "Osona"
+  },
+  {
+    "locality": "Vilanova de Segrià",
+    "region": "Segrià"
+  },
+  {
+    "locality": "Vilanova del Camí",
+    "region": "Anoia"
+  },
+  {
+    "locality": "Vilanova del Vallès",
+    "region": "Vallès Oriental"
+  },
+  {
+    "locality": "Vilanova i la Geltrú",
+    "region": "Garraf"
+  },
+  {
+    "locality": "Vilaplana",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Vilassar de Dalt",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Vilassar de Mar",
+    "region": "Maresme"
+  },
+  {
+    "locality": "Vilaür",
+    "region": "Alt Empordà"
+  },
+  {
+    "locality": "Vilaverd",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Vilobí d'Onyar",
+    "region": "Selva"
+  },
+  {
+    "locality": "Vilobí del Penedès",
+    "region": "Alt Penedès"
+  },
+  {
+    "locality": "Vilopriu",
+    "region": "Baix Empordà"
+  },
+  {
+    "locality": "Vimbodí i Poblet",
+    "region": "Conca de Barberà"
+  },
+  {
+    "locality": "Vinaixa",
+    "region": "Garrigues"
+  },
+  {
+    "locality": "Vinebre",
+    "region": "Ribera d'Ebre"
+  },
+  {
+    "locality": "Vinyols i els Arcs",
+    "region": "Baix Camp"
+  },
+  {
+    "locality": "Viver i Serrateix",
+    "region": "Berguedà"
+  },
+  {
+    "locality": "Xerta",
+    "region": "Baix Ebre"
+  }
+]

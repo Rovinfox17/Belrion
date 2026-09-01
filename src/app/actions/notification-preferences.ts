@@ -27,3 +27,27 @@ export async function setChatNotificationsPreference(enabled: boolean) {
   revalidatePath("/ajustes");
   return { success: true as const };
 }
+
+export async function setRevisitCycle(months: 1 | 2 | 3 | 6) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    const t = await getTranslations("errors");
+    return { error: t("notAuthenticated") };
+  }
+
+  const { error } = await supabase
+    .from("user_notification_preferences")
+    .upsert({ user_id: user.id, revisit_cycle_months: months }, { onConflict: "user_id" });
+
+  if (error) {
+    const t = await getTranslations("settings.notifications.errors");
+    return { error: t("preferenceSaveFailed") };
+  }
+
+  revalidatePath("/ajustes");
+  return { success: true as const };
+}

@@ -183,10 +183,12 @@ export type Database = {
         Row: {
           user_id: string;
           chat_notifications: boolean;
+          revisit_cycle_months: number;
         };
         Insert: {
           user_id: string;
           chat_notifications?: boolean;
+          revisit_cycle_months?: number;
         };
         Update: Partial<Database["public"]["Tables"]["user_notification_preferences"]["Insert"]>;
         Relationships: [];

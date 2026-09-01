@@ -106,6 +106,11 @@
       "chatNotifications": "Team chat messages",
       "chatNotificationsHint": "Get an alert when a new message arrives in your teams' chat, even if the app is closed."
     },
+    "revisitCycle": {
+      "label": "Revisit cycle",
+      "help": "How often a client is considered due for a revisit. The visit route generator (in Calendar) uses this value to decide who to suggest.",
+      "months": "{count, plural, one {# month} other {# months}}"
+    },
     "password": {
       "title": "Change password",
       "new": "New password",
@@ -485,6 +490,35 @@
       "deleteFailed": "Could not delete the visit.",
       "commentRequired": "Write a comment.",
       "commentSaveFailed": "Could not save the comment."
+    },
+    "routeGenerator": {
+      "trigger": "Generate visit route",
+      "title": "Visit route generator",
+      "areaLabel": "Town or area",
+      "areaPlaceholder": "E.g. Granollers",
+      "areaHelp": "Searches for clients whose address contains this text. If none are found in that exact town, it tries widening the search to its whole comarca (for now, only within Catalonia).",
+      "portfolioLabel": "Portfolio",
+      "portfolioPersonal": "My personal portfolio",
+      "search": "Search clients",
+      "searching": "Searching…",
+      "expandedNotice": "No clients were found in \"{area}\", so the search was widened to the whole area: {region}.",
+      "foundCount": "{count, plural, one {Found # client due for a revisit} other {Found # clients due for a revisit}}",
+      "dateLabel": "Route date",
+      "neverVisited": "Never visited",
+      "daysSince": "{count, plural, one {# day ago} other {# days ago}}",
+      "back": "← Back to search",
+      "confirm": "Create visits",
+      "confirming": "Creating…",
+      "success": "{count, plural, one {Visit created} other {# visits created}}",
+      "emptyTitle": "No clients found",
+      "emptyText": "Try another town or area, or check that your clients' addresses are entered correctly. Only clients due for a revisit (per the cycle set in Settings) and without an already scheduled pending visit are suggested.",
+      "errors": {
+        "areaRequired": "Enter a town or area.",
+        "searchFailed": "Could not generate the route.",
+        "dateRequired": "Select a date.",
+        "noCandidates": "There are no clients in the route.",
+        "confirmFailed": "Could not create the visits."
+      }
     }
   },
   "team": {
@@ -616,6 +650,19 @@
       "step4Text": "In the client list, press the \"Columns\" button and check the custom fields you want to see at a glance in the table, without opening each record.",
       "step5Title": "5. Filter and sort by it",
       "step5Text": "With \"+ Add filter\" you can search clients by a custom field's value, just like you already do with status or product. And if it's shown as a column, you can click its header to sort the list by that field."
+    },
+    "routeGenerator": {
+      "title": "Visit route generator: make the most of a free slot",
+      "intro": "Finished early, forgot to plan ahead, or just not sure who to visit today? The route generator suggests a list of clients in an area who are due for a revisit, so you don't have to comb through your portfolio by hand.",
+      "step1Title": "1. Set your revisit cycle",
+      "step1Text": "In Settings → Revisit cycle, set how many months should pass before you consider a client due for another visit. The generator only suggests clients who've gone longer than that cycle without a visit (or who have never been visited).",
+      "step1Example": "Example: with a 3-month cycle, a client you visited 2 months ago won't show up in the route yet; one you visited 4 months ago will.",
+      "step2Title": "2. Generate the route from Calendar",
+      "step2Text": "Press \"Generate visit route\" in Calendar, type in a town or area (and pick your personal portfolio or a team's, if you belong to one), and the app will search for clients in that area whose address matches and who don't already have a pending visit scheduled. If none are found in the exact town, it automatically tries widening the search to its whole comarca — it will clearly tell you when that happened.",
+      "step2Example": "Example: you type \"Granollers\" and there are no pending-due clients in that exact town; the app widens the search to the Vallès Oriental comarca and suggests clients from nearby towns, clearly noting that the search was widened.",
+      "step3Title": "3. Adjust the proposal and confirm it",
+      "step3Text": "On the review screen you can remove clients, reorder them with the arrows, and adjust each visit's time. Confirming creates them as normal visits in your Calendar — there's no new screen or table to check afterward, everything shows up where you already look.",
+      "step3Example": "Example: the app suggests 8 clients with times spaced 45 minutes apart starting at 9:00; you remove one because it's out of your way today, move up another's time, and confirm the route for today."
     }
   }
 }

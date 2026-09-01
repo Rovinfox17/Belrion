@@ -106,6 +106,11 @@
       "chatNotifications": "Mensajes del chat de equipo",
       "chatNotificationsHint": "Recibe un aviso cuando llegue un mensaje nuevo al chat de tus equipos, aunque tengas la app cerrada."
     },
+    "revisitCycle": {
+      "label": "Ciclo de revisita",
+      "help": "Cada cuánto tiempo consideramos que a un cliente le toca revisita. El generador de rutas de visita (en el Calendario) usa este valor para decidir a quién proponerte.",
+      "months": "{count, plural, one {# mes} other {# meses}}"
+    },
     "password": {
       "title": "Cambiar contraseña",
       "new": "Contraseña nueva",
@@ -485,6 +490,35 @@
       "deleteFailed": "No se pudo eliminar la visita.",
       "commentRequired": "Escribe un comentario.",
       "commentSaveFailed": "No se pudo guardar el comentario."
+    },
+    "routeGenerator": {
+      "trigger": "Generar ruta de visitas",
+      "title": "Generador de rutas de visita",
+      "areaLabel": "Población o zona",
+      "areaPlaceholder": "Ej. Granollers",
+      "areaHelp": "Busca clientes cuya dirección contenga este texto. Si no encuentra ninguno en esa población exacta, prueba a ampliar la búsqueda a toda su comarca (de momento, solo en Catalunya).",
+      "portfolioLabel": "Cartera",
+      "portfolioPersonal": "Mi cartera personal",
+      "search": "Buscar clientes",
+      "searching": "Buscando…",
+      "expandedNotice": "No se ha encontrado ningún cliente en \"{area}\", así que se ha ampliado la búsqueda a toda la zona: {region}.",
+      "foundCount": "{count, plural, one {Se ha encontrado # cliente que toca revisita} other {Se han encontrado # clientes que tocan revisita}}",
+      "dateLabel": "Fecha de la ruta",
+      "neverVisited": "Nunca visitado",
+      "daysSince": "{count, plural, one {Hace # día} other {Hace # días}}",
+      "back": "← Volver a buscar",
+      "confirm": "Crear visitas",
+      "confirming": "Creando…",
+      "success": "{count, plural, one {Visita creada} other {# visitas creadas}}",
+      "emptyTitle": "No se ha encontrado ningún cliente",
+      "emptyText": "Prueba con otra población o zona, o revisa que la dirección de tus clientes esté bien escrita. Solo se proponen clientes a los que les toca revisita (según el ciclo configurado en Ajustes) y que no tengan ya una visita pendiente programada.",
+      "errors": {
+        "areaRequired": "Escribe una población o zona.",
+        "searchFailed": "No se pudo generar la ruta.",
+        "dateRequired": "Selecciona una fecha.",
+        "noCandidates": "No hay ningún cliente en la ruta.",
+        "confirmFailed": "No se pudieron crear las visitas."
+      }
     }
   },
   "team": {
@@ -616,6 +650,19 @@
       "step4Text": "En el listado de clientes, pulsa el botón \"Columnas\" y marca los campos personalizados que quieras ver de un vistazo en la tabla, sin tener que entrar en cada ficha.",
       "step5Title": "5. Filtra y ordena por él",
       "step5Text": "Con \"+ Añadir filtro\" puedes buscar clientes según el valor de un campo personalizado, igual que ya haces con el estado o el producto. Y si lo tienes mostrado como columna, puedes pulsar en su cabecera para ordenar el listado por ese campo."
+    },
+    "routeGenerator": {
+      "title": "Generador de rutas de visita: aprovecha los huecos del día",
+      "intro": "¿Has terminado pronto, se te olvidó planificar, o simplemente no sabes a quién visitar hoy? El generador de rutas te propone una lista de clientes de una zona a los que les toca revisita, para que no tengas que repasar tu cartera a mano.",
+      "step1Title": "1. Configura tu ciclo de revisita",
+      "step1Text": "En Ajustes → Ciclo de revisita, indica cada cuántos meses consideras que un cliente necesita una nueva visita. El generador solo propone clientes que llevan más tiempo sin visitar que ese ciclo (o que nunca han sido visitados).",
+      "step1Example": "Ejemplo: si trabajas con un ciclo de 3 meses, un cliente al que visitaste hace 2 meses no aparecerá en la ruta todavía; uno al que visitaste hace 4 meses, sí.",
+      "step2Title": "2. Genera la ruta desde el Calendario",
+      "step2Text": "Pulsa \"Generar ruta de visitas\" en el Calendario, escribe una población o zona (y elige tu cartera personal o la de un equipo, si perteneces a alguno), y la app buscará clientes de esa zona cuya dirección coincida y que no tengan ya una visita pendiente programada. Si no encuentra ninguno en la población exacta, prueba automáticamente a ampliar la búsqueda a toda su comarca — te lo indicará claramente si ha pasado eso.",
+      "step2Example": "Ejemplo: escribes \"Granollers\" y no hay clientes pendientes en esa población exacta; la app amplía la búsqueda a la comarca del Vallès Oriental y te propone clientes de otras poblaciones cercanas, dejando claro que la búsqueda se ha ampliado.",
+      "step3Title": "3. Ajusta la propuesta y confírmala",
+      "step3Text": "En la pantalla de revisión puedes quitar clientes, reordenarlos con las flechas y ajustar la hora de cada visita. Al confirmar, se crean como visitas normales en tu Calendario — no hay ninguna pantalla ni tabla nueva que consultar después, todo aparece donde ya estás acostumbrado a mirar.",
+      "step3Example": "Ejemplo: la app te propone 8 clientes con horas cada 45 minutos a partir de las 9:00; quitas uno porque hoy no te pilla de paso, adelantas la hora de otro, y confirmas la ruta para hoy."
     }
   }
 }

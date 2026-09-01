@@ -106,6 +106,11 @@
       "chatNotifications": "Missatges del xat de l'equip",
       "chatNotificationsHint": "Rep un avís quan arribi un missatge nou al xat dels teus equips, encara que tinguis l'aplicació tancada."
     },
+    "revisitCycle": {
+      "label": "Cicle de revisita",
+      "help": "Cada quant de temps considerem que a un client li toca revisita. El generador de rutes de visita (al Calendari) fa servir aquest valor per decidir a qui proposar-te.",
+      "months": "{count, plural, one {# mes} other {# mesos}}"
+    },
     "password": {
       "title": "Canvia la contrasenya",
       "new": "Contrasenya nova",
@@ -485,6 +490,35 @@
       "deleteFailed": "No s'ha pogut eliminar la visita.",
       "commentRequired": "Escriu un comentari.",
       "commentSaveFailed": "No s'ha pogut desar el comentari."
+    },
+    "routeGenerator": {
+      "trigger": "Generar ruta de visites",
+      "title": "Generador de rutes de visita",
+      "areaLabel": "Població o zona",
+      "areaPlaceholder": "Ex. Granollers",
+      "areaHelp": "Busca clients l'adreça dels quals contingui aquest text. Si no en troba cap en aquesta població exacta, prova d'ampliar la cerca a tota la seva comarca (de moment, només a Catalunya).",
+      "portfolioLabel": "Cartera",
+      "portfolioPersonal": "La meva cartera personal",
+      "search": "Cercar clients",
+      "searching": "Cercant…",
+      "expandedNotice": "No s'ha trobat cap client a \"{area}\", així que s'ha ampliat la cerca a tota la zona: {region}.",
+      "foundCount": "{count, plural, one {S'ha trobat # client a qui li toca revisita} other {S'han trobat # clients a qui els toca revisita}}",
+      "dateLabel": "Data de la ruta",
+      "neverVisited": "Mai visitat",
+      "daysSince": "{count, plural, one {Fa # dia} other {Fa # dies}}",
+      "back": "← Tornar a cercar",
+      "confirm": "Crear visites",
+      "confirming": "Creant…",
+      "success": "{count, plural, one {Visita creada} other {# visites creades}}",
+      "emptyTitle": "No s'ha trobat cap client",
+      "emptyText": "Prova amb una altra població o zona, o comprova que l'adreça dels teus clients estigui ben escrita. Només es proposen clients a qui els toca revisita (segons el cicle configurat a Ajustos) i que no tinguin ja una visita pendent programada.",
+      "errors": {
+        "areaRequired": "Escriu una població o zona.",
+        "searchFailed": "No s'ha pogut generar la ruta.",
+        "dateRequired": "Selecciona una data.",
+        "noCandidates": "No hi ha cap client a la ruta.",
+        "confirmFailed": "No s'han pogut crear les visites."
+      }
     }
   },
   "team": {
@@ -616,6 +650,19 @@
       "step4Text": "Al llistat de clients, prem el botó \"Columnes\" i marca els camps personalitzats que vulguis veure d'un cop d'ull a la taula, sense haver d'entrar a cada fitxa.",
       "step5Title": "5. Filtra i ordena per ell",
       "step5Text": "Amb \"+ Afegir filtre\" pots buscar clients segons el valor d'un camp personalitzat, igual que ja fas amb l'estat o el producte. I si el tens mostrat com a columna, pots prémer la seva capçalera per ordenar el llistat per aquest camp."
+    },
+    "routeGenerator": {
+      "title": "Generador de rutes de visita: aprofita els forats del dia",
+      "intro": "Has acabat aviat, se t'ha oblidat planificar, o simplement no saps a qui visitar avui? El generador de rutes et proposa una llista de clients d'una zona a qui els toca revisita, perquè no hagis de repassar la teva cartera a mà.",
+      "step1Title": "1. Configura el teu cicle de revisita",
+      "step1Text": "A Ajustos → Cicle de revisita, indica cada quants mesos consideres que un client necessita una nova visita. El generador només proposa clients que fa més temps que no es visiten que aquest cicle (o que mai han estat visitats).",
+      "step1Example": "Exemple: si treballes amb un cicle de 3 mesos, un client que vas visitar fa 2 mesos encara no apareixerà a la ruta; un que vas visitar fa 4 mesos, sí.",
+      "step2Title": "2. Genera la ruta des del Calendari",
+      "step2Text": "Prem \"Generar ruta de visites\" al Calendari, escriu una població o zona (i tria la teva cartera personal o la d'un equip, si en formes part), i l'app buscarà clients d'aquesta zona l'adreça dels quals coincideixi i que no tinguin ja una visita pendent programada. Si no en troba cap a la població exacta, prova automàticament d'ampliar la cerca a tota la seva comarca — t'ho indicarà clarament si ha passat això.",
+      "step2Example": "Exemple: escrius \"Granollers\" i no hi ha clients pendents en aquesta població exacta; l'app amplia la cerca a la comarca del Vallès Oriental i et proposa clients d'altres poblacions properes, deixant clar que la cerca s'ha ampliat.",
+      "step3Title": "3. Ajusta la proposta i confirma-la",
+      "step3Text": "A la pantalla de revisió pots treure clients, reordenar-los amb les fletxes i ajustar l'hora de cada visita. En confirmar, es creen com a visites normals al teu Calendari — no hi ha cap pantalla ni taula nova que consultar després, tot apareix on ja estàs acostumat a mirar.",
+      "step3Example": "Exemple: l'app et proposa 8 clients amb hores cada 45 minuts a partir de les 9:00; en treus un perquè avui no et queda de pas, avances l'hora d'un altre, i confirmes la ruta per avui."
     }
   }
 }

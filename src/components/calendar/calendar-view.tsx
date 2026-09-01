@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import { NewVisitDialog, type ClientOption, type TeamOption } from "./new-visit-dialog";
 import { VisitDetailDialog, type CalendarVisit } from "./visit-detail-dialog";
+import { RouteGeneratorDialog } from "./route-generator-dialog";
 
 const STATUS_COLOR: Record<CalendarVisit["status"], string> = {
   pendiente: "#f59e0b",
@@ -66,7 +67,8 @@ export function CalendarView({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-2">
+        <RouteGeneratorDialog teams={teams} />
         <Button
           size="sm"
           onClick={() => {
