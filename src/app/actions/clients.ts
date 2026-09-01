@@ -11,14 +11,20 @@ export async function createClientWithContact(input: {
   companyName: string;
   contactName: string;
   status: ClientStatus;
+  locality: string;
+  region: string;
+  province: string;
   teamIds?: string[];
 }) {
   const companyName = input.companyName.trim();
   const contactName = input.contactName.trim();
+  const locality = input.locality.trim();
+  const region = input.region.trim();
+  const province = input.province.trim();
   const t = await getTranslations("clients.newDialog.errors");
   const tErrors = await getTranslations("errors");
 
-  if (!companyName || !contactName) {
+  if (!companyName || !contactName || !locality || !region || !province) {
     return { error: t("fieldsRequired") };
   }
 
@@ -38,9 +44,15 @@ export async function createClientWithContact(input: {
   // sentencia, Postgres no la da por visible todavía y el insert se rechaza
   // aunque el usuario sea el dueño legítimo.
   const clientId = randomUUID();
-  const { error: clientError } = await supabase
-    .from("clients")
-    .insert({ id: clientId, company_name: companyName, status: input.status, user_id: user.id });
+  const { error: clientError } = await supabase.from("clients").insert({
+    id: clientId,
+    company_name: companyName,
+    status: input.status,
+    locality,
+    region,
+    province,
+    user_id: user.id,
+  });
 
   if (clientError) {
     console.error("createClientWithContact failed", { userId: user.id, clientError });
@@ -75,6 +87,9 @@ export async function updateClient(input: {
   companyName: string;
   status: ClientStatus;
   address: string;
+  locality: string;
+  region: string;
+  province: string;
   notes: string;
 }) {
   const companyName = input.companyName.trim();
@@ -91,6 +106,9 @@ export async function updateClient(input: {
       company_name: companyName,
       status: input.status,
       address: input.address.trim() || null,
+      locality: input.locality.trim() || null,
+      region: input.region.trim() || null,
+      province: input.province.trim() || null,
       notes: input.notes.trim() || null,
     })
     .eq("id", input.id);

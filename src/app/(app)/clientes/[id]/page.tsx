@@ -29,6 +29,9 @@ type RawClientDetail = {
   company_name: string;
   status: Status;
   address: string | null;
+  locality: string | null;
+  region: string | null;
+  province: string | null;
   notes: string | null;
   contacts: {
     id: string;
@@ -69,7 +72,7 @@ export default async function ClientDetailPage({
   const { data } = await supabase
     .from("clients")
     .select(
-      "id, user_id, company_name, status, address, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, visit_comments(id, comment, created_at))"
+      "id, user_id, company_name, status, address, locality, region, province, notes, contacts(id, name, phone, email, role, is_primary), products(id, name, details), visits(id, scheduled_at, status, visit_comments(id, comment, created_at))"
     )
     .eq("id", id)
     .single();
@@ -176,6 +179,11 @@ export default async function ClientDetailPage({
               <AddressMapLink address={client.address} />
             </div>
           )}
+          {(client.locality || client.region || client.province) && (
+            <p className="text-sm text-muted-foreground">
+              {[client.locality, client.region, client.province].filter(Boolean).join(" · ")}
+            </p>
+          )}
           {client.notes && (
             <p className="whitespace-pre-wrap text-sm text-muted-foreground">
               {client.notes}
@@ -189,6 +197,9 @@ export default async function ClientDetailPage({
               companyName: client.company_name,
               status: client.status,
               address: client.address,
+              locality: client.locality,
+              region: client.region,
+              province: client.province,
               notes: client.notes,
             }}
           />

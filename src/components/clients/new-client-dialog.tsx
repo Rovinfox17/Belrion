@@ -40,6 +40,9 @@ export function NewClientDialog({
   const [companyName, setCompanyName] = useState("");
   const [contactName, setContactName] = useState("");
   const [status, setStatus] = useState<Status>("potencial");
+  const [locality, setLocality] = useState("");
+  const [region, setRegion] = useState("");
+  const [province, setProvince] = useState("");
   const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>(
     defaultTeamId ? [defaultTeamId] : []
   );
@@ -68,6 +71,9 @@ export function NewClientDialog({
         companyName,
         contactName,
         status,
+        locality,
+        region,
+        province,
         teamIds: selectedTeamIds,
       });
       if (result?.error) {
@@ -79,6 +85,9 @@ export function NewClientDialog({
       setCompanyName("");
       setContactName("");
       setStatus("potencial");
+      setLocality("");
+      setRegion("");
+      setProvince("");
       router.refresh();
     });
   }
@@ -129,6 +138,36 @@ export function NewClientDialog({
                 <SelectItem value="inactivo">{tFilters("statusInactive")}</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="new_locality">{t("locality")}</Label>
+            <Input
+              id="new_locality"
+              value={locality}
+              onChange={(e) => setLocality(e.target.value)}
+              placeholder={t("localityPlaceholder")}
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="new_region">{t("region")}</Label>
+            <Input
+              id="new_region"
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              placeholder={t("regionPlaceholder")}
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="new_province">{t("province")}</Label>
+            <Input
+              id="new_province"
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+              placeholder={t("provincePlaceholder")}
+              required
+            />
           </div>
           {teams.length > 0 && (
             <div className="flex flex-col gap-2">

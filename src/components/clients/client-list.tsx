@@ -33,6 +33,9 @@ export type ClientRow = {
   status: "activo" | "potencial" | "inactivo";
   primaryContactName: string | null;
   nextVisitAt: string | null;
+  locality: string | null;
+  region: string | null;
+  province: string | null;
   customFieldValues: Record<string, string | null>;
 };
 
@@ -325,6 +328,15 @@ export function ClientList({
                 <SortableColumnHeader label={t("list.status")} field="estado" />
               </th>
               <th className="px-4 py-2.5 font-medium">
+                <SortableColumnHeader label={t("list.locality")} field="poblacion" />
+              </th>
+              <th className="px-4 py-2.5 font-medium">
+                <SortableColumnHeader label={t("list.region")} field="comarca" />
+              </th>
+              <th className="px-4 py-2.5 font-medium">
+                <SortableColumnHeader label={t("list.province")} field="provincia" />
+              </th>
+              <th className="px-4 py-2.5 font-medium">
                 <SortableColumnHeader label={t("list.nextVisit")} field="proxima_visita" />
               </th>
               {visibleColumns.map((field) => (
@@ -369,6 +381,9 @@ export function ClientList({
                     {STATUS_LABEL[c.status]}
                   </Badge>
                 </td>
+                <td className="px-4 py-2 text-muted-foreground">{c.locality ?? "—"}</td>
+                <td className="px-4 py-2 text-muted-foreground">{c.region ?? "—"}</td>
+                <td className="px-4 py-2 text-muted-foreground">{c.province ?? "—"}</td>
                 <td className="px-4 py-2 text-muted-foreground">
                   {formatVisit(c.nextVisitAt)}
                 </td>
@@ -410,6 +425,9 @@ export function ClientList({
                 </div>
               ) : (
                 <p className="mt-1 text-sm text-muted-foreground">{t("list.noContact")}</p>
+              )}
+              {c.locality && (
+                <p className="mt-1 text-xs text-muted-foreground">{c.locality}</p>
               )}
               <p className="mt-1 text-xs text-muted-foreground">
                 {formatVisit(c.nextVisitAt)}

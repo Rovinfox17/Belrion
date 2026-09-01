@@ -12,6 +12,9 @@ type RawClient = {
   company_name: string;
   status: "activo" | "potencial" | "inactivo";
   created_at: string;
+  locality: string | null;
+  region: string | null;
+  province: string | null;
   contacts: { id: string; name: string; is_primary: boolean }[];
   products: { id: string; name: string }[];
   visits: { id: string; scheduled_at: string; status: string }[];
@@ -95,7 +98,7 @@ export default async function Home({
   const customFieldById = new Map(customFields.map((f) => [f.id, f]));
 
   const selectColumns =
-    "id, company_name, status, created_at, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status), custom_field_values(field_id, value)";
+    "id, company_name, status, created_at, locality, region, province, contacts(id, name, is_primary), products(id, name), visits(id, scheduled_at, status), custom_field_values(field_id, value)";
 
   const { data, error } = activeTeam
     ? await supabase
@@ -124,9 +127,22 @@ export default async function Home({
     new Set(clients.flatMap((c) => c.products.map((p) => p.name)))
   ).sort((a, b) => a.localeCompare(b));
 
+  const allLocalities = Array.from(
+    new Set(clients.map((c) => c.locality).filter((v): v is string => Boolean(v)))
+  ).sort((a, b) => a.localeCompare(b));
+  const allRegions = Array.from(
+    new Set(clients.map((c) => c.region).filter((v): v is string => Boolean(v)))
+  ).sort((a, b) => a.localeCompare(b));
+  const allProvinces = Array.from(
+    new Set(clients.map((c) => c.province).filter((v): v is string => Boolean(v)))
+  ).sort((a, b) => a.localeCompare(b));
+
   const q = (params.q ?? "").trim().toLowerCase();
   const status = params.status;
   const product = params.product;
+  const locality = params.locality;
+  const region = params.region;
+  const province = params.province;
   const upcomingOnly = params.upcoming === "true";
   const sort = params.sort ?? "alfabetico";
   const requestedDir = params.dir === "asc" || params.dir === "desc" ? params.dir : null;
@@ -150,6 +166,9 @@ export default async function Home({
     if (product && product !== "all" && !c.products.some((p) => p.name === product)) {
       return false;
     }
+    if (locality && locality !== "all" && c.locality !== locality) return false;
+    if (region && region !== "all" && c.region !== region) return false;
+    if (province && province !== "all" && c.province !== province) return false;
     if (upcomingOnly && !nextVisit(c, now)) return false;
     if (q) {
       const matchesCompany = c.company_name.toLowerCase().includes(q);
@@ -211,6 +230,12 @@ export default async function Home({
       }
       case "estado":
         return sign * (STATUS_RANK[a.status] - STATUS_RANK[b.status]);
+      case "poblacion":
+        return sign * (a.locality ?? "").localeCompare(b.locality ?? "");
+      case "comarca":
+        return sign * (a.region ?? "").localeCompare(b.region ?? "");
+      case "provincia":
+        return sign * (a.province ?? "").localeCompare(b.province ?? "");
       default:
         if (sort.startsWith("custom:")) {
           const field = customFieldById.get(sort.slice("custom:".length));
@@ -233,10 +258,15 @@ export default async function Home({
     status: c.status,
     primaryContactName: c.contacts.find((ct) => ct.is_primary)?.name ?? c.contacts[0]?.name ?? null,
     nextVisitAt: nextVisit(c, now),
+    locality: c.locality,
+    region: c.region,
+    province: c.province,
     customFieldValues: Object.fromEntries(c.custom_field_values.map((v) => [v.field_id, v.value])),
   }));
 
-  const isFiltered = Boolean(q || status || product || upcomingOnly || activeCustomFilters.length > 0);
+  const isFiltered = Boolean(
+    q || status || product || locality || region || province || upcomingOnly || activeCustomFilters.length > 0
+  );
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
@@ -279,7 +309,13 @@ export default async function Home({
         </div>
       )}
 
-      <ClientFilters products={allProducts} customFields={customFields} />
+      <ClientFilters
+        products={allProducts}
+        localities={allLocalities}
+        regions={allRegions}
+        provinces={allProvinces}
+        customFields={customFields}
+      />
 
       {error && (
         <p className="text-sm text-destructive">{t("list.loadError")}</p>

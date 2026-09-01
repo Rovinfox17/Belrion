@@ -35,6 +35,9 @@ export function EditClientDialog({
     companyName: string;
     status: Status;
     address: string | null;
+    locality: string | null;
+    region: string | null;
+    province: string | null;
     notes: string | null;
   };
 }) {
@@ -44,6 +47,9 @@ export function EditClientDialog({
   const [companyName, setCompanyName] = useState(client.companyName);
   const [status, setStatus] = useState<Status>(client.status);
   const [address, setAddress] = useState(client.address ?? "");
+  const [locality, setLocality] = useState(client.locality ?? "");
+  const [region, setRegion] = useState(client.region ?? "");
+  const [province, setProvince] = useState(client.province ?? "");
   const [notes, setNotes] = useState(client.notes ?? "");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -55,6 +61,9 @@ export function EditClientDialog({
       setCompanyName(client.companyName);
       setStatus(client.status);
       setAddress(client.address ?? "");
+      setLocality(client.locality ?? "");
+      setRegion(client.region ?? "");
+      setProvince(client.province ?? "");
       setNotes(client.notes ?? "");
       setError(null);
     }
@@ -69,6 +78,9 @@ export function EditClientDialog({
         companyName,
         status,
         address,
+        locality,
+        region,
+        province,
         notes,
       });
       if (result?.error) {
@@ -129,6 +141,33 @@ export function EditClientDialog({
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder={t("addressPlaceholder")}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="edit_locality">{t("locality")}</Label>
+            <Input
+              id="edit_locality"
+              value={locality}
+              onChange={(e) => setLocality(e.target.value)}
+              placeholder={t("localityPlaceholder")}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="edit_region">{t("region")}</Label>
+            <Input
+              id="edit_region"
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              placeholder={t("regionPlaceholder")}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="edit_province">{t("province")}</Label>
+            <Input
+              id="edit_province"
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+              placeholder={t("provincePlaceholder")}
             />
           </div>
           <div className="flex flex-col gap-2">

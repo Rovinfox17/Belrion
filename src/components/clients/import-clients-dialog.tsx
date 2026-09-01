@@ -37,6 +37,9 @@ type FieldKey =
   | "phone"
   | "email"
   | "address"
+  | "locality"
+  | "region"
+  | "province"
   | "products"
   | "notes"
   | "status"
@@ -72,6 +75,9 @@ const FIELD_SYNONYMS: Record<Exclude<FieldKey, "ignore">, string[]> = {
   phone: ["telefono", "tel", "phone", "numerodetelefono", "telefon", "movil", "mobil", "celular"],
   email: ["email", "correo", "correoelectronico", "mail"],
   address: ["direccion", "domicilio", "address", "adreca"],
+  locality: ["poblacion", "ciudad", "localidad", "municipio", "town", "city", "poblacio", "municipi"],
+  region: ["comarca", "region", "county"],
+  province: ["provincia", "province"],
   products: ["producto", "productos", "product", "products", "producte", "productes", "productoscontratados"],
   notes: ["notas", "observaciones", "notes", "comments", "comentarios", "nota", "observacions"],
   status: ["estado", "status", "estat"],
@@ -326,6 +332,9 @@ export function ImportClientsDialog({ customFields }: { customFields: CustomFiel
         phone: value("phone") || null,
         email: value("email") || null,
         address: value("address") || null,
+        locality: value("locality") || null,
+        region: value("region") || null,
+        province: value("province") || null,
         notes: value("notes") || null,
         products: productsRaw
           ? productsRaw.split(/[,;]+/).map((p) => p.trim()).filter(Boolean)
@@ -399,6 +408,9 @@ export function ImportClientsDialog({ customFields }: { customFields: CustomFiel
     { value: "phone", label: t("mapping.fieldPhone") },
     { value: "email", label: t("mapping.fieldEmail") },
     { value: "address", label: t("mapping.fieldAddress") },
+    { value: "locality", label: t("mapping.fieldLocality") },
+    { value: "region", label: t("mapping.fieldRegion") },
+    { value: "province", label: t("mapping.fieldProvince") },
     { value: "products", label: t("mapping.fieldProducts") },
     { value: "notes", label: t("mapping.fieldNotes") },
     { value: "status", label: t("mapping.fieldStatus") },

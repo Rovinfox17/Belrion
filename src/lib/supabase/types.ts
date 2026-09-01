@@ -7,6 +7,9 @@ export type Database = {
           user_id: string;
           company_name: string;
           address: string | null;
+          locality: string | null;
+          region: string | null;
+          province: string | null;
           latitude: number | null;
           longitude: number | null;
           notes: string | null;
@@ -19,6 +22,9 @@ export type Database = {
           user_id?: string;
           company_name: string;
           address?: string | null;
+          locality?: string | null;
+          region?: string | null;
+          province?: string | null;
           latitude?: number | null;
           longitude?: number | null;
           notes?: string | null;

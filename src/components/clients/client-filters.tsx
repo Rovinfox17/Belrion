@@ -18,9 +18,15 @@ import { HelpTooltip } from "@/components/ui/help-tooltip";
 
 export function ClientFilters({
   products,
+  localities,
+  regions,
+  provinces,
   customFields,
 }: {
   products: string[];
+  localities: string[];
+  regions: string[];
+  provinces: string[];
   customFields: CustomFieldMeta[];
 }) {
   const t = useTranslations("clients.filters");
@@ -142,6 +148,63 @@ export function ClientFilters({
             <SelectContent>
               <SelectItem value="all">{t("productAll")}</SelectItem>
               {products.map((p) => (
+                <SelectItem key={p} value={p}>
+                  {p}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+        {localities.length > 0 && (
+          <Select
+            items={[{ value: "all", label: t("localityAll") }, ...localities.map((l) => ({ value: l, label: l }))]}
+            value={searchParams.get("locality") ?? "all"}
+            onValueChange={(v) => updateParam("locality", v)}
+          >
+            <SelectTrigger className="sm:w-44">
+              <SelectValue placeholder={t("localityPlaceholder")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{t("localityAll")}</SelectItem>
+              {localities.map((l) => (
+                <SelectItem key={l} value={l}>
+                  {l}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+        {regions.length > 0 && (
+          <Select
+            items={[{ value: "all", label: t("regionAll") }, ...regions.map((r) => ({ value: r, label: r }))]}
+            value={searchParams.get("region") ?? "all"}
+            onValueChange={(v) => updateParam("region", v)}
+          >
+            <SelectTrigger className="sm:w-44">
+              <SelectValue placeholder={t("regionPlaceholder")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{t("regionAll")}</SelectItem>
+              {regions.map((r) => (
+                <SelectItem key={r} value={r}>
+                  {r}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+        {provinces.length > 0 && (
+          <Select
+            items={[{ value: "all", label: t("provinceAll") }, ...provinces.map((p) => ({ value: p, label: p }))]}
+            value={searchParams.get("province") ?? "all"}
+            onValueChange={(v) => updateParam("province", v)}
+          >
+            <SelectTrigger className="sm:w-44">
+              <SelectValue placeholder={t("provincePlaceholder")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{t("provinceAll")}</SelectItem>
+              {provinces.map((p) => (
                 <SelectItem key={p} value={p}>
                   {p}
                 </SelectItem>

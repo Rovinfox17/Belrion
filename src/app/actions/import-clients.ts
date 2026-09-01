@@ -14,6 +14,9 @@ export type ImportClientRow = {
   phone: string | null;
   email: string | null;
   address: string | null;
+  locality: string | null;
+  region: string | null;
+  province: string | null;
   notes: string | null;
   products: string[];
   status: ClientStatus;
@@ -63,6 +66,9 @@ export async function importClientsBatch(
       company_name: row.companyName,
       status: row.status,
       address: row.address || null,
+      locality: row.locality || null,
+      region: row.region || null,
+      province: row.province || null,
       notes: row.notes || null,
       user_id: user.id,
     });
