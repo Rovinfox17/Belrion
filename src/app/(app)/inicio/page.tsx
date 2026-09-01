@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CalendarClockIcon, CalendarDaysIcon, ClockAlertIcon } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { RouteGeneratorDialog } from "@/components/calendar/route-generator-dialog";
 
 const STALE_DAYS = 30;
 const UPCOMING_LIMIT = 3;
@@ -44,25 +45,38 @@ function lastVisitDate(client: RawClient): Date {
 export default async function InicioPage() {
   const locale = await getLocale();
   const t = await getTranslations("dashboard");
+  const tNav = await getTranslations("nav");
   const tNewDialog = await getTranslations("calendar.newDialog");
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const now = new Date();
   const todayStart = startOfDay(now);
   const todayEnd = endOfDay(now);
 
-  const [{ data: visitsData }, { data: clientsData }] = await Promise.all([
-    supabase
-      .from("visits")
-      .select("id, scheduled_at, client_id, clients(company_name)")
-      .eq("status", "pendiente")
-      .gte("scheduled_at", todayStart.toISOString())
-      .order("scheduled_at", { ascending: true }),
-    supabase
-      .from("clients")
-      .select("id, company_name, created_at, visits(scheduled_at, status)")
-      .eq("status", "activo"),
-  ]);
+  const [{ data: visitsData }, { data: clientsData }, { data: membershipsData }] =
+    await Promise.all([
+      supabase
+        .from("visits")
+        .select("id, scheduled_at, client_id, clients(company_name)")
+        .eq("status", "pendiente")
+        .gte("scheduled_at", todayStart.toISOString())
+        .order("scheduled_at", { ascending: true }),
+      supabase
+        .from("clients")
+        .select("id, company_name, created_at, visits(scheduled_at, status)")
+        .eq("status", "activo"),
+      user
+        ? supabase.from("team_members").select("team_id, teams(name)").eq("user_id", user.id)
+        : Promise.resolve({ data: null }),
+    ]);
+
+  const teams = (membershipsData ?? []).map((m) => ({
+    id: m.team_id,
+    name: (m.teams as unknown as { name: string } | null)?.name ?? tNav("team"),
+  }));
 
   const rawVisits = (visitsData ?? []) as unknown as RawVisit[];
 
@@ -93,7 +107,10 @@ export default async function InicioPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-4 sm:p-6">
-      <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="font-heading text-2xl font-semibold">{t("title")}</h1>
+        <RouteGeneratorDialog teams={teams} />
+      </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <section className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">

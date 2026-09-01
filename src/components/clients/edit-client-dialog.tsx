@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { HelpTooltip } from "@/components/ui/help-tooltip";
 import {
   Select,
   SelectContent,
@@ -119,7 +120,10 @@ export function EditClientDialog({
             </Select>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="edit_address">{t("address")}</Label>
+            <Label htmlFor="edit_address" className="flex items-center gap-1.5">
+              {t("address")}
+              <HelpTooltip text={t("addressHelp")} />
+            </Label>
             <Input
               id="edit_address"
               value={address}

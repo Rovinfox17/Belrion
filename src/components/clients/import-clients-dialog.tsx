@@ -282,6 +282,7 @@ export function ImportClientsDialog({ customFields }: { customFields: CustomFiel
   }
 
   const companyColumnIndex = fieldColumnIndex("companyName");
+  const addressColumnIndex = fieldColumnIndex("address");
 
   const mappedCustomFields = customFields.filter(
     (f) => fieldColumnIndex(`custom:${f.id}`) !== null
@@ -485,6 +486,11 @@ export function ImportClientsDialog({ customFields }: { customFields: CustomFiel
             {companyColumnIndex === null && (
               <p className="text-sm text-destructive" role="alert">
                 {t("mapping.companyNameMissing")}
+              </p>
+            )}
+            {addressColumnIndex !== null && (
+              <p className="rounded-md border border-border bg-accent/40 p-2.5 text-sm text-muted-foreground">
+                {t("mapping.addressHelp")}
               </p>
             )}
             <DialogFooter>

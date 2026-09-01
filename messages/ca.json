@@ -232,6 +232,7 @@
       "filterAll": "Tots"
     },
     "list": {
+      "selectAll": "Seleccionar-los tots",
       "company": "Empresa",
       "contact": "Contacte",
       "status": "Estat",
@@ -279,6 +280,7 @@
       "status": "Estat",
       "address": "Adreça",
       "addressPlaceholder": "Carrer, número, ciutat…",
+      "addressHelp": "Inclou carrer, número, població, província i codi postal en el mateix camp, perquè l'enllaç a Maps funcioni correctament.",
       "notes": "Dades d'interès",
       "notesPlaceholder": "Informació general de l'empresa…",
       "save": "Desa els canvis",
@@ -299,6 +301,20 @@
       "success": "Client eliminat",
       "errors": {
         "deleteFailed": "No s'ha pogut eliminar el client."
+      }
+    },
+    "bulkDelete": {
+      "selectedCount": "{count, plural, one {# client seleccionat} other {# clients seleccionats}}",
+      "clearSelection": "Cancel·la la selecció",
+      "trigger": "Elimina els seleccionats ({count})",
+      "title": "Elimina els clients seleccionats",
+      "description": "Estàs a punt d'eliminar {count, plural, one {# client} other {# clients}}. Aquesta acció no es pot desfer i també esborrarà els seus contactes, productes, visites i camps personalitzats.",
+      "cancel": "Cancel·la",
+      "confirm": "Elimina definitivament",
+      "deleting": "Eliminant…",
+      "success": "{count, plural, one {Client eliminat} other {# clients eliminats}}",
+      "errors": {
+        "deleteFailed": "No s'han pogut eliminar els clients seleccionats."
       }
     },
     "addressMap": {
@@ -409,6 +425,7 @@
         "fieldStatus": "Estat",
         "required": "obligatori",
         "companyNameMissing": "Assigna una columna a \"Nom de l'empresa\" per continuar.",
+        "addressHelp": "L'adreça ha d'incloure carrer, número, població, província i codi postal en una sola columna, perquè l'enllaç a Maps funcioni correctament. Si el teu Excel la té repartida en diverses columnes (carrer, ciutat, codi postal…), uneix-les en una de sola abans d'importar — l'app no les combina automàticament.",
         "customFieldsGroup": "Camps personalitzats",
         "next": "Continua",
         "back": "Enrere"

@@ -1,14 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
 import { SearchXIcon, UsersIcon, SlidersHorizontalIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { ContactAvatar } from "@/components/clients/contact-avatar";
 import { SortableColumnHeader } from "@/components/clients/sortable-column-header";
 import { HelpTooltip } from "@/components/ui/help-tooltip";
+import { deleteClients } from "@/app/actions/clients";
 
 export type CustomFieldMeta = {
   id: string;
@@ -98,6 +108,95 @@ function ColumnPicker({
   );
 }
 
+function HeaderCheckbox({
+  checked,
+  indeterminate,
+  onChange,
+  ariaLabel,
+}: {
+  checked: boolean;
+  indeterminate: boolean;
+  onChange: (checked: boolean) => void;
+  ariaLabel: string;
+}) {
+  return (
+    <input
+      type="checkbox"
+      checked={checked}
+      aria-label={ariaLabel}
+      ref={(el) => {
+        if (el) el.indeterminate = indeterminate;
+      }}
+      onChange={(e) => onChange(e.target.checked)}
+      className="size-4"
+    />
+  );
+}
+
+function BulkDeleteBar({
+  selectedIds,
+  onDeleted,
+  onClearSelection,
+}: {
+  selectedIds: string[];
+  onDeleted: () => void;
+  onClearSelection: () => void;
+}) {
+  const t = useTranslations("clients.bulkDelete");
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  function handleConfirm() {
+    startTransition(async () => {
+      const result = await deleteClients(selectedIds);
+      if (result?.error) {
+        toast.error(result.error);
+        return;
+      }
+      toast.success(t("success", { count: selectedIds.length }));
+      setConfirmOpen(false);
+      onDeleted();
+      router.refresh();
+    });
+  }
+
+  return (
+    <div className="sticky top-0 z-10 mb-2 flex items-center justify-between gap-3 rounded-lg border border-border bg-card p-3 shadow-sm">
+      <div className="flex items-center gap-3">
+        <span className="text-sm font-medium">
+          {t("selectedCount", { count: selectedIds.length })}
+        </span>
+        <Button type="button" variant="ghost" size="sm" onClick={onClearSelection}>
+          {t("clearSelection")}
+        </Button>
+      </div>
+      <Button type="button" variant="destructive" size="sm" onClick={() => setConfirmOpen(true)}>
+        {t("trigger", { count: selectedIds.length })}
+      </Button>
+
+      <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("title")}</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">
+            {t("description", { count: selectedIds.length })}
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setConfirmOpen(false)} disabled={isPending}>
+              {t("cancel")}
+            </Button>
+            <Button variant="destructive" onClick={handleConfirm} disabled={isPending}>
+              {isPending ? t("deleting") : t("confirm")}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
 export function ClientList({
   clients,
   isFiltered,
@@ -111,6 +210,7 @@ export function ClientList({
   const t = useTranslations("clients");
   const tFilters = useTranslations("clients.filters");
   const [visibleColumnIds, setVisibleColumnIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     try {
@@ -132,6 +232,22 @@ export function ClientList({
   }
 
   const visibleColumns = customFields.filter((f) => visibleColumnIds.includes(f.id));
+
+  function toggleOne(id: string, checked: boolean) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (checked) next.add(id);
+      else next.delete(id);
+      return next;
+    });
+  }
+
+  function toggleAll(checked: boolean) {
+    setSelectedIds(checked ? new Set(clients.map((c) => c.id)) : new Set());
+  }
+
+  const allSelected = clients.length > 0 && selectedIds.size === clients.length;
+  const someSelected = selectedIds.size > 0 && !allSelected;
 
   const STATUS_LABEL: Record<ClientRow["status"], string> = {
     activo: tFilters("statusActive"),
@@ -169,6 +285,14 @@ export function ClientList({
 
   return (
     <>
+      {selectedIds.size > 0 && (
+        <BulkDeleteBar
+          selectedIds={Array.from(selectedIds)}
+          onDeleted={() => setSelectedIds(new Set())}
+          onClearSelection={() => setSelectedIds(new Set())}
+        />
+      )}
+
       {customFields.length > 0 && (
         <div className="mb-2 hidden justify-end md:flex">
           <ColumnPicker
@@ -183,6 +307,14 @@ export function ClientList({
         <table className="w-full text-left text-sm">
           <thead className="bg-accent text-xs font-medium tracking-wide text-muted-foreground uppercase">
             <tr>
+              <th className="w-10 px-4 py-2.5">
+                <HeaderCheckbox
+                  checked={allSelected}
+                  indeterminate={someSelected}
+                  onChange={toggleAll}
+                  ariaLabel={t("list.selectAll")}
+                />
+              </th>
               <th className="px-4 py-2.5 font-medium">
                 <SortableColumnHeader label={t("list.company")} field="alfabetico" />
               </th>
@@ -208,6 +340,15 @@ export function ClientList({
                 key={c.id}
                 className="border-t border-border transition-colors duration-150 hover:bg-accent/60"
               >
+                <td className="px-4 py-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(c.id)}
+                    onChange={(e) => toggleOne(c.id, e.target.checked)}
+                    aria-label={c.companyName}
+                    className="size-4"
+                  />
+                </td>
                 <td className="px-4 py-2">
                   <Link href={`/clientes/${c.id}`} className="font-medium hover:underline">
                     {c.companyName}
@@ -244,10 +385,17 @@ export function ClientList({
 
       <ul className="flex flex-col gap-3 md:hidden">
         {clients.map((c) => (
-          <li key={c.id}>
+          <li key={c.id} className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              checked={selectedIds.has(c.id)}
+              onChange={(e) => toggleOne(c.id, e.target.checked)}
+              aria-label={c.companyName}
+              className="mt-4 size-4 shrink-0"
+            />
             <Link
               href={`/clientes/${c.id}`}
-              className="block rounded-lg border border-border bg-card p-4 shadow-sm transition-colors duration-150 hover:bg-accent/60"
+              className="block flex-1 rounded-lg border border-border bg-card p-4 shadow-sm transition-colors duration-150 hover:bg-accent/60"
             >
               <div className="flex items-start justify-between gap-2">
                 <span className="font-medium">{c.companyName}</span>

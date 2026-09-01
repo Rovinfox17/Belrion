@@ -116,3 +116,25 @@ export async function deleteClient(id: string) {
   revalidatePath("/");
   return { success: true as const };
 }
+
+export async function deleteClients(ids: string[]) {
+  if (ids.length === 0) {
+    return { success: true as const, count: 0 };
+  }
+
+  const supabase = await createClient();
+  // La RLS de "clients" ya limita el delete a los clientes a los que el
+  // usuario tiene acceso, así que un .in() con ids ajenos simplemente no los
+  // afecta en vez de fallar. Contactos, productos, visitas y valores de
+  // campos personalizados se borran solos por el "on delete cascade" de sus
+  // claves foráneas, igual que en el borrado individual.
+  const { error } = await supabase.from("clients").delete().in("id", ids);
+
+  if (error) {
+    const t = await getTranslations("clients.bulkDelete.errors");
+    return { error: t("deleteFailed") };
+  }
+
+  revalidatePath("/");
+  return { success: true as const, count: ids.length };
+}

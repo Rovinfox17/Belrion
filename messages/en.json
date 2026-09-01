@@ -232,6 +232,7 @@
       "filterAll": "All"
     },
     "list": {
+      "selectAll": "Select all",
       "company": "Company",
       "contact": "Contact",
       "status": "Status",
@@ -279,6 +280,7 @@
       "status": "Status",
       "address": "Address",
       "addressPlaceholder": "Street, number, city…",
+      "addressHelp": "Include street, number, town, province and postal code in the same field, so the Maps link works correctly.",
       "notes": "Notes",
       "notesPlaceholder": "General information about the company…",
       "save": "Save changes",
@@ -299,6 +301,20 @@
       "success": "Client deleted",
       "errors": {
         "deleteFailed": "Could not delete the client."
+      }
+    },
+    "bulkDelete": {
+      "selectedCount": "{count, plural, one {# client selected} other {# clients selected}}",
+      "clearSelection": "Clear selection",
+      "trigger": "Delete selected ({count})",
+      "title": "Delete selected clients",
+      "description": "You're about to delete {count, plural, one {# client} other {# clients}}. This action cannot be undone and will also delete their contacts, products, visits, and custom field values.",
+      "cancel": "Cancel",
+      "confirm": "Delete permanently",
+      "deleting": "Deleting…",
+      "success": "{count, plural, one {Client deleted} other {# clients deleted}}",
+      "errors": {
+        "deleteFailed": "Could not delete the selected clients."
       }
     },
     "addressMap": {
@@ -409,6 +425,7 @@
         "fieldStatus": "Status",
         "required": "required",
         "companyNameMissing": "Assign a column to \"Company name\" to continue.",
+        "addressHelp": "The address should include street, number, town, province and postal code in a single column, so the Maps link works correctly. If your spreadsheet has it split across several columns (street, city, postal code…), merge them into one before importing — the app doesn't combine columns automatically.",
         "customFieldsGroup": "Custom fields",
         "next": "Continue",
         "back": "Back"

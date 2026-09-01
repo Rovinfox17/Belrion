@@ -232,6 +232,7 @@
       "filterAll": "Todos"
     },
     "list": {
+      "selectAll": "Seleccionar todos",
       "company": "Empresa",
       "contact": "Contacto",
       "status": "Estado",
@@ -279,6 +280,7 @@
       "status": "Estado",
       "address": "Dirección",
       "addressPlaceholder": "Calle, número, ciudad…",
+      "addressHelp": "Incluye calle, número, población, provincia y código postal en el mismo campo, para que el enlace a Maps funcione correctamente.",
       "notes": "Datos de interés",
       "notesPlaceholder": "Información general de la empresa…",
       "save": "Guardar cambios",
@@ -299,6 +301,20 @@
       "success": "Cliente eliminado",
       "errors": {
         "deleteFailed": "No se pudo eliminar el cliente."
+      }
+    },
+    "bulkDelete": {
+      "selectedCount": "{count, plural, one {# cliente seleccionado} other {# clientes seleccionados}}",
+      "clearSelection": "Cancelar selección",
+      "trigger": "Eliminar seleccionados ({count})",
+      "title": "Eliminar clientes seleccionados",
+      "description": "Vas a eliminar {count, plural, one {# cliente} other {# clientes}}. Esta acción no se puede deshacer y borrará también sus contactos, productos, visitas y campos personalizados.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar definitivamente",
+      "deleting": "Eliminando…",
+      "success": "{count, plural, one {Cliente eliminado} other {# clientes eliminados}}",
+      "errors": {
+        "deleteFailed": "No se pudieron eliminar los clientes seleccionados."
       }
     },
     "addressMap": {
@@ -409,6 +425,7 @@
         "fieldStatus": "Estado",
         "required": "obligatorio",
         "companyNameMissing": "Asigna una columna a \"Nombre de la empresa\" para continuar.",
+        "addressHelp": "La dirección debe incluir calle, número, población, provincia y código postal en una sola columna, para que el enlace a Maps funcione correctamente. Si tu Excel la tiene repartida en varias columnas (calle, ciudad, código postal…), únelas en una sola antes de importar — la app no las combina automáticamente.",
         "customFieldsGroup": "Campos personalizados",
         "next": "Continuar",
         "back": "Atrás"
