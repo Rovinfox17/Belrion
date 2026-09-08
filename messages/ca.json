@@ -251,7 +251,11 @@
       "emptyFiltered": "Cap client coincideix amb aquests filtres.",
       "emptyNoClients": "Encara no tens clients.",
       "emptyHint": "Utilitza \"Nou client\" per donar d'alta el primer.",
-      "loadError": "No s'han pogut carregar els clients."
+      "loadError": "No s'han pogut carregar els clients.",
+      "pageRange": "Mostrant {start}–{end} de {total}",
+      "pageOf": "Pàgina {current} de {total}",
+      "previousPage": "Anterior",
+      "nextPage": "Següent"
     },
     "newDialog": {
       "trigger": "Nou client",

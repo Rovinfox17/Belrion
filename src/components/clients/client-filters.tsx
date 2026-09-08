@@ -60,6 +60,9 @@ export function ClientFilters({
     } else {
       params.delete(key);
     }
+    // Un filtro nuevo puede dejar la página actual fuera de rango (menos
+    // resultados, menos páginas) — se vuelve siempre a la primera.
+    params.delete("page");
     startTransition(() => {
       router.push(params.toString() ? `${pathname}?${params.toString()}` : pathname);
     });
@@ -72,6 +75,7 @@ export function ClientFilters({
     } else {
       params.delete("sort");
     }
+    params.delete("page");
     // La dirección se resetea al valor por defecto del criterio elegido; si
     // se quedara la de una columna anterior podría invertir el resultado.
     params.delete("dir");

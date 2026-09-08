@@ -26,6 +26,7 @@ export function SortableColumnHeader({
     const params = new URLSearchParams(searchParams.toString());
     params.set("sort", field);
     params.set("dir", isActive ? (activeDir === "asc" ? "desc" : "asc") : defaultDir);
+    params.delete("page");
     router.push(params.toString() ? `${pathname}?${params.toString()}` : pathname);
   }
 

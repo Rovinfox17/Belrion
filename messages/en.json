@@ -251,7 +251,11 @@
       "emptyFiltered": "No client matches these filters.",
       "emptyNoClients": "You don't have any clients yet.",
       "emptyHint": "Use \"New client\" to add your first one.",
-      "loadError": "Could not load the clients."
+      "loadError": "Could not load the clients.",
+      "pageRange": "Showing {start}–{end} of {total}",
+      "pageOf": "Page {current} of {total}",
+      "previousPage": "Previous",
+      "nextPage": "Next"
     },
     "newDialog": {
       "trigger": "New client",

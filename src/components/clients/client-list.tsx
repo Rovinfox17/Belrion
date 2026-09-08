@@ -2,8 +2,9 @@
 
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { toast } from "sonner";
 import { SearchXIcon, UsersIcon, SlidersHorizontalIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -200,14 +201,84 @@ function BulkDeleteBar({
   );
 }
 
+function ClientListPagination({
+  currentPage,
+  totalPages,
+  totalCount,
+  rangeStart,
+  rangeEnd,
+}: {
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
+  rangeStart: number;
+  rangeEnd: number;
+}) {
+  const t = useTranslations("clients.list");
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  function hrefForPage(page: number) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (page <= 1) params.delete("page");
+    else params.set("page", String(page));
+    return params.toString() ? `${pathname}?${params.toString()}` : pathname;
+  }
+
+  return (
+    <div className="mt-3 flex items-center justify-between gap-3">
+      <p className="text-sm text-muted-foreground">
+        {t("pageRange", { start: rangeStart, end: rangeEnd, total: totalCount })}
+      </p>
+      <div className="flex items-center gap-2">
+        {currentPage <= 1 ? (
+          <Button variant="outline" size="sm" disabled>
+            <ChevronLeftIcon />
+            {t("previousPage")}
+          </Button>
+        ) : (
+          <Button variant="outline" size="sm" render={<Link href={hrefForPage(currentPage - 1)} />}>
+            <ChevronLeftIcon />
+            {t("previousPage")}
+          </Button>
+        )}
+        <span className="text-sm text-muted-foreground">
+          {t("pageOf", { current: currentPage, total: totalPages })}
+        </span>
+        {currentPage >= totalPages ? (
+          <Button variant="outline" size="sm" disabled>
+            {t("nextPage")}
+            <ChevronRightIcon />
+          </Button>
+        ) : (
+          <Button variant="outline" size="sm" render={<Link href={hrefForPage(currentPage + 1)} />}>
+            {t("nextPage")}
+            <ChevronRightIcon />
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function ClientList({
   clients,
   isFiltered,
   customFields,
+  currentPage = 1,
+  totalPages = 1,
+  totalCount,
+  rangeStart,
+  rangeEnd,
 }: {
   clients: ClientRow[];
   isFiltered: boolean;
   customFields: CustomFieldMeta[];
+  currentPage?: number;
+  totalPages?: number;
+  totalCount?: number;
+  rangeStart?: number;
+  rangeEnd?: number;
 }) {
   const locale = useLocale();
   const t = useTranslations("clients");
@@ -436,6 +507,16 @@ export function ClientList({
           </li>
         ))}
       </ul>
+
+      {totalPages > 1 && totalCount !== undefined && rangeStart !== undefined && rangeEnd !== undefined && (
+        <ClientListPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalCount={totalCount}
+          rangeStart={rangeStart}
+          rangeEnd={rangeEnd}
+        />
+      )}
     </>
   );
 }

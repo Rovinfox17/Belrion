@@ -251,7 +251,11 @@
       "emptyFiltered": "Ningún cliente coincide con estos filtros.",
       "emptyNoClients": "Todavía no tienes clientes.",
       "emptyHint": "Usa \"Nuevo cliente\" para dar de alta el primero.",
-      "loadError": "No se pudieron cargar los clientes."
+      "loadError": "No se pudieron cargar los clientes.",
+      "pageRange": "Mostrando {start}–{end} de {total}",
+      "pageOf": "Página {current} de {total}",
+      "previousPage": "Anterior",
+      "nextPage": "Siguiente"
     },
     "newDialog": {
       "trigger": "Nuevo cliente",

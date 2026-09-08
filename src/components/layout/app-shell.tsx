@@ -97,7 +97,7 @@ export function AppShell({
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background md:h-screen md:overflow-hidden">
       <aside className="hidden w-56 shrink-0 flex-col border-r border-sidebar-border bg-sidebar md:flex">
         <div className="flex items-center gap-2 px-5 py-5">
           <Image src="/logo.png" alt="Belrion" width={32} height={32} className="rounded-full" />
@@ -158,7 +158,7 @@ export function AppShell({
         </div>
       </aside>
 
-      <div className="flex min-h-screen flex-1 flex-col">
+      <div className="flex min-h-screen flex-1 flex-col md:h-screen md:overflow-y-auto">
         <header className="flex items-center justify-between gap-2 border-b border-border bg-card px-4 py-3 md:hidden">
           <div className="flex items-center gap-2">
             <Image src="/logo.png" alt="Belrion" width={28} height={28} className="rounded-full" />
@@ -188,7 +188,7 @@ export function AppShell({
           </div>
         </header>
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-20 md:pb-0">{children}</main>
 
         <div className="pb-20 md:pb-0">
           <Footer />

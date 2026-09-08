@@ -36,6 +36,8 @@ function compareCustomValues(
   }
 }
 
+const PAGE_SIZE = 10;
+
 function lastVisit(c: RawClient) {
   const past = c.visits
     .filter((v) => v.status === "completada")
@@ -212,6 +214,11 @@ export default async function Home({
     q || status || product || locality || region || province || upcomingOnly || activeCustomFilters.length > 0
   );
 
+  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  const requestedPage = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
+  const currentPage = Math.min(requestedPage, totalPages);
+  const pagedRows = rows.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
   const currentQuery = new URLSearchParams(
     Object.entries(params).filter((entry): entry is [string, string] => entry[1] !== undefined)
   ).toString();
@@ -273,7 +280,16 @@ export default async function Home({
         <p className="text-sm text-destructive">{t("list.loadError")}</p>
       )}
 
-      <ClientList clients={rows} isFiltered={isFiltered} customFields={customFields} />
+      <ClientList
+        clients={pagedRows}
+        isFiltered={isFiltered}
+        customFields={customFields}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalCount={rows.length}
+        rangeStart={rows.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1}
+        rangeEnd={(currentPage - 1) * PAGE_SIZE + pagedRows.length}
+      />
     </div>
   );
 }

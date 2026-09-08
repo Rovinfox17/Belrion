@@ -53,7 +53,12 @@ export function ClientMap({ clients, locale }: { clients: MapClient[]; locale: s
   }
 
   return (
-    <div className="h-[70vh] w-full overflow-hidden rounded-lg border border-border shadow-sm">
+    // Leaflet pone sus propios paneles internos (mosaicos, marcadores,
+    // popups...) con z-index hasta 700, y sin "isolate" ese valor compite
+    // directamente con el resto de la página en vez de quedarse contenido
+    // dentro del mapa — así se colaba por encima de los desplegables de
+    // filtros y del menú inferior móvil, ambos con z-index mucho más bajo.
+    <div className="isolate h-[70vh] w-full overflow-hidden rounded-lg border border-border shadow-sm">
       <MapContainer
         bounds={bounds}
         boundsOptions={{ padding: [40, 40], maxZoom: 15 }}
